@@ -28,7 +28,7 @@ macro(create_test name)
     target_link_libraries(
         ${name}
         gtest_main
-        scran_utils
+        scran_core_utils
     )
 
     if(DO_CODE_COVERAGE)
