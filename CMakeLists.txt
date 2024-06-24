@@ -7,7 +7,7 @@ project(scran_utils
 
 add_library(scran_core_utils INTERFACE)
 target_compile_features(scran_core_utils INTERFACE cxx_std_17)
-target_include_directories(scran_core_utils INTERFACE include)
+target_include_directories(scran_core_utils INTERFACE include/scran)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     include(CTest)
@@ -15,7 +15,3 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
         add_subdirectory(tests)
     endif()
 endif()
-
-add_library(scran_core_utils_internal INTERFACE)
-target_compile_features(scran_core_utils_internal INTERFACE cxx_std_17)
-target_include_directories(scran_core_utils_internal INTERFACE include/scran)

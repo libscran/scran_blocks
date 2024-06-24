@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "scran/average_vectors.hpp"
+#include "average_vectors.hpp"
 #include "compare_almost_equal.h"
 #include <vector>
 

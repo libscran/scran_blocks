@@ -93,7 +93,7 @@ or `EQUAL`, where all blocks are equally weighted regardless of size (assuming t
 
 This repository is part of the broader [**libscran**](https://github.com/libscran/libscran) library,
 so users are recommended to use the latter in their projects.
-Nonetheless, if this library is to be used directly, we can use CMake with `FetchContent`:
+**libscran** developers should just use CMake with `FetchContent`:
 
 ```cmake
 include(FetchContent)
@@ -105,16 +105,10 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(scran_core_utils)
-```
 
-Then we can link to `scran_core_utils` to make the headers available during compilation:
-
-```cmake
 # For executables:
 target_link_libraries(myexe scran_core_utils)
 
 # For libaries
 target_link_libraries(mylib INTERFACE scran_core_utils)
 ```
-
-If you're not using CMake, the simple approach is to just copy the files in `include/` - either directly or with Git submodules - and include their path during compilation with, e.g., GCC's `-I`.

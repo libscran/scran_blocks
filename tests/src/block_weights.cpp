@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "scran/block_weights.hpp"
+#include "block_weights.hpp"
 #include <vector>
 
 TEST(BlockWeights, Variable) {
