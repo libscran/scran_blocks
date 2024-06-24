@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['compute_0',['compute',['../namespacescran_1_1average__vectors.html#a4e172bae14695de308541d81cc138ea0',1,'scran::average_vectors::compute(size_t n, std::vector&lt; Stat_ * &gt; in, Output_ *out, bool skip_nan)'],['../namespacescran_1_1average__vectors.html#af7d67ef4b70d6e0eb782b69448155c7c',1,'scran::average_vectors::compute(size_t n, std::vector&lt; Stat_ * &gt; in, bool skip_nan)'],['../namespacescran_1_1block__weights.html#a1a9e797af79dad83d063605d50b7099e',1,'scran::block_weights::compute(const std::vector&lt; Size_ &gt; &amp;sizes, Policy policy, const VariableParameters &amp;variable)']]],
+  ['compute_5fvariable_1',['compute_variable',['../namespacescran_1_1block__weights.html#a87cc462ecac05cd391007c5b1dd77cfc',1,'scran::block_weights']]],
+  ['compute_5fweighted_2',['compute_weighted',['../namespacescran_1_1average__vectors.html#aeceb59d0faa34d55113e9d10f1b60490',1,'scran::average_vectors::compute_weighted(size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *w, Output_ *out, bool skip_nan)'],['../namespacescran_1_1average__vectors.html#ac8147a5bc1b37991997de58c1a4f1752',1,'scran::average_vectors::compute_weighted(size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *w, bool skip_nan)']]]
+];
