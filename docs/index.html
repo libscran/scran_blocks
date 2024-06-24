@@ -138,7 +138,7 @@ Weighting blocks</h1>
 </div><!-- fragment --><p>Users can also change the policy to <code>NONE</code>, where weights are equal to the block size; or <code>EQUAL</code>, where all blocks are equally weighted regardless of size (assuming they are non-empty).</p>
 <h1><a class="anchor" id="autotoc_md4"></a>
 Building projects</h1>
-<p>This repository is part of the broader <a href="https://github.com/libscran/libscran"><b>libscran</b></a> library, so users are recommended to use the latter in their projects. Nonetheless, if this library is to be used directly, we can use CMake with <code>FetchContent</code>:</p>
+<p>This repository is part of the broader <a href="https://github.com/libscran/libscran"><b>libscran</b></a> library, so users are recommended to use the latter in their projects. <b>libscran</b> developers should just use CMake with <code>FetchContent</code>:</p>
 <div class="fragment"><div class="line">include(FetchContent)</div>
 <div class="line"> </div>
 <div class="line">FetchContent_Declare(</div>
@@ -148,14 +148,13 @@ Building projects</h1>
 <div class="line">)</div>
 <div class="line"> </div>
 <div class="line">FetchContent_MakeAvailable(scran_core_utils)</div>
-</div><!-- fragment --><p>Then we can link to <code>scran_core_utils</code> to make the headers available during compilation:</p>
-<div class="fragment"><div class="line"># For executables:</div>
+<div class="line"> </div>
+<div class="line"># For executables:</div>
 <div class="line">target_link_libraries(myexe scran_core_utils)</div>
 <div class="line"> </div>
 <div class="line"># For libaries</div>
 <div class="line">target_link_libraries(mylib INTERFACE scran_core_utils)</div>
-</div><!-- fragment --><p>If you're not using CMake, the simple approach is to just copy the files in <code>include/</code> - either directly or with Git submodules - and include their path during compilation with, e.g., GCC's <code>-I</code>. </p>
-</div></div><!-- PageDoc -->
+</div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
