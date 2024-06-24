@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "scran/average_vectors.hpp"
+#include "compare_almost_equal.h"
 #include <vector>
 
 static int full_of_nans(const std::vector<double>& vec) {
@@ -8,14 +9,6 @@ static int full_of_nans(const std::vector<double>& vec) {
         nan_count += std::isnan(x);
     }
     return nan_count;
-}
-
-template<typename Left_, typename Right_>
-void equal_float_vectors(const std::vector<Left_>& left, const std::vector<Right_>& right) {
-    ASSERT_EQ(left.size(), right.size());
-    for (size_t i = 0; i < left.size(); ++i) {
-        EXPECT_FLOAT_EQ(left[i], right[i]);
-    }
 }
 
 TEST(AverageVectors, Simple) {
@@ -27,7 +20,7 @@ TEST(AverageVectors, Simple) {
 
     auto out = scran::average_vectors::compute(5, std::vector<double*>{stuff[0].data(), stuff[1].data(), stuff[2].data()}, false);
     std::vector<double> ref {2, 10.0/3, 8.0/3, 13/3.0, 5.0};
-    equal_float_vectors(ref, out);
+    compare_almost_equal(ref, out);
 
     // Optimization when there's just one, or none.
     auto out_opt = scran::average_vectors::compute(5, std::vector<double*>{stuff[0].data()}, false);
@@ -64,7 +57,7 @@ TEST(AverageVectors, Weighted) {
     std::vector<double> weights3 { 0.5, 2, 1.5 };
     auto out3 = scran::average_vectors::compute_weighted(5, ptrs, weights3.data(), false);
     std::vector<double> ref3{ 2.250, 3.375, 2.500, 4.625, 5.375 };
-    equal_float_vectors(ref3, out3);
+    compare_almost_equal(ref3, out3);
 
     // Optimizations.
     auto out_opt = scran::average_vectors::compute_weighted(5, std::vector<double*>{stuff[0].data()}, weights1.data(), false);
@@ -92,12 +85,12 @@ TEST(AverageVectors, Missings) {
 
     auto out = scran::average_vectors::compute(5, std::vector<double*>{stuff[0].data(), stuff[1].data(), stuff[2].data()}, true);
     std::vector<double> ref {2, 9.0/2, 5.0/2, 4.0};
-    equal_float_vectors(ref, std::vector<double>(out.begin(), out.begin() + 4));
+    compare_almost_equal(ref, std::vector<double>(out.begin(), out.begin() + 4));
     EXPECT_TRUE(std::isnan(out[4]));
 
     std::vector<double> weights { 2, 3, 5 };
     auto wout = scran::average_vectors::compute_weighted(5, std::vector<double*>{stuff[0].data(), stuff[1].data(), stuff[2].data()}, weights.data(), true);
     std::vector<double> wref {(2 + 6 + 15)/10.0, (4 + 35)/(2.0 + 5.0), (6 + 15)/(3.0 + 5.0), 4.0};
-    equal_float_vectors(wref, std::vector<double>(wout.begin(), wout.begin() + 4));
+    compare_almost_equal(wref, std::vector<double>(wout.begin(), wout.begin() + 4));
     EXPECT_TRUE(std::isnan(wout[4]));
 }
