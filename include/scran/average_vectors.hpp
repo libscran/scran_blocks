@@ -49,12 +49,11 @@ void compute(size_t n, std::vector<Stat_*> in, const Weight_* w, Output_* out, b
         auto copy = out;
 
         if constexpr(weighted_) {
+            // Don't skip if weight = 0, as we need to still compute the product, e.g.,
+            // if the value is Inf, we'd end up with 0 * Inf => NaN that can't be skipped.
             Weight_ weight = *(wcopy++);
-            if (weight == 0) {
-                continue;
-            }
 
-            // Use the other loop and skip an unnecessary multiplication when the weigth is 1.
+            // Use the other loop and skip an unnecessary multiplication when the weight is 1.
             if (weight != 1) { 
                 if (skip_nan) {
                     for (size_t i = 0; i < n; ++i, ++current, ++copy) {
