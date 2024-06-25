@@ -36,7 +36,7 @@ struct VariableParameters {
      * @param u Upper bound for the block weight calculation, should be not less than `l`.
      * This should be greater than `l`.
      */
-    constexpr VariableParameters(double l = 0, double u = 1000) : upper_bound(u), lower_bound(l) {}
+    constexpr VariableParameters(double l = 0, double u = 1000) : lower_bound(l), upper_bound(u) {}
 
     /**
      * Lower bound for the block weight calculation.
