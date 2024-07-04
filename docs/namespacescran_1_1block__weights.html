@@ -224,13 +224,13 @@ template&lt;typename Size_ &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Weight each block of cells for use in computing a weighted average across blocks. The weight for each block is calcualted from the size of that block.</p>
+<p>Assign a variable weight to each block of cells, for use in computing a weighted average across blocks. The weight for each block is calculated from the size of that block.</p>
 <ul>
-<li>If the block is smaller than some lower bound, it has zero weight.</li>
-<li>If the block is greater than some upper bound, it has weight of 1.</li>
+<li>If the block size is less than <code><a class="el" href="structscran_1_1block__weights_1_1VariableParameters.html#a79fe089ceefdb0ccf951c123e744fd9d">VariableParameters::lower_bound</a></code>, it has zero weight.</li>
+<li>If the block size is greater than <code><a class="el" href="structscran_1_1block__weights_1_1VariableParameters.html#ac9ead8e533b758d8f7eea424ecc91e1b">VariableParameters::upper_bound</a></code>, it has weight of 1.</li>
 <li>Otherwise, the block has weight proportional to its size, increasing linearly from 0 to 1 between the two bounds.</li>
 </ul>
-<p>Blocks that are "large enough" are considered to be equally trustworthy and receive the same weight, ensuring that each block contributes equally to the weighted average. By comparison, very small blocks receive lower weight as their statistics are generally less stable. If both <code>cap</code> and <code>block_size</code> are zero, the weight is also set to zero.</p>
+<p>Blocks that are "large enough" are considered to be equally trustworthy and receive the same weight, ensuring that each block contributes equally to the weighted average. By comparison, very small blocks receive lower weight as their statistics are generally less stable.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>Size of the block, in terms of the number of cells in that block. </td></tr>

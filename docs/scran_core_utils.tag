@@ -24,13 +24,6 @@
   <compound kind="struct">
     <name>scran::block_weights::VariableParameters</name>
     <filename>structscran_1_1block__weights_1_1VariableParameters.html</filename>
-    <member kind="function">
-      <type>constexpr</type>
-      <name>VariableParameters</name>
-      <anchorfile>structscran_1_1block__weights_1_1VariableParameters.html</anchorfile>
-      <anchor>a879a8c5b31b2a94ca618330fbfd58e41</anchor>
-      <arglist>(double l=0, double u=1000)</arglist>
-    </member>
     <member kind="variable">
       <type>double</type>
       <name>lower_bound</name>
