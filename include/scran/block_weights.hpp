@@ -32,34 +32,28 @@ enum class Policy : char { NONE, VARIABLE, EQUAL };
  */
 struct VariableParameters {
     /**
-     * @param l Lower bound for the block weight calculation, should be non-negative.
-     * @param u Upper bound for the block weight calculation, should be not less than `l`.
-     * This should be greater than `l`.
-     */
-    constexpr VariableParameters(double l = 0, double u = 1000) : lower_bound(l), upper_bound(u) {}
-
-    /**
      * Lower bound for the block weight calculation.
+     * This should be non-negative.
      */
-    double lower_bound;
+    double lower_bound = 0;
 
     /**
      * Upper bound for the block weight calculation.
+     * This should be no less than `lower_bound`.
      */
-    double upper_bound;
+    double upper_bound = 1000;
 };
 
 /**
- * Weight each block of cells for use in computing a weighted average across blocks.
- * The weight for each block is calcualted from the size of that block.
+ * Assign a variable weight to each block of cells, for use in computing a weighted average across blocks.
+ * The weight for each block is calculated from the size of that block.
  *
- * - If the block is smaller than some lower bound, it has zero weight.
- * - If the block is greater than some upper bound, it has weight of 1.
+ * - If the block size is less than `VariableParameters::lower_bound`, it has zero weight.
+ * - If the block size is greater than `VariableParameters::upper_bound`, it has weight of 1.
  * - Otherwise, the block has weight proportional to its size, increasing linearly from 0 to 1 between the two bounds.
  *
  * Blocks that are "large enough" are considered to be equally trustworthy and receive the same weight, ensuring that each block contributes equally to the weighted average.
  * By comparison, very small blocks receive lower weight as their statistics are generally less stable.
- * If both `cap` and `block_size` are zero, the weight is also set to zero.
  *
  * @param s Size of the block, in terms of the number of cells in that block.
  * @param params Parameters for the weight calculation, consisting of the lower and upper bounds.
