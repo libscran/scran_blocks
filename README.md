@@ -1,4 +1,4 @@
-# Blocking utilities for scran
+# Blocking utilities for libscran
 
 ![Unit tests](https://github.com/libscran/scran_blocks/actions/workflows/run-tests.yaml/badge.svg)
 ![Documentation](https://github.com/libscran/scran_blocks/actions/workflows/doxygenate.yaml/badge.svg)
