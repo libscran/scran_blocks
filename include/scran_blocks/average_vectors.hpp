@@ -1,5 +1,5 @@
-#ifndef AVERAGE_VECTORS_HPP
-#define AVERAGE_VECTORS_HPP
+#ifndef SCRAN_BLOCKS_AVERAGE_VECTORS_HPP
+#define SCRAN_BLOCKS_AVERAGE_VECTORS_HPP
 
 #include <vector>
 #include <limits>
@@ -12,13 +12,7 @@
  * @brief Average parallel elements across vectors.
  */
 
-namespace scran {
-
-/**
- * @namespace scran::average_vectors
- * @brief Average parallel elements across vectors.
- */
-namespace average_vectors {
+namespace scran_blocks {
 
 /**
  * @cond
@@ -26,7 +20,7 @@ namespace average_vectors {
 namespace internal {
 
 template<bool weighted_, typename Stat_, typename Weight_, typename Output_>
-void compute(size_t n, std::vector<Stat_*> in, const Weight_* w, Output_* out, bool skip_nan) {
+void average_vectors(size_t n, std::vector<Stat_*> in, const Weight_* w, Output_* out, bool skip_nan) {
     if (in.empty()) {
         std::fill_n(out, n, std::numeric_limits<Output_>::quiet_NaN());
         return;
@@ -124,8 +118,8 @@ void compute(size_t n, std::vector<Stat_*> in, const Weight_* w, Output_* out, b
  * If `true`, NaNs are ignored in the average calculations for each element, at the cost of some efficiency.
  */
 template<typename Stat_, typename Output_>
-void compute(size_t n, std::vector<Stat_*> in, Output_* out, bool skip_nan) {
-    internal::compute<false>(n, std::move(in), static_cast<int*>(NULL), out, skip_nan);
+void average_vectors(size_t n, std::vector<Stat_*> in, Output_* out, bool skip_nan) {
+    internal::average_vectors<false>(n, std::move(in), static_cast<int*>(NULL), out, skip_nan);
     return;
 }
 
@@ -142,9 +136,9 @@ void compute(size_t n, std::vector<Stat_*> in, Output_* out, bool skip_nan) {
  * @return A vector of length `n` is returned, containing the average of all arrays in `in`.
  */
 template<typename Output_ = double, typename Stat_>
-std::vector<Output_> compute(size_t n, std::vector<Stat_*> in, bool skip_nan) {
+std::vector<Output_> average_vectors(size_t n, std::vector<Stat_*> in, bool skip_nan) {
     std::vector<Output_> out(n);
-    compute(n, std::move(in), out.data(), skip_nan);
+    average_vectors(n, std::move(in), out.data(), skip_nan);
     return out;
 }
 
@@ -166,7 +160,7 @@ std::vector<Output_> compute(size_t n, std::vector<Stat_*> in, bool skip_nan) {
  * If `true`, NaNs are ignored in the average calculations for each element, at the cost of some efficiency.
  */
 template<typename Stat_, typename Weight_, typename Output_>
-void compute_weighted(size_t n, std::vector<Stat_*> in, const Weight_* w, Output_* out, bool skip_nan) {
+void average_vectors_weighted(size_t n, std::vector<Stat_*> in, const Weight_* w, Output_* out, bool skip_nan) {
     if (!in.empty()) {
         bool same = true;
         for (size_t i = 1, end = in.size(); i < end; ++i) {
@@ -180,13 +174,13 @@ void compute_weighted(size_t n, std::vector<Stat_*> in, const Weight_* w, Output
             if (w[0] == 0) {
                 std::fill_n(out, n, std::numeric_limits<Output_>::quiet_NaN());
             } else {
-                compute(n, std::move(in), out, skip_nan);
+                average_vectors(n, std::move(in), out, skip_nan);
             }
             return;
         }
     }
 
-    internal::compute<true>(n, std::move(in), w, out, skip_nan);
+    internal::average_vectors<true>(n, std::move(in), w, out, skip_nan);
     return;
 }
 
@@ -206,12 +200,10 @@ void compute_weighted(size_t n, std::vector<Stat_*> in, const Weight_* w, Output
  * @return A vector is returned containing with the average of all arrays in `in`.
  */
 template<typename Output_ = double, typename Stat_, typename Weight_>
-std::vector<Output_> compute_weighted(size_t n, std::vector<Stat_*> in, const Weight_* w, bool skip_nan) {
+std::vector<Output_> average_vectors_weighted(size_t n, std::vector<Stat_*> in, const Weight_* w, bool skip_nan) {
     std::vector<Output_> out(n);
-    compute_weighted(n, std::move(in), w, out.data(), skip_nan);
+    average_vectors_weighted(n, std::move(in), w, out.data(), skip_nan);
     return out;
-}
-
 }
 
 }
