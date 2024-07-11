@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['variableparameters_0',['VariableParameters',['../structscran_1_1block__weights_1_1VariableParameters.html',1,'scran::block_weights']]],
-  ['vectors_1',['Averaging vectors',['../index.html#autotoc_md2',1,'']]]
+  ['tt_20fetchcontent_20tt_0',['CMake with &lt;tt&gt;FetchContent&lt;/tt&gt;',['../index.html#autotoc_md5',1,'']]],
+  ['tt_20find_5fpackage_20tt_1',['CMake with &lt;tt&gt;find_package()&lt;/tt&gt;',['../index.html#autotoc_md6',1,'']]]
 ];

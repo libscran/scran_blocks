@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['scran_2ehpp_0',['scran.hpp',['../scran_8hpp.html',1,'']]]
+  ['scran_5fblocks_2ehpp_0',['scran_blocks.hpp',['../scran__blocks_8hpp.html',1,'']]]
 ];

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['compute_0',['compute',['../namespacescran_1_1average__vectors.html#a4e172bae14695de308541d81cc138ea0',1,'scran::average_vectors::compute(size_t n, std::vector&lt; Stat_ * &gt; in, Output_ *out, bool skip_nan)'],['../namespacescran_1_1average__vectors.html#af7d67ef4b70d6e0eb782b69448155c7c',1,'scran::average_vectors::compute(size_t n, std::vector&lt; Stat_ * &gt; in, bool skip_nan)'],['../namespacescran_1_1block__weights.html#a1a9e797af79dad83d063605d50b7099e',1,'scran::block_weights::compute(const std::vector&lt; Size_ &gt; &amp;sizes, Policy policy, const VariableParameters &amp;variable)']]],
-  ['compute_5fvariable_1',['compute_variable',['../namespacescran_1_1block__weights.html#a87cc462ecac05cd391007c5b1dd77cfc',1,'scran::block_weights']]],
-  ['compute_5fweighted_2',['compute_weighted',['../namespacescran_1_1average__vectors.html#aeceb59d0faa34d55113e9d10f1b60490',1,'scran::average_vectors::compute_weighted(size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *w, Output_ *out, bool skip_nan)'],['../namespacescran_1_1average__vectors.html#ac8147a5bc1b37991997de58c1a4f1752',1,'scran::average_vectors::compute_weighted(size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *w, bool skip_nan)']]]
+  ['cmake_20with_20tt_20fetchcontent_20tt_0',['CMake with &lt;tt&gt;FetchContent&lt;/tt&gt;',['../index.html#autotoc_md5',1,'']]],
+  ['cmake_20with_20tt_20find_5fpackage_20tt_1',['CMake with &lt;tt&gt;find_package()&lt;/tt&gt;',['../index.html#autotoc_md6',1,'']]],
+  ['compute_5fvariable_5fweight_2',['compute_variable_weight',['../namespacescran__blocks.html#a0748c931e9c1250186a7794dcd440238',1,'scran_blocks']]],
+  ['compute_5fweights_3',['compute_weights',['../namespacescran__blocks.html#a744e0293aa7028a351a0aad0c9c3662d',1,'scran_blocks::compute_weights(size_t num_blocks, const Size_ *sizes, WeightPolicy policy, const VariableWeightParameters &amp;variable, Weight_ *weights)'],['../namespacescran__blocks.html#a8a87f8dd41754b80ec0509f20ac2340f',1,'scran_blocks::compute_weights(const std::vector&lt; Size_ &gt; &amp;sizes, WeightPolicy policy, const VariableWeightParameters &amp;variable)']]]
 ];

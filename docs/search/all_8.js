@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['upper_5fbound_0',['upper_bound',['../structscran_1_1block__weights_1_1VariableParameters.html#ac9ead8e533b758d8f7eea424ecc91e1b',1,'scran::block_weights::VariableParameters']]],
-  ['utilities_20for_20scran_1',['Utilities for scran',['../index.html',1,'']]]
+  ['scran_0',['Blocking utilities for scran',['../index.html',1,'']]],
+  ['scran_5fblocks_1',['scran_blocks',['../namespacescran__blocks.html',1,'']]],
+  ['scran_5fblocks_2ehpp_2',['scran_blocks.hpp',['../scran__blocks_8hpp.html',1,'']]]
 ];
