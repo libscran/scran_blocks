@@ -103,8 +103,8 @@
   </compound>
   <compound kind="page">
     <name>index</name>
-    <title>Blocking utilities for scran</title>
+    <title>Blocking utilities for libscran</title>
     <filename>index.html</filename>
-    <docanchor file="index.html" title="Blocking utilities for scran">md__2github_2workspace_2README</docanchor>
+    <docanchor file="index.html" title="Blocking utilities for libscran">md__2github_2workspace_2README</docanchor>
   </compound>
 </tagfile>

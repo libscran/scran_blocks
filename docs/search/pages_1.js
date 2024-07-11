@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['for_20scran_0',['Blocking utilities for scran',['../index.html',1,'']]]
+  ['for_20libscran_0',['Blocking utilities for libscran',['../index.html',1,'']]]
 ];
