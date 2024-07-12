@@ -17,6 +17,8 @@
     <name>scran_blocks.hpp</name>
     <path>scran_blocks/</path>
     <filename>scran__blocks_8hpp.html</filename>
+    <includes id="block__weights_8hpp" name="block_weights.hpp" local="yes" import="no" module="no" objc="no">block_weights.hpp</includes>
+    <includes id="average__vectors_8hpp" name="average_vectors.hpp" local="yes" import="no" module="no" objc="no">average_vectors.hpp</includes>
     <namespace>scran_blocks</namespace>
   </compound>
   <compound kind="struct">
