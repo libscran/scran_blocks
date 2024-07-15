@@ -13,7 +13,7 @@ This ensures that our results are not affected by the uninteresting differences 
 
 ## Averaging vectors
 
-The `average_vectors::compute()` function will compute the element-wise averages of any number of equi-length arrays.
+The `scran_blocks::average_vectors()` function will compute the element-wise averages of any number of equi-length arrays.
 This is typically used to average statistics across blocks, where each array contains the statistics for a single block over all genes.
 
 ```cpp
@@ -68,7 +68,7 @@ See the [reference documentation](https://libscran.github.io/scran_blocks) for m
 ## Weighting blocks
 
 When combining statistics across blocks, it may be desirable to weight each block by its size, favoring larger blocks that can emit more stable statistics.
-This is done using the `compute_block_weights()` function that calculates a weight for each block based on its size.
+This is done using the `scran_blocks::compute_weights()` function that calculates a weight for each block based on its size.
 
 ```cpp
 #include "scran_blocks/scran_blocks.hpp"
