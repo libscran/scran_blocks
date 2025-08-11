@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 project(scran_blocks
-    VERSION 0.1.0
+    VERSION 0.1.1
     DESCRIPTION "Blocking utilities for libscran"
     LANGUAGES CXX)
 
@@ -17,15 +17,15 @@ target_include_directories(scran_blocks INTERFACE
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/scran_blocks>)
 target_compile_features(scran_blocks INTERFACE cxx_std_17)
 
-## Dependencies
-#option(SCRAN_MARKERS_FETCH_EXTERN "Automatically fetch scran_blocks's external dependencies." ON)
-#if(SCRAN_MARKERS_FETCH_EXTERN)
-#    add_subdirectory(extern)
-#else()
-#    find_package(tatami_tatami 3.0.0 CONFIG REQUIRED)
-#    find_package(tatami_tatami_stats 1.1.0 CONFIG REQUIRED)
-#    find_package(scran_blocks 1.0.0 CONFIG REQUIRED)
-#endif()
+# Dependencies
+option(SCRAN_MARKERS_FETCH_EXTERN "Automatically fetch scran_blocks's external dependencies." ON)
+if(SCRAN_MARKERS_FETCH_EXTERN)
+    add_subdirectory(extern)
+else()
+    find_package(ltla_sanisizer 0.1.0 CONFIG REQUIRED)
+endif()
+
+target_link_libraries(scran_blocks INTERFACE ltla::sanisizer)
 
 # Tests
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
