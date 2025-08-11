@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
-<tagfile doxygen_version="1.9.8">
+<tagfile doxygen_version="1.12.0">
   <compound kind="file">
     <name>average_vectors.hpp</name>
     <path>scran_blocks/</path>
@@ -78,8 +78,8 @@
       <type>std::vector&lt; Output_ &gt;</type>
       <name>average_vectors_weighted</name>
       <anchorfile>namespacescran__blocks.html</anchorfile>
-      <anchor>a656535fcbb03d38ba16c66f941a5d1dd</anchor>
-      <arglist>(size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *w, bool skip_nan)</arglist>
+      <anchor>aef63b637195ba744bf821b4a1689cae8</anchor>
+      <arglist>(std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *w, bool skip_nan)</arglist>
     </member>
     <member kind="function">
       <type>double</type>
@@ -92,8 +92,8 @@
       <type>void</type>
       <name>compute_weights</name>
       <anchorfile>namespacescran__blocks.html</anchorfile>
-      <anchor>a744e0293aa7028a351a0aad0c9c3662d</anchor>
-      <arglist>(size_t num_blocks, const Size_ *sizes, WeightPolicy policy, const VariableWeightParameters &amp;variable, Weight_ *weights)</arglist>
+      <anchor>a8227c8eff7ef9f8172737478b5d41496</anchor>
+      <arglist>(std::size_t num_blocks, const Size_ *sizes, WeightPolicy policy, const VariableWeightParameters &amp;variable, Weight_ *weights)</arglist>
     </member>
     <member kind="function">
       <type>std::vector&lt; Weight_ &gt;</type>
