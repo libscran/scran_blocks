@@ -20,14 +20,15 @@ namespace scran_blocks {
  * Policy for weighting blocks based on their size, i.e., the number of cells in each block.
  * This determines the nature of the weight calculations in `compute_weights()`.
  *
- * - `NONE`: no weighting is performed.
+ * - `SIZE`: blocks are weighted in proportion to their size.
  *   Larger blocks will contribute more to the weighted average. 
  * - `EQUAL`: each non-empty block is assigned equal weight, regardless of its size.
  *   Equivalent to averaging across non-empty blocks without weights.
  * - `VARIABLE`: each batch is weighted using the logic in `compute_variable_weight()`.
  *   This penalizes small blocks with unreliable statistics while equally weighting all large blocks.
+ * - `NONE`: a deprecated alias for `SIZE`.
  */
-enum class WeightPolicy : char { NONE, VARIABLE, EQUAL };
+enum class WeightPolicy : char { NONE, SIZE, VARIABLE, EQUAL };
 
 /**
  * @brief Parameters for `compute_variable_weight()`.
@@ -94,7 +95,7 @@ inline double compute_variable_weight(const double s, const VariableWeightParame
  */
 template<typename Size_, typename Weight_>
 void compute_weights(const std::size_t num_blocks, const Size_* const sizes, const WeightPolicy policy, const VariableWeightParameters& variable, Weight_* const weights) {
-    if (policy == WeightPolicy::NONE) {
+    if (policy == WeightPolicy::NONE || policy == WeightPolicy::SIZE) {
         std::copy_n(sizes, num_blocks, weights);
     } else if (policy == WeightPolicy::EQUAL) {
         for (decltype(I(num_blocks)) s = 0; s < num_blocks; ++s) {

@@ -89,7 +89,7 @@ The above code chunk uses a variable block weight that increases linearly with b
 This `VARIABLE` policy penalizes very small blocks to ensure that their unstable statistics do not overly influence the average.
 Blocks are equally weighted once they are "large enough", ensuring that the average is not dominated by a single very large block. 
 
-Users can also change the policy to `NONE`, where weights are equal to the block size;
+Users can also change the policy to `SIZE`, where weights are equal to the block size;
 or `EQUAL`, where all blocks are equally weighted regardless of size (assuming they are non-empty).
 In such cases, the `variable` argument is ignored.
 Check out the [reference documentation](https://libscran.github.io/scran_blocks) for more details.

@@ -29,6 +29,7 @@ TEST(BlockWeights, Compute) {
     {
         std::vector<double> expected(sizes.begin(), sizes.end());
         EXPECT_EQ(expected, scran_blocks::compute_weights(sizes, scran_blocks::WeightPolicy::NONE, params));
+        EXPECT_EQ(expected, scran_blocks::compute_weights(sizes, scran_blocks::WeightPolicy::SIZE, params));
     }
 
     {
