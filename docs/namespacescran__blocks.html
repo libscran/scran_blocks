@@ -165,7 +165,8 @@ template&lt;typename Input_ &gt; </td></tr>
 <ul>
 <li><code>SIZE</code>: blocks are weighted in proportion to their size. Larger blocks will contribute more to the weighted average.</li>
 <li><code>EQUAL</code>: each non-empty block is assigned equal weight, regardless of its size. Equivalent to averaging across non-empty blocks without weights.</li>
-<li><code>VARIABLE</code>: each batch is weighted using the logic in <code><a class="el" href="#a33ebed1decbfe3627ce4ddf0b99df825">compute_variable_weight()</a></code>. This penalizes small blocks with unreliable statistics while equally weighting all large blocks. </li>
+<li><code>VARIABLE</code>: each batch is weighted using the logic in <code><a class="el" href="#a33ebed1decbfe3627ce4ddf0b99df825">compute_variable_weight()</a></code>. This penalizes small blocks with unreliable statistics while equally weighting all large blocks.</li>
+<li><code>NONE</code>: a deprecated alias for <code>SIZE</code>. </li>
 </ul>
 
 </div>
