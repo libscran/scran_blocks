@@ -105,13 +105,14 @@ $(function(){ initResizable(false); });
 <code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
 <code>#include &quot;sanisizer/sanisizer.hpp&quot;</code><br />
+<code>#include &quot;utils.hpp&quot;</code><br />
 </div>
 <p><a href="block__weights_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">scran_blocks::VariableWeightParameters</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameters for <code><a class="el" href="namespacescran__blocks.html#a0748c931e9c1250186a7794dcd440238">compute_variable_weight()</a></code>.  <a href="structscran__blocks_1_1VariableWeightParameters.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameters for <code><a class="el" href="namespacescran__blocks.html#a33ebed1decbfe3627ce4ddf0b99df825">compute_variable_weight()</a></code>.  <a href="structscran__blocks_1_1VariableWeightParameters.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -130,14 +131,14 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0748c931e9c1250186a7794dcd440238" id="r_a0748c931e9c1250186a7794dcd440238"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescran__blocks.html#a0748c931e9c1250186a7794dcd440238">scran_blocks::compute_variable_weight</a> (double s, const <a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">VariableWeightParameters</a> &amp;params)</td></tr>
-<tr class="separator:a0748c931e9c1250186a7794dcd440238"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8227c8eff7ef9f8172737478b5d41496" id="r_a8227c8eff7ef9f8172737478b5d41496"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Weight_ &gt; </td></tr>
-<tr class="memitem:a8227c8eff7ef9f8172737478b5d41496"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacescran__blocks.html#a8227c8eff7ef9f8172737478b5d41496">scran_blocks::compute_weights</a> (std::size_t num_blocks, const Size_ *sizes, <a class="el" href="namespacescran__blocks.html#ac2412948da94055ff438267ba089ba97">WeightPolicy</a> policy, const <a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">VariableWeightParameters</a> &amp;variable, Weight_ *weights)</td></tr>
-<tr class="separator:a8227c8eff7ef9f8172737478b5d41496"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a87f8dd41754b80ec0509f20ac2340f" id="r_a8a87f8dd41754b80ec0509f20ac2340f"><td class="memTemplParams" colspan="2">template&lt;typename Weight_  = double, typename Size_ &gt; </td></tr>
-<tr class="memitem:a8a87f8dd41754b80ec0509f20ac2340f"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Weight_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacescran__blocks.html#a8a87f8dd41754b80ec0509f20ac2340f">scran_blocks::compute_weights</a> (const std::vector&lt; Size_ &gt; &amp;sizes, <a class="el" href="namespacescran__blocks.html#ac2412948da94055ff438267ba089ba97">WeightPolicy</a> policy, const <a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">VariableWeightParameters</a> &amp;variable)</td></tr>
-<tr class="separator:a8a87f8dd41754b80ec0509f20ac2340f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33ebed1decbfe3627ce4ddf0b99df825" id="r_a33ebed1decbfe3627ce4ddf0b99df825"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescran__blocks.html#a33ebed1decbfe3627ce4ddf0b99df825">scran_blocks::compute_variable_weight</a> (const double s, const <a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">VariableWeightParameters</a> &amp;params)</td></tr>
+<tr class="separator:a33ebed1decbfe3627ce4ddf0b99df825"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2eb0ccb73289d97436afd94824ec0fae" id="r_a2eb0ccb73289d97436afd94824ec0fae"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Weight_ &gt; </td></tr>
+<tr class="memitem:a2eb0ccb73289d97436afd94824ec0fae"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacescran__blocks.html#a2eb0ccb73289d97436afd94824ec0fae">scran_blocks::compute_weights</a> (const std::size_t num_blocks, const Size_ *const sizes, const <a class="el" href="namespacescran__blocks.html#ac2412948da94055ff438267ba089ba97">WeightPolicy</a> policy, const <a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">VariableWeightParameters</a> &amp;variable, Weight_ *const weights)</td></tr>
+<tr class="separator:a2eb0ccb73289d97436afd94824ec0fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a182b74f7588264fae43fa06015f045c7" id="r_a182b74f7588264fae43fa06015f045c7"><td class="memTemplParams" colspan="2">template&lt;typename Weight_  = double, typename Size_ &gt; </td></tr>
+<tr class="memitem:a182b74f7588264fae43fa06015f045c7"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Weight_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacescran__blocks.html#a182b74f7588264fae43fa06015f045c7">scran_blocks::compute_weights</a> (const std::vector&lt; Size_ &gt; &amp;sizes, const <a class="el" href="namespacescran__blocks.html#ac2412948da94055ff438267ba089ba97">WeightPolicy</a> policy, const <a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">VariableWeightParameters</a> &amp;variable)</td></tr>
+<tr class="separator:a182b74f7588264fae43fa06015f045c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Calculation of per-block weights. </p>

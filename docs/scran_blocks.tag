@@ -57,8 +57,8 @@
       <type>void</type>
       <name>average_vectors</name>
       <anchorfile>namespacescran__blocks.html</anchorfile>
-      <anchor>a6fcb43b96a8b97c00cfaf3ae83df028d</anchor>
-      <arglist>(size_t n, std::vector&lt; Stat_ * &gt; in, Output_ *out, bool skip_nan)</arglist>
+      <anchor>ad102233b847d4004e03035c29f243130</anchor>
+      <arglist>(const std::size_t n, std::vector&lt; Stat_ * &gt; in, Output_ *const out, const bool skip_nan)</arglist>
     </member>
     <member kind="function">
       <type>std::vector&lt; Output_ &gt;</type>
@@ -71,36 +71,36 @@
       <type>void</type>
       <name>average_vectors_weighted</name>
       <anchorfile>namespacescran__blocks.html</anchorfile>
-      <anchor>a18cca7404ce3514a7d1f55a747c489be</anchor>
-      <arglist>(size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *w, Output_ *out, bool skip_nan)</arglist>
+      <anchor>afa41c174fefddebe4fc45c593f4edd2e</anchor>
+      <arglist>(const std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *const w, Output_ *const out, const bool skip_nan)</arglist>
     </member>
     <member kind="function">
       <type>std::vector&lt; Output_ &gt;</type>
       <name>average_vectors_weighted</name>
       <anchorfile>namespacescran__blocks.html</anchorfile>
-      <anchor>aef63b637195ba744bf821b4a1689cae8</anchor>
-      <arglist>(std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *w, bool skip_nan)</arglist>
+      <anchor>ac681cdd5f36d39f2e26f7a155551d259</anchor>
+      <arglist>(const std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *const w, const bool skip_nan)</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>compute_variable_weight</name>
       <anchorfile>namespacescran__blocks.html</anchorfile>
-      <anchor>a0748c931e9c1250186a7794dcd440238</anchor>
-      <arglist>(double s, const VariableWeightParameters &amp;params)</arglist>
+      <anchor>a33ebed1decbfe3627ce4ddf0b99df825</anchor>
+      <arglist>(const double s, const VariableWeightParameters &amp;params)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>compute_weights</name>
       <anchorfile>namespacescran__blocks.html</anchorfile>
-      <anchor>a8227c8eff7ef9f8172737478b5d41496</anchor>
-      <arglist>(std::size_t num_blocks, const Size_ *sizes, WeightPolicy policy, const VariableWeightParameters &amp;variable, Weight_ *weights)</arglist>
+      <anchor>a2eb0ccb73289d97436afd94824ec0fae</anchor>
+      <arglist>(const std::size_t num_blocks, const Size_ *const sizes, const WeightPolicy policy, const VariableWeightParameters &amp;variable, Weight_ *const weights)</arglist>
     </member>
     <member kind="function">
       <type>std::vector&lt; Weight_ &gt;</type>
       <name>compute_weights</name>
       <anchorfile>namespacescran__blocks.html</anchorfile>
-      <anchor>a8a87f8dd41754b80ec0509f20ac2340f</anchor>
-      <arglist>(const std::vector&lt; Size_ &gt; &amp;sizes, WeightPolicy policy, const VariableWeightParameters &amp;variable)</arglist>
+      <anchor>a182b74f7588264fae43fa06015f045c7</anchor>
+      <arglist>(const std::vector&lt; Size_ &gt; &amp;sizes, const WeightPolicy policy, const VariableWeightParameters &amp;variable)</arglist>
     </member>
   </compound>
   <compound kind="page">

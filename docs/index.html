@@ -96,19 +96,19 @@ Overview</h1>
 <p>This repository contains utilities for blocked analyses for the other <a href="https://github.com/libscran"><b>libscran</b></a> repositories. Any uninteresting factor of variation (usually across the cells) can be used as a blocking factor, e.g., experimental batches, sample/patient of origin. In the presence of blocks, our general strategy is to perform the analysis within each block before combining our conclusions across blocks. This ensures that our results are not affected by the uninteresting differences between blocks.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Averaging vectors</h1>
-<p>The <code><a class="el" href="namespacescran__blocks.html#a6fcb43b96a8b97c00cfaf3ae83df028d">scran_blocks::average_vectors()</a></code> function will compute the element-wise averages of any number of equi-length arrays. This is typically used to average statistics across blocks, where each array contains the statistics for a single block over all genes.</p>
+<p>The <code><a class="el" href="namespacescran__blocks.html#ad102233b847d4004e03035c29f243130">scran_blocks::average_vectors()</a></code> function will compute the element-wise averages of any number of equi-length arrays. This is typically used to average statistics across blocks, where each array contains the statistics for a single block over all genes.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="scran__blocks_8hpp.html">scran_blocks/scran_blocks.hpp</a>&quot;</span></div>
 <div class="line"> </div>
 <div class="line">std::vector&lt;double&gt; stat1 { 1, 2, 3, 4 };</div>
 <div class="line">std::vector&lt;double&gt; stat2 { 5, 6, 7, 8 };</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Contains { 3, 4, 5, 6 }.</span></div>
-<div class="line"><span class="keyword">auto</span> averaged = <a class="code hl_function" href="namespacescran__blocks.html#a6fcb43b96a8b97c00cfaf3ae83df028d">scran_blocks::average_vectors</a>(</div>
+<div class="line"><span class="keyword">auto</span> averaged = <a class="code hl_function" href="namespacescran__blocks.html#ad102233b847d4004e03035c29f243130">scran_blocks::average_vectors</a>(</div>
 <div class="line">    stat1.size(), </div>
 <div class="line">    { stat1.data(), stat2.data() }</div>
 <div class="line">    <span class="comment">/* skip_nan = */</span> <span class="keyword">false</span></div>
 <div class="line">);</div>
-<div class="ttc" id="anamespacescran__blocks_html_a6fcb43b96a8b97c00cfaf3ae83df028d"><div class="ttname"><a href="namespacescran__blocks.html#a6fcb43b96a8b97c00cfaf3ae83df028d">scran_blocks::average_vectors</a></div><div class="ttdeci">void average_vectors(size_t n, std::vector&lt; Stat_ * &gt; in, Output_ *out, bool skip_nan)</div><div class="ttdef"><b>Definition</b> average_vectors.hpp:122</div></div>
+<div class="ttc" id="anamespacescran__blocks_html_ad102233b847d4004e03035c29f243130"><div class="ttname"><a href="namespacescran__blocks.html#ad102233b847d4004e03035c29f243130">scran_blocks::average_vectors</a></div><div class="ttdeci">void average_vectors(const std::size_t n, std::vector&lt; Stat_ * &gt; in, Output_ *const out, const bool skip_nan)</div><div class="ttdef"><b>Definition</b> average_vectors.hpp:124</div></div>
 <div class="ttc" id="ascran__blocks_8hpp_html"><div class="ttname"><a href="scran__blocks_8hpp.html">scran_blocks.hpp</a></div><div class="ttdoc">Blocking utilities for libscran.</div></div>
 </div><!-- fragment --><p>If NaNs are present, they can be ignored:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;limits&gt;</span></div>
@@ -118,7 +118,7 @@ Averaging vectors</h1>
 <div class="line">std::vector&lt;double&gt; stat2n { 5, 6, nan, nan };</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Contains { 3, 6, 3, nan }.</span></div>
-<div class="line"><span class="keyword">auto</span> averagedn = <a class="code hl_function" href="namespacescran__blocks.html#a6fcb43b96a8b97c00cfaf3ae83df028d">scran_blocks::average_vectors</a>(</div>
+<div class="line"><span class="keyword">auto</span> averagedn = <a class="code hl_function" href="namespacescran__blocks.html#ad102233b847d4004e03035c29f243130">scran_blocks::average_vectors</a>(</div>
 <div class="line">    stat1n.size(), </div>
 <div class="line">    { stat1n.data(), stat2n.data() }</div>
 <div class="line">    <span class="comment">/* skip_nan = */</span> <span class="keyword">true</span></div>
@@ -129,26 +129,26 @@ Averaging vectors</h1>
 <div class="line">std::vector&lt;double&gt; weights { 1, 9 };</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Contains { 4.6, 5.6, 6.6, 7.6 }.</span></div>
-<div class="line"><span class="keyword">auto</span> averagedw = <a class="code hl_function" href="namespacescran__blocks.html#a18cca7404ce3514a7d1f55a747c489be">scran_blocks::average_vectors_weighted</a>(</div>
+<div class="line"><span class="keyword">auto</span> averagedw = <a class="code hl_function" href="namespacescran__blocks.html#afa41c174fefddebe4fc45c593f4edd2e">scran_blocks::average_vectors_weighted</a>(</div>
 <div class="line">    stat1w.size(), </div>
 <div class="line">    { stat1w.data(), stat2w.data() }</div>
 <div class="line">    weights.data(),</div>
 <div class="line">    <span class="comment">/* skip_nan = */</span> <span class="keyword">false</span></div>
 <div class="line">);</div>
-<div class="ttc" id="anamespacescran__blocks_html_a18cca7404ce3514a7d1f55a747c489be"><div class="ttname"><a href="namespacescran__blocks.html#a18cca7404ce3514a7d1f55a747c489be">scran_blocks::average_vectors_weighted</a></div><div class="ttdeci">void average_vectors_weighted(size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *w, Output_ *out, bool skip_nan)</div><div class="ttdef"><b>Definition</b> average_vectors.hpp:164</div></div>
+<div class="ttc" id="anamespacescran__blocks_html_afa41c174fefddebe4fc45c593f4edd2e"><div class="ttname"><a href="namespacescran__blocks.html#afa41c174fefddebe4fc45c593f4edd2e">scran_blocks::average_vectors_weighted</a></div><div class="ttdeci">void average_vectors_weighted(const std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *const w, Output_ *const out, const bool skip_nan)</div><div class="ttdef"><b>Definition</b> average_vectors.hpp:166</div></div>
 </div><!-- fragment --><p>See the <a href="https://libscran.github.io/scran_blocks">reference documentation</a> for more details.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Weighting blocks</h1>
-<p>When combining statistics across blocks, it may be desirable to weight each block by its size, favoring larger blocks that can emit more stable statistics. This is done using the <code><a class="el" href="namespacescran__blocks.html#a8227c8eff7ef9f8172737478b5d41496">scran_blocks::compute_weights()</a></code> function that calculates a weight for each block based on its size.</p>
+<p>When combining statistics across blocks, it may be desirable to weight each block by its size, favoring larger blocks that can emit more stable statistics. This is done using the <code><a class="el" href="namespacescran__blocks.html#a2eb0ccb73289d97436afd94824ec0fae">scran_blocks::compute_weights()</a></code> function that calculates a weight for each block based on its size.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="scran__blocks_8hpp.html">scran_blocks/scran_blocks.hpp</a>&quot;</span></div>
 <div class="line"> </div>
 <div class="line">std::vector&lt;size_t&gt; block_sizes { 10, 100, 1000 };</div>
-<div class="line"><span class="keyword">auto</span> weights = <a class="code hl_function" href="namespacescran__blocks.html#a8227c8eff7ef9f8172737478b5d41496">scran_blocks::compute_weights</a>(</div>
+<div class="line"><span class="keyword">auto</span> weights = <a class="code hl_function" href="namespacescran__blocks.html#a2eb0ccb73289d97436afd94824ec0fae">scran_blocks::compute_weights</a>(</div>
 <div class="line">    block_sizes, </div>
 <div class="line">    <span class="comment">/* policy = */</span> scran_blocks::WeightPolicy::VARIABLE,</div>
 <div class="line">    <span class="comment">/* variable = */</span> { 0, 200 } </div>
 <div class="line">);</div>
-<div class="ttc" id="anamespacescran__blocks_html_a8227c8eff7ef9f8172737478b5d41496"><div class="ttname"><a href="namespacescran__blocks.html#a8227c8eff7ef9f8172737478b5d41496">scran_blocks::compute_weights</a></div><div class="ttdeci">void compute_weights(std::size_t num_blocks, const Size_ *sizes, WeightPolicy policy, const VariableWeightParameters &amp;variable, Weight_ *weights)</div><div class="ttdef"><b>Definition</b> block_weights.hpp:90</div></div>
+<div class="ttc" id="anamespacescran__blocks_html_a2eb0ccb73289d97436afd94824ec0fae"><div class="ttname"><a href="namespacescran__blocks.html#a2eb0ccb73289d97436afd94824ec0fae">scran_blocks::compute_weights</a></div><div class="ttdeci">void compute_weights(const std::size_t num_blocks, const Size_ *const sizes, const WeightPolicy policy, const VariableWeightParameters &amp;variable, Weight_ *const weights)</div><div class="ttdef"><b>Definition</b> block_weights.hpp:92</div></div>
 </div><!-- fragment --><p>The above code chunk uses a variable block weight that increases linearly with block size from 0 to 200, after which it is capped at 1. This <code>VARIABLE</code> policy penalizes very small blocks to ensure that their unstable statistics do not overly influence the average. Blocks are equally weighted once they are "large enough", ensuring that the average is not dominated by a single very large block.</p>
 <p>Users can also change the policy to <code>NONE</code>, where weights are equal to the block size; or <code>EQUAL</code>, where all blocks are equally weighted regardless of size (assuming they are non-empty). In such cases, the <code>variable</code> argument is ignored. Check out the <a href="https://libscran.github.io/scran_blocks">reference documentation</a> for more details.</p>
 <h1><a class="anchor" id="autotoc_md4"></a>

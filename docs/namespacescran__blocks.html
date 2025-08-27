@@ -100,7 +100,7 @@ $(function(){ initResizable(false); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">VariableWeightParameters</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameters for <code><a class="el" href="#a0748c931e9c1250186a7794dcd440238">compute_variable_weight()</a></code>.  <a href="structscran__blocks_1_1VariableWeightParameters.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameters for <code><a class="el" href="#a33ebed1decbfe3627ce4ddf0b99df825">compute_variable_weight()</a></code>.  <a href="structscran__blocks_1_1VariableWeightParameters.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -113,26 +113,30 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a6fcb43b96a8b97c00cfaf3ae83df028d" id="r_a6fcb43b96a8b97c00cfaf3ae83df028d"><td class="memTemplParams" colspan="2">template&lt;typename Stat_ , typename Output_ &gt; </td></tr>
-<tr class="memitem:a6fcb43b96a8b97c00cfaf3ae83df028d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a6fcb43b96a8b97c00cfaf3ae83df028d">average_vectors</a> (size_t n, std::vector&lt; Stat_ * &gt; in, Output_ *out, bool skip_nan)</td></tr>
-<tr class="separator:a6fcb43b96a8b97c00cfaf3ae83df028d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad102233b847d4004e03035c29f243130" id="r_ad102233b847d4004e03035c29f243130"><td class="memTemplParams" colspan="2">template&lt;typename Stat_ , typename Output_ &gt; </td></tr>
+<tr class="memitem:ad102233b847d4004e03035c29f243130"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ad102233b847d4004e03035c29f243130">average_vectors</a> (const std::size_t n, std::vector&lt; Stat_ * &gt; in, Output_ *const out, const bool skip_nan)</td></tr>
+<tr class="separator:ad102233b847d4004e03035c29f243130"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace4fcc523c305a36b9d4b7f031367d13" id="r_ace4fcc523c305a36b9d4b7f031367d13"><td class="memTemplParams" colspan="2">template&lt;typename Output_  = double, typename Stat_ &gt; </td></tr>
 <tr class="memitem:ace4fcc523c305a36b9d4b7f031367d13"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Output_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ace4fcc523c305a36b9d4b7f031367d13">average_vectors</a> (size_t n, std::vector&lt; Stat_ * &gt; in, bool skip_nan)</td></tr>
 <tr class="separator:ace4fcc523c305a36b9d4b7f031367d13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18cca7404ce3514a7d1f55a747c489be" id="r_a18cca7404ce3514a7d1f55a747c489be"><td class="memTemplParams" colspan="2">template&lt;typename Stat_ , typename Weight_ , typename Output_ &gt; </td></tr>
-<tr class="memitem:a18cca7404ce3514a7d1f55a747c489be"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a18cca7404ce3514a7d1f55a747c489be">average_vectors_weighted</a> (size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *w, Output_ *out, bool skip_nan)</td></tr>
-<tr class="separator:a18cca7404ce3514a7d1f55a747c489be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef63b637195ba744bf821b4a1689cae8" id="r_aef63b637195ba744bf821b4a1689cae8"><td class="memTemplParams" colspan="2">template&lt;typename Output_  = double, typename Stat_ , typename Weight_ &gt; </td></tr>
-<tr class="memitem:aef63b637195ba744bf821b4a1689cae8"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Output_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aef63b637195ba744bf821b4a1689cae8">average_vectors_weighted</a> (std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *w, bool skip_nan)</td></tr>
-<tr class="separator:aef63b637195ba744bf821b4a1689cae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0748c931e9c1250186a7794dcd440238" id="r_a0748c931e9c1250186a7794dcd440238"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0748c931e9c1250186a7794dcd440238">compute_variable_weight</a> (double s, const <a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">VariableWeightParameters</a> &amp;params)</td></tr>
-<tr class="separator:a0748c931e9c1250186a7794dcd440238"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8227c8eff7ef9f8172737478b5d41496" id="r_a8227c8eff7ef9f8172737478b5d41496"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Weight_ &gt; </td></tr>
-<tr class="memitem:a8227c8eff7ef9f8172737478b5d41496"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8227c8eff7ef9f8172737478b5d41496">compute_weights</a> (std::size_t num_blocks, const Size_ *sizes, <a class="el" href="#ac2412948da94055ff438267ba089ba97">WeightPolicy</a> policy, const <a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">VariableWeightParameters</a> &amp;variable, Weight_ *weights)</td></tr>
-<tr class="separator:a8227c8eff7ef9f8172737478b5d41496"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a87f8dd41754b80ec0509f20ac2340f" id="r_a8a87f8dd41754b80ec0509f20ac2340f"><td class="memTemplParams" colspan="2">template&lt;typename Weight_  = double, typename Size_ &gt; </td></tr>
-<tr class="memitem:a8a87f8dd41754b80ec0509f20ac2340f"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Weight_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8a87f8dd41754b80ec0509f20ac2340f">compute_weights</a> (const std::vector&lt; Size_ &gt; &amp;sizes, <a class="el" href="#ac2412948da94055ff438267ba089ba97">WeightPolicy</a> policy, const <a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">VariableWeightParameters</a> &amp;variable)</td></tr>
-<tr class="separator:a8a87f8dd41754b80ec0509f20ac2340f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa41c174fefddebe4fc45c593f4edd2e" id="r_afa41c174fefddebe4fc45c593f4edd2e"><td class="memTemplParams" colspan="2">template&lt;typename Stat_ , typename Weight_ , typename Output_ &gt; </td></tr>
+<tr class="memitem:afa41c174fefddebe4fc45c593f4edd2e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#afa41c174fefddebe4fc45c593f4edd2e">average_vectors_weighted</a> (const std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *const w, Output_ *const out, const bool skip_nan)</td></tr>
+<tr class="separator:afa41c174fefddebe4fc45c593f4edd2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac681cdd5f36d39f2e26f7a155551d259" id="r_ac681cdd5f36d39f2e26f7a155551d259"><td class="memTemplParams" colspan="2">template&lt;typename Output_  = double, typename Stat_ , typename Weight_ &gt; </td></tr>
+<tr class="memitem:ac681cdd5f36d39f2e26f7a155551d259"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Output_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ac681cdd5f36d39f2e26f7a155551d259">average_vectors_weighted</a> (const std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *const w, const bool skip_nan)</td></tr>
+<tr class="separator:ac681cdd5f36d39f2e26f7a155551d259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33ebed1decbfe3627ce4ddf0b99df825" id="r_a33ebed1decbfe3627ce4ddf0b99df825"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33ebed1decbfe3627ce4ddf0b99df825">compute_variable_weight</a> (const double s, const <a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">VariableWeightParameters</a> &amp;params)</td></tr>
+<tr class="separator:a33ebed1decbfe3627ce4ddf0b99df825"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2eb0ccb73289d97436afd94824ec0fae" id="r_a2eb0ccb73289d97436afd94824ec0fae"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Weight_ &gt; </td></tr>
+<tr class="memitem:a2eb0ccb73289d97436afd94824ec0fae"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a2eb0ccb73289d97436afd94824ec0fae">compute_weights</a> (const std::size_t num_blocks, const Size_ *const sizes, const <a class="el" href="#ac2412948da94055ff438267ba089ba97">WeightPolicy</a> policy, const <a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">VariableWeightParameters</a> &amp;variable, Weight_ *const weights)</td></tr>
+<tr class="separator:a2eb0ccb73289d97436afd94824ec0fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a182b74f7588264fae43fa06015f045c7" id="r_a182b74f7588264fae43fa06015f045c7"><td class="memTemplParams" colspan="2">template&lt;typename Weight_  = double, typename Size_ &gt; </td></tr>
+<tr class="memitem:a182b74f7588264fae43fa06015f045c7"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Weight_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a182b74f7588264fae43fa06015f045c7">compute_weights</a> (const std::vector&lt; Size_ &gt; &amp;sizes, const <a class="el" href="#ac2412948da94055ff438267ba089ba97">WeightPolicy</a> policy, const <a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">VariableWeightParameters</a> &amp;variable)</td></tr>
+<tr class="separator:a182b74f7588264fae43fa06015f045c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a482389174be65d7c964b8c57a53589" id="r_a6a482389174be65d7c964b8c57a53589"><td class="memTemplParams" colspan="2"><a id="a6a482389174be65d7c964b8c57a53589" name="a6a482389174be65d7c964b8c57a53589"></a>
+template&lt;typename Input_ &gt; </td></tr>
+<tr class="memitem:a6a482389174be65d7c964b8c57a53589"><td class="memTemplItemLeft" align="right" valign="top">std::remove_cv_t&lt; std::remove_reference_t&lt; Input_ &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>I</b> (Input_ x)</td></tr>
+<tr class="separator:a6a482389174be65d7c964b8c57a53589"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Blocking utilities for <b>libscran</b>. </p>
@@ -160,14 +164,64 @@ Functions</h2></td></tr>
 <ul>
 <li><code>NONE</code>: no weighting is performed. Larger blocks will contribute more to the weighted average.</li>
 <li><code>EQUAL</code>: each block receives equal weight, regardless of its size. Equivalent to averaging across blocks without weights.</li>
-<li><code>VARIABLE</code>: each batch is weighted using the logic in <code><a class="el" href="#a0748c931e9c1250186a7794dcd440238">compute_variable_weight()</a></code>. This penalizes small blocks with unreliable statistics while equally weighting all large blocks. </li>
+<li><code>VARIABLE</code>: each batch is weighted using the logic in <code><a class="el" href="#a33ebed1decbfe3627ce4ddf0b99df825">compute_variable_weight()</a></code>. This penalizes small blocks with unreliable statistics while equally weighting all large blocks. </li>
 </ul>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ad102233b847d4004e03035c29f243130" name="ad102233b847d4004e03035c29f243130"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad102233b847d4004e03035c29f243130">&#9670;&#160;</a></span>average_vectors() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Stat_ , typename Output_ &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void scran_blocks::average_vectors </td>
+          <td>(</td>
+          <td class="paramtype">const std::size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; Stat_ * &gt;</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Output_ *const</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>skip_nan</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Average parallel elements across multiple arrays.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Stat_</td><td>Type of the input statistic, typically floating point. </td></tr>
+    <tr><td class="paramname">Output_</td><td>Floating-point output type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">n</td><td>Length of each array. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">in</td><td>Vector of pointers to input arrays of length <code>n</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Pointer to an output array of length <code>n</code>. On completion, <code>out</code> is filled with the average of all arrays in <code>in</code>. Specifically, each element of <code>out</code> is set to the average of the corresponding elements across all <code>in</code> arrays. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">skip_nan</td><td>Whether to check for NaNs. If <code>true</code>, NaNs are ignored in the average calculations for each element, at the cost of some efficiency. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ace4fcc523c305a36b9d4b7f031367d13" name="ace4fcc523c305a36b9d4b7f031367d13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace4fcc523c305a36b9d4b7f031367d13">&#9670;&#160;</a></span>average_vectors() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ace4fcc523c305a36b9d4b7f031367d13">&#9670;&#160;</a></span>average_vectors() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -211,115 +265,8 @@ template&lt;typename Output_  = double, typename Stat_ &gt; </div>
 
 </div>
 </div>
-<a id="a6fcb43b96a8b97c00cfaf3ae83df028d" name="a6fcb43b96a8b97c00cfaf3ae83df028d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6fcb43b96a8b97c00cfaf3ae83df028d">&#9670;&#160;</a></span>average_vectors() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Stat_ , typename Output_ &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void scran_blocks::average_vectors </td>
-          <td>(</td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; Stat_ * &gt;</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Output_ *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>skip_nan</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Average parallel elements across multiple arrays.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Stat_</td><td>Type of the input statistic, typically floating point. </td></tr>
-    <tr><td class="paramname">Output_</td><td>Floating-point output type.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">n</td><td>Length of each array. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">in</td><td>Vector of pointers to input arrays of length <code>n</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Pointer to an output array of length <code>n</code>. On completion, <code>out</code> is filled with the average of all arrays in <code>in</code>. Specifically, each element of <code>out</code> is set to the average of the corresponding elements across all <code>in</code> arrays. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">skip_nan</td><td>Whether to check for NaNs. If <code>true</code>, NaNs are ignored in the average calculations for each element, at the cost of some efficiency. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a18cca7404ce3514a7d1f55a747c489be" name="a18cca7404ce3514a7d1f55a747c489be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18cca7404ce3514a7d1f55a747c489be">&#9670;&#160;</a></span>average_vectors_weighted() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Stat_ , typename Weight_ , typename Output_ &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void scran_blocks::average_vectors_weighted </td>
-          <td>(</td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; Stat_ * &gt;</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Weight_ *</td>          <td class="paramname"><span class="paramname"><em>w</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Output_ *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>skip_nan</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Compute a weighted average of parallel elements across multiple arrays.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Stat_</td><td>Type of the input statistic, typically floating point. </td></tr>
-    <tr><td class="paramname">Weight_</td><td>Type of the weight, typically floating point. </td></tr>
-    <tr><td class="paramname">Output_</td><td>Floating-point output type.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">n</td><td>Length of each array. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">in</td><td>Vector of pointers to input arrays of length <code>n</code>. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">w</td><td>Pointer to an array of length equal to <code>in.size()</code>, containing the weight to use for each input array. Weights should be non-negative and finite. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Pointer to an output array of length <code>n</code>. On output, <code>out</code> is filled with the weighted average of all arrays in <code>in</code>. Specifically, each element of <code>out</code> is set to the weighted average of the corresponding elements across all <code>in</code> arrays. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">skip_nan</td><td>Whether to check for NaNs. If <code>true</code>, NaNs are ignored in the average calculations for each element, at the cost of some efficiency. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="aef63b637195ba744bf821b4a1689cae8" name="aef63b637195ba744bf821b4a1689cae8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef63b637195ba744bf821b4a1689cae8">&#9670;&#160;</a></span>average_vectors_weighted() <span class="overload">[2/2]</span></h2>
+<a id="ac681cdd5f36d39f2e26f7a155551d259" name="ac681cdd5f36d39f2e26f7a155551d259"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac681cdd5f36d39f2e26f7a155551d259">&#9670;&#160;</a></span>average_vectors_weighted() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -329,7 +276,7 @@ template&lt;typename Output_  = double, typename Stat_ , typename Weight_ &gt; <
         <tr>
           <td class="memname">std::vector&lt; Output_ &gt; scran_blocks::average_vectors_weighted </td>
           <td>(</td>
-          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+          <td class="paramtype">const std::size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -339,12 +286,12 @@ template&lt;typename Output_  = double, typename Stat_ , typename Weight_ &gt; <
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Weight_ *</td>          <td class="paramname"><span class="paramname"><em>w</em></span>, </td>
+          <td class="paramtype">const Weight_ *const</td>          <td class="paramname"><span class="paramname"><em>w</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>skip_nan</em></span>&#160;)</td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>skip_nan</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -370,8 +317,65 @@ template&lt;typename Output_  = double, typename Stat_ , typename Weight_ &gt; <
 
 </div>
 </div>
-<a id="a0748c931e9c1250186a7794dcd440238" name="a0748c931e9c1250186a7794dcd440238"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0748c931e9c1250186a7794dcd440238">&#9670;&#160;</a></span>compute_variable_weight()</h2>
+<a id="afa41c174fefddebe4fc45c593f4edd2e" name="afa41c174fefddebe4fc45c593f4edd2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa41c174fefddebe4fc45c593f4edd2e">&#9670;&#160;</a></span>average_vectors_weighted() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Stat_ , typename Weight_ , typename Output_ &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void scran_blocks::average_vectors_weighted </td>
+          <td>(</td>
+          <td class="paramtype">const std::size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; Stat_ * &gt;</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Weight_ *const</td>          <td class="paramname"><span class="paramname"><em>w</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Output_ *const</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>skip_nan</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute a weighted average of parallel elements across multiple arrays.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Stat_</td><td>Type of the input statistic, typically floating point. </td></tr>
+    <tr><td class="paramname">Weight_</td><td>Type of the weight, typically floating point. </td></tr>
+    <tr><td class="paramname">Output_</td><td>Floating-point output type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">n</td><td>Length of each array. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">in</td><td>Vector of pointers to input arrays of length <code>n</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">w</td><td>Pointer to an array of length equal to <code>in.size()</code>, containing the weight to use for each input array. Weights should be non-negative and finite. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Pointer to an output array of length <code>n</code>. On output, <code>out</code> is filled with the weighted average of all arrays in <code>in</code>. Specifically, each element of <code>out</code> is set to the weighted average of the corresponding elements across all <code>in</code> arrays. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">skip_nan</td><td>Whether to check for NaNs. If <code>true</code>, NaNs are ignored in the average calculations for each element, at the cost of some efficiency. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a33ebed1decbfe3627ce4ddf0b99df825" name="a33ebed1decbfe3627ce4ddf0b99df825"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33ebed1decbfe3627ce4ddf0b99df825">&#9670;&#160;</a></span>compute_variable_weight()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -382,7 +386,7 @@ template&lt;typename Output_  = double, typename Stat_ , typename Weight_ &gt; <
         <tr>
           <td class="memname">double scran_blocks::compute_variable_weight </td>
           <td>(</td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>s</em></span>, </td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>s</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -414,8 +418,64 @@ template&lt;typename Output_  = double, typename Stat_ , typename Weight_ &gt; <
 
 </div>
 </div>
-<a id="a8a87f8dd41754b80ec0509f20ac2340f" name="a8a87f8dd41754b80ec0509f20ac2340f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a87f8dd41754b80ec0509f20ac2340f">&#9670;&#160;</a></span>compute_weights() <span class="overload">[1/2]</span></h2>
+<a id="a2eb0ccb73289d97436afd94824ec0fae" name="a2eb0ccb73289d97436afd94824ec0fae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2eb0ccb73289d97436afd94824ec0fae">&#9670;&#160;</a></span>compute_weights() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Size_ , typename Weight_ &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void scran_blocks::compute_weights </td>
+          <td>(</td>
+          <td class="paramtype">const std::size_t</td>          <td class="paramname"><span class="paramname"><em>num_blocks</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Size_ *const</td>          <td class="paramname"><span class="paramname"><em>sizes</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#ac2412948da94055ff438267ba089ba97">WeightPolicy</a></td>          <td class="paramname"><span class="paramname"><em>policy</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">VariableWeightParameters</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>variable</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Weight_ *const</td>          <td class="paramname"><span class="paramname"><em>weights</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute block weights for multiple blocks based on their size and the weighting policy. For variable weights, this function will call <code><a class="el" href="#a33ebed1decbfe3627ce4ddf0b99df825">compute_variable_weight()</a></code> for each block.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Size_</td><td>Numeric type for the block size. </td></tr>
+    <tr><td class="paramname">Weight_</td><td>Floating-point type for the output weights.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">num_blocks</td><td>Number of blocks. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sizes</td><td>Pointer to an array of length <code>num_blocks</code>, containing the size of each block. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">policy</td><td>Policy for weighting blocks of different sizes. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">variable</td><td>Parameters for the variable block weights. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">weights</td><td>Pointer to an array of length <code>num_blocks</code>. On output, this is filled with the weight of each block. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a182b74f7588264fae43fa06015f045c7" name="a182b74f7588264fae43fa06015f045c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a182b74f7588264fae43fa06015f045c7">&#9670;&#160;</a></span>compute_weights() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -430,7 +490,7 @@ template&lt;typename Weight_  = double, typename Size_ &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#ac2412948da94055ff438267ba089ba97">WeightPolicy</a></td>          <td class="paramname"><span class="paramname"><em>policy</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="#ac2412948da94055ff438267ba089ba97">WeightPolicy</a></td>          <td class="paramname"><span class="paramname"><em>policy</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -456,62 +516,6 @@ template&lt;typename Weight_  = double, typename Size_ &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Vector of block weights. </dd></dl>
-
-</div>
-</div>
-<a id="a8227c8eff7ef9f8172737478b5d41496" name="a8227c8eff7ef9f8172737478b5d41496"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8227c8eff7ef9f8172737478b5d41496">&#9670;&#160;</a></span>compute_weights() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Size_ , typename Weight_ &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void scran_blocks::compute_weights </td>
-          <td>(</td>
-          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>num_blocks</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Size_ *</td>          <td class="paramname"><span class="paramname"><em>sizes</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="#ac2412948da94055ff438267ba089ba97">WeightPolicy</a></td>          <td class="paramname"><span class="paramname"><em>policy</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structscran__blocks_1_1VariableWeightParameters.html">VariableWeightParameters</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>variable</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Weight_ *</td>          <td class="paramname"><span class="paramname"><em>weights</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Compute block weights for multiple blocks based on their size and the weighting policy. For variable weights, this function will call <code><a class="el" href="#a0748c931e9c1250186a7794dcd440238">compute_variable_weight()</a></code> for each block.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Size_</td><td>Numeric type for the block size. </td></tr>
-    <tr><td class="paramname">Weight_</td><td>Floating-point type for the output weights.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">num_blocks</td><td>Number of blocks. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">sizes</td><td>Pointer to an array of length <code>num_blocks</code>, containing the size of each block. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">policy</td><td>Policy for weighting blocks of different sizes. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">variable</td><td>Parameters for the variable block weights. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">weights</td><td>Pointer to an array of length <code>num_blocks</code>. On output, this is filled with the weight of each block. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
