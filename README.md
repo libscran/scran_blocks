@@ -19,8 +19,8 @@ This is typically used to average statistics across blocks, where each array con
 ```cpp
 #include "scran_blocks/scran_blocks.hpp"
 
-std::vector<double> stat1 { 1, 2, 3, 4 };
-std::vector<double> stat2 { 5, 6, 7, 8 };
+std::vector<double> stat1 { 1.0, 2.0, 3.0, 4.0 };
+std::vector<double> stat2 { 5.0, 6.0, 7.0, 8.0 };
 
 // Contains { 3, 4, 5, 6 }.
 auto averaged = scran_blocks::average_vectors(
@@ -36,8 +36,8 @@ If NaNs are present, they can be ignored:
 #include <limits>
 
 auto nan = std::numeric_limits<double>::quiet_NaN();
-std::vector<double> stat1n { 1, nan, 3, nan };
-std::vector<double> stat2n { 5, 6, nan, nan };
+std::vector<double> stat1n { 1.0, nan, 3.0, nan };
+std::vector<double> stat2n { 5.0, 6.0, nan, nan };
 
 // Contains { 3, 6, 3, nan }.
 auto averagedn = scran_blocks::average_vectors(
@@ -50,9 +50,9 @@ auto averagedn = scran_blocks::average_vectors(
 We also support per-vector weights:
 
 ```cpp
-std::vector<double> stat1w { 1, 2, 3, 4 };
-std::vector<double> stat2w { 5, 6, 7, 8 };
-std::vector<double> weights { 1, 9 };
+std::vector<double> stat1w { 1.0, 2.0, 3.0, 4.0 };
+std::vector<double> stat2w { 5.0, 6.0, 7.0, 8.0 };
+std::vector<double> weights { 1.0, 9.0 };
 
 // Contains { 4.6, 5.6, 6.6, 7.6 }.
 auto averagedw = scran_blocks::average_vectors_weighted(
@@ -76,8 +76,12 @@ This is done using the `scran_blocks::compute_weights()` function that calculate
 std::vector<size_t> block_sizes { 10, 100, 1000 };
 auto weights = scran_blocks::compute_weights(
     block_sizes, 
-    /* policy = */ scran_blocks::WeightPolicy::VARIABLE,
-    /* variable = */ { 0, 200 } 
+    scran_blocks::WeightPolicy::VARIABLE,
+    []{
+        VariableWeightParameters vparams;
+        vparams.upper_bound = 200;
+        return vparams;
+    }()
 );
 ```
 

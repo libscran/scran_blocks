@@ -108,6 +108,7 @@ void average_vectors(const std::size_t n, std::vector<Stat_*> in, const Weight_*
 
 /**
  * Average parallel elements across multiple arrays.
+ * This is equivalent to calling `average_weighted_vectors()` with equal weights for each array.
  *
  * @tparam Stat_ Type of the input statistic, typically floating point.
  * @tparam Output_ Floating-point output type.
@@ -116,7 +117,7 @@ void average_vectors(const std::size_t n, std::vector<Stat_*> in, const Weight_*
  * @param[in] in Vector of pointers to input arrays of length `n`.
  * @param[out] out Pointer to an output array of length `n`.
  * On completion, `out` is filled with the average of all arrays in `in`.
- * Specifically, each element of `out` is set to the average of the corresponding elements across all `in` arrays.
+ * Specifically, the `i`-th entry of `out` is set to the average of the `i`-th entry across all `in` arrays.
  * @param skip_nan Whether to check for NaNs.
  * If `true`, NaNs are ignored in the average calculations for each element, at the cost of some efficiency.
  */
@@ -137,6 +138,7 @@ void average_vectors(const std::size_t n, std::vector<Stat_*> in, Output_* const
  * @param skip_nan Whether to check for NaNs.
  *
  * @return A vector of length `n` is returned, containing the average of all arrays in `in`.
+ * Specifically, the `i`-th entry is set to the average of the `i`-th entry across all `in` arrays.
  */
 template<typename Output_ = double, typename Stat_>
 std::vector<Output_> average_vectors(const std::size_t n, std::vector<Stat_*> in, const bool skip_nan) {
@@ -147,6 +149,7 @@ std::vector<Output_> average_vectors(const std::size_t n, std::vector<Stat_*> in
 
 /**
  * Compute a weighted average of parallel elements across multiple arrays.
+ * For example, we can average statistics across blocks using weights computed with `compute_weights()`.
  *
  * @tparam Stat_ Type of the input statistic, typically floating point.
  * @tparam Weight_ Type of the weight, typically floating point.
@@ -158,7 +161,7 @@ std::vector<Output_> average_vectors(const std::size_t n, std::vector<Stat_*> in
  * Weights should be non-negative and finite.
  * @param[out] out Pointer to an output array of length `n`.
  * On output, `out` is filled with the weighted average of all arrays in `in`.
- * Specifically, each element of `out` is set to the weighted average of the corresponding elements across all `in` arrays.
+ * Specifically, the `i`-th entry of `out` is set to the average of the `i`-th entry across all `in` arrays.
  * @param skip_nan Whether to check for NaNs.
  * If `true`, NaNs are ignored in the average calculations for each element, at the cost of some efficiency.
  */
@@ -189,7 +192,7 @@ void average_vectors_weighted(const std::size_t n, std::vector<Stat_*> in, const
 }
 
 /**
- * Overload of `compute_weighted()` that allocates an output vector of averaged values.
+ * Overload of `average_vectors_weighted()` that allocates an output vector of averaged values.
  *
  * @tparam Output_ Floating-point output type.
  * @tparam Weight_ Type of the weight, typically floating point.

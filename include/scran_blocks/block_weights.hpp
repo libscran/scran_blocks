@@ -17,13 +17,13 @@
 namespace scran_blocks {
 
 /**
- * Policy to use for weighting blocks based on their size, i.e., the number of cells in each block.
- * This controls the calculation of weighted averages across blocks.
+ * Policy for weighting blocks based on their size, i.e., the number of cells in each block.
+ * This determines the nature of the weight calculations in `compute_weights()`.
  *
  * - `NONE`: no weighting is performed.
  *   Larger blocks will contribute more to the weighted average. 
- * - `EQUAL`: each block receives equal weight, regardless of its size.
- *   Equivalent to averaging across blocks without weights.
+ * - `EQUAL`: each non-empty block is assigned equal weight, regardless of its size.
+ *   Equivalent to averaging across non-empty blocks without weights.
  * - `VARIABLE`: each batch is weighted using the logic in `compute_variable_weight()`.
  *   This penalizes small blocks with unreliable statistics while equally weighting all large blocks.
  */
@@ -54,7 +54,8 @@ struct VariableWeightParameters {
  * - If the block size is greater than `VariableWeightParameters::upper_bound`, it has weight of 1.
  * - Otherwise, the block has weight proportional to its size, increasing linearly from 0 to 1 between the two bounds.
  *
- * Blocks that are "large enough" are considered to be equally trustworthy and receive the same weight, ensuring that each block contributes equally to the weighted average.
+ * Blocks that are "large enough" (i.e., above the upper bound) are considered to be equally trustworthy and receive the same weight,
+ * ensuring that each block contributes equally to the weighted average.
  * By comparison, very small blocks receive lower weight as their statistics are generally less stable.
  *
  * @param s Size of the block, in terms of the number of cells in that block.
@@ -75,11 +76,14 @@ inline double compute_variable_weight(const double s, const VariableWeightParame
 }
 
 /**
- * Compute block weights for multiple blocks based on their size and the weighting policy.
+ * Compute weights for multiple blocks based on their size and the weighting policy.
  * For variable weights, this function will call `compute_variable_weight()` for each block.
  *
- * @tparam Size_ Numeric type for the block size.
- * @tparam Weight_ Floating-point type for the output weights.
+ * Weights should be interpreted as relative values within a single `compute_weights()` call, i.e., weights from different calls may not be comparable.
+ * They are typically used in functions like `average_weighted_vectors()` to compute a weighted average of statistics across blocks.
+ *
+ * @tparam Size_ Numeric type of the block size.
+ * @tparam Weight_ Floating-point type of the output weights.
  *
  * @param num_blocks Number of blocks.
  * @param[in] sizes Pointer to an array of length `num_blocks`, containing the size of each block.
@@ -104,10 +108,10 @@ void compute_weights(const std::size_t num_blocks, const Size_* const sizes, con
 }
 
 /**
- * A convenience overload that accepts and returns vectors. 
+ * A convenience overload for `compute_weights()` that accepts and returns vectors. 
  *
- * @tparam Size_ Numeric type for the block size.
- * @tparam Weight_ Floating-point type for the output weights.
+ * @tparam Size_ Numeric type of the block size.
+ * @tparam Weight_ Floating-point type of the output weights.
  *
  * @param sizes Vector containing the size of each block.
  * @param policy Policy for weighting blocks of different sizes.
