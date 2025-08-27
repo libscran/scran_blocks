@@ -10,6 +10,8 @@
 
 #include "sanisizer/sanisizer.hpp"
 
+#include "utils.hpp"
+
 /**
  * @file average_vectors.hpp
  * @brief Average parallel elements across vectors.
@@ -23,7 +25,7 @@ namespace scran_blocks {
 namespace internal {
 
 template<bool weighted_, typename Stat_, typename Weight_, typename Output_>
-void average_vectors(std::size_t n, std::vector<Stat_*> in, const Weight_* w, Output_* out, bool skip_nan) {
+void average_vectors(const std::size_t n, std::vector<Stat_*> in, const Weight_* const w, Output_* const out, const bool skip_nan) {
     if (in.empty()) {
         std::fill_n(out, n, std::numeric_limits<Output_>::quiet_NaN());
         return;
@@ -42,24 +44,24 @@ void average_vectors(std::size_t n, std::vector<Stat_*> in, const Weight_* w, Ou
     std::vector<Weight_> accumulated(skip_nan ? n : 0);
 
     auto wcopy = w;
-    for (auto current : in) {
+    for (const auto current : in) {
         if constexpr(weighted_) {
             // Don't skip if weight = 0, as we need to still compute the product, e.g.,
             // if the value is Inf, we'd end up with 0 * Inf => NaN that can't be skipped.
-            Weight_ weight = *(wcopy++);
+            const Weight_ weight = *(wcopy++);
 
             // Use the other loop and skip an unnecessary multiplication when the weight is 1.
             if (weight != 1) { 
                 if (skip_nan) {
-                    for (decltype(n) i = 0; i < n; ++i) {
-                        auto x = current[i] * weight;
-                         if (!std::isnan(x)) {
+                    for (decltype(I(n)) i = 0; i < n; ++i) {
+                        const auto x = current[i] * weight;
+                        if (!std::isnan(x)) {
                             out[i] += x; 
                             accumulated[i] += weight;
-                         }
+                        }
                     }
                 } else {
-                    for (decltype(n) i = 0; i < n; ++i) {
+                    for (decltype(I(n)) i = 0; i < n; ++i) {
                         out[i] += current[i] * weight;
                     }
                 }
@@ -68,32 +70,32 @@ void average_vectors(std::size_t n, std::vector<Stat_*> in, const Weight_* w, Ou
         }
 
         if (skip_nan) {
-            for (decltype(n) i = 0; i < n; ++i) {
-                auto x = current[i];
+            for (decltype(I(n)) i = 0; i < n; ++i) {
+                const auto x = current[i];
                 if (!std::isnan(x)) {
                     out[i] += x; 
                     ++accumulated[i];
                 }
             }
         } else {
-            for (decltype(n) i = 0; i < n; ++i) {
+            for (decltype(I(n)) i = 0; i < n; ++i) {
                 out[i] += current[i];
             }
         }
     }
 
     if (skip_nan) {
-        for (decltype(n) i = 0; i < n; ++i) {
+        for (decltype(I(n)) i = 0; i < n; ++i) {
             out[i] /= accumulated[i];
         }
     } else {
-        double denom = 1;
+        Output_ denom = 1;
         if constexpr(weighted_) {
-            denom /= std::accumulate(w, w + in.size(), 0.0);
+            denom /= std::accumulate(w, w + in.size(), static_cast<Output_>(0));
         } else {
             denom /= in.size();
         }
-        for (decltype(n) i = 0; i < n; ++i) {
+        for (decltype(I(n)) i = 0; i < n; ++i) {
             out[i] *= denom;
         }
     }
@@ -119,7 +121,7 @@ void average_vectors(std::size_t n, std::vector<Stat_*> in, const Weight_* w, Ou
  * If `true`, NaNs are ignored in the average calculations for each element, at the cost of some efficiency.
  */
 template<typename Stat_, typename Output_>
-void average_vectors(size_t n, std::vector<Stat_*> in, Output_* out, bool skip_nan) {
+void average_vectors(const std::size_t n, std::vector<Stat_*> in, Output_* const out, const bool skip_nan) {
     internal::average_vectors<false>(n, std::move(in), static_cast<int*>(NULL), out, skip_nan);
     return;
 }
@@ -137,7 +139,7 @@ void average_vectors(size_t n, std::vector<Stat_*> in, Output_* out, bool skip_n
  * @return A vector of length `n` is returned, containing the average of all arrays in `in`.
  */
 template<typename Output_ = double, typename Stat_>
-std::vector<Output_> average_vectors(size_t n, std::vector<Stat_*> in, bool skip_nan) {
+std::vector<Output_> average_vectors(const std::size_t n, std::vector<Stat_*> in, const bool skip_nan) {
     auto out = sanisizer::create<std::vector<Output_> >(n);
     average_vectors(n, std::move(in), out.data(), skip_nan);
     return out;
@@ -161,11 +163,11 @@ std::vector<Output_> average_vectors(size_t n, std::vector<Stat_*> in, bool skip
  * If `true`, NaNs are ignored in the average calculations for each element, at the cost of some efficiency.
  */
 template<typename Stat_, typename Weight_, typename Output_>
-void average_vectors_weighted(size_t n, std::vector<Stat_*> in, const Weight_* w, Output_* out, bool skip_nan) {
+void average_vectors_weighted(const std::size_t n, std::vector<Stat_*> in, const Weight_* const w, Output_* const out, const bool skip_nan) {
     if (!in.empty()) {
         bool same = true;
-        auto numin = in.size();
-        for (decltype(numin) i = 1; i < numin; ++i) {
+        const auto numin = in.size();
+        for (decltype(I(numin)) i = 1; i < numin; ++i) {
             if (w[i] != w[0]) {
                 same = false;
                 break;
@@ -202,7 +204,7 @@ void average_vectors_weighted(size_t n, std::vector<Stat_*> in, const Weight_* w
  * @return A vector is returned containing with the average of all arrays in `in`.
  */
 template<typename Output_ = double, typename Stat_, typename Weight_>
-std::vector<Output_> average_vectors_weighted(std::size_t n, std::vector<Stat_*> in, const Weight_* w, bool skip_nan) {
+std::vector<Output_> average_vectors_weighted(const std::size_t n, std::vector<Stat_*> in, const Weight_* const w, const bool skip_nan) {
     auto out = sanisizer::create<std::vector<Output_> >(n);
     average_vectors_weighted(n, std::move(in), w, out.data(), skip_nan);
     return out;

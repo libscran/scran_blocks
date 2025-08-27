@@ -7,6 +7,8 @@
 
 #include "sanisizer/sanisizer.hpp"
 
+#include "utils.hpp"
+
 /**
  * @file block_weights.hpp
  * @brief Calculation of per-block weights.
@@ -60,7 +62,7 @@ struct VariableWeightParameters {
  *
  * @return Weight of the block, to use for computing a weighted average across blocks. 
  */
-inline double compute_variable_weight(double s, const VariableWeightParameters& params) {
+inline double compute_variable_weight(const double s, const VariableWeightParameters& params) {
     if (s < params.lower_bound || s == 0) {
         return 0;
     }
@@ -87,15 +89,15 @@ inline double compute_variable_weight(double s, const VariableWeightParameters& 
  * On output, this is filled with the weight of each block.
  */
 template<typename Size_, typename Weight_>
-void compute_weights(std::size_t num_blocks, const Size_* sizes, WeightPolicy policy, const VariableWeightParameters& variable, Weight_* weights) {
+void compute_weights(const std::size_t num_blocks, const Size_* const sizes, const WeightPolicy policy, const VariableWeightParameters& variable, Weight_* const weights) {
     if (policy == WeightPolicy::NONE) {
         std::copy_n(sizes, num_blocks, weights);
     } else if (policy == WeightPolicy::EQUAL) {
-        for (decltype(num_blocks) s = 0; s < num_blocks; ++s) {
+        for (decltype(I(num_blocks)) s = 0; s < num_blocks; ++s) {
             weights[s] = sizes[s] > 0;
         }
     } else {
-        for (decltype(num_blocks) s = 0; s < num_blocks; ++s) {
+        for (decltype(I(num_blocks)) s = 0; s < num_blocks; ++s) {
             weights[s] = compute_variable_weight(sizes[s], variable);
         }
     }
@@ -114,7 +116,7 @@ void compute_weights(std::size_t num_blocks, const Size_* sizes, WeightPolicy po
  * @return Vector of block weights.
  */
 template<typename Weight_ = double, typename Size_>
-std::vector<Weight_> compute_weights(const std::vector<Size_>& sizes, WeightPolicy policy, const VariableWeightParameters& variable) {
+std::vector<Weight_> compute_weights(const std::vector<Size_>& sizes, const WeightPolicy policy, const VariableWeightParameters& variable) {
     auto output = sanisizer::create<std::vector<Weight_> >(sizes.size());
     compute_weights(sizes.size(), sizes.data(), policy, variable, output.data());
     return output;
