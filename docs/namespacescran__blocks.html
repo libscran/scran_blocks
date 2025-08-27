@@ -106,6 +106,7 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ac2412948da94055ff438267ba089ba97" id="r_ac2412948da94055ff438267ba089ba97"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2412948da94055ff438267ba089ba97">WeightPolicy</a> : char { <b>NONE</b>
+, <b>SIZE</b>
 , <b>VARIABLE</b>
 , <b>EQUAL</b>
  }</td></tr>
@@ -116,9 +117,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ad102233b847d4004e03035c29f243130" id="r_ad102233b847d4004e03035c29f243130"><td class="memTemplParams" colspan="2">template&lt;typename Stat_ , typename Output_ &gt; </td></tr>
 <tr class="memitem:ad102233b847d4004e03035c29f243130"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ad102233b847d4004e03035c29f243130">average_vectors</a> (const std::size_t n, std::vector&lt; Stat_ * &gt; in, Output_ *const out, const bool skip_nan)</td></tr>
 <tr class="separator:ad102233b847d4004e03035c29f243130"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace4fcc523c305a36b9d4b7f031367d13" id="r_ace4fcc523c305a36b9d4b7f031367d13"><td class="memTemplParams" colspan="2">template&lt;typename Output_  = double, typename Stat_ &gt; </td></tr>
-<tr class="memitem:ace4fcc523c305a36b9d4b7f031367d13"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Output_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ace4fcc523c305a36b9d4b7f031367d13">average_vectors</a> (size_t n, std::vector&lt; Stat_ * &gt; in, bool skip_nan)</td></tr>
-<tr class="separator:ace4fcc523c305a36b9d4b7f031367d13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd9262136b3895afe8b0217cfc51337c" id="r_afd9262136b3895afe8b0217cfc51337c"><td class="memTemplParams" colspan="2">template&lt;typename Output_  = double, typename Stat_ &gt; </td></tr>
+<tr class="memitem:afd9262136b3895afe8b0217cfc51337c"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Output_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#afd9262136b3895afe8b0217cfc51337c">average_vectors</a> (const std::size_t n, std::vector&lt; Stat_ * &gt; in, const bool skip_nan)</td></tr>
+<tr class="separator:afd9262136b3895afe8b0217cfc51337c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa41c174fefddebe4fc45c593f4edd2e" id="r_afa41c174fefddebe4fc45c593f4edd2e"><td class="memTemplParams" colspan="2">template&lt;typename Stat_ , typename Weight_ , typename Output_ &gt; </td></tr>
 <tr class="memitem:afa41c174fefddebe4fc45c593f4edd2e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#afa41c174fefddebe4fc45c593f4edd2e">average_vectors_weighted</a> (const std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *const w, Output_ *const out, const bool skip_nan)</td></tr>
 <tr class="separator:afa41c174fefddebe4fc45c593f4edd2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,18 +161,63 @@ template&lt;typename Input_ &gt; </td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Policy to use for weighting blocks based on their size, i.e., the number of cells in each block. This controls the calculation of weighted averages across blocks.</p>
+<p>Policy for weighting blocks based on their size, i.e., the number of cells in each block. This determines the nature of the weight calculations in <code><a class="el" href="#a2eb0ccb73289d97436afd94824ec0fae">compute_weights()</a></code>.</p>
 <ul>
-<li><code>NONE</code>: no weighting is performed. Larger blocks will contribute more to the weighted average.</li>
-<li><code>EQUAL</code>: each block receives equal weight, regardless of its size. Equivalent to averaging across blocks without weights.</li>
+<li><code>SIZE</code>: blocks are weighted in proportion to their size. Larger blocks will contribute more to the weighted average.</li>
+<li><code>EQUAL</code>: each non-empty block is assigned equal weight, regardless of its size. Equivalent to averaging across non-empty blocks without weights.</li>
 <li><code>VARIABLE</code>: each batch is weighted using the logic in <code><a class="el" href="#a33ebed1decbfe3627ce4ddf0b99df825">compute_variable_weight()</a></code>. This penalizes small blocks with unreliable statistics while equally weighting all large blocks. </li>
 </ul>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="afd9262136b3895afe8b0217cfc51337c" name="afd9262136b3895afe8b0217cfc51337c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd9262136b3895afe8b0217cfc51337c">&#9670;&#160;</a></span>average_vectors() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Output_  = double, typename Stat_ &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; Output_ &gt; scran_blocks::average_vectors </td>
+          <td>(</td>
+          <td class="paramtype">const std::size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; Stat_ * &gt;</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>skip_nan</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Overload of <code>compute()</code> that allocates an output vector of averaged values.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Output</td><td>Floating-point output type. </td></tr>
+    <tr><td class="paramname">Stat</td><td>Type of the input statistic, typically floating point.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">n</td><td>Length of each array. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">in</td><td>Vector of pointers to input arrays of length <code>n</code>. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">skip_nan</td><td>Whether to check for NaNs.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of length <code>n</code> is returned, containing the average of all arrays in <code>in</code>. Specifically, the <code>i</code>-th entry is set to the average of the <code>i</code>-th entry across all <code>in</code> arrays. </dd></dl>
+
+</div>
+</div>
 <a id="ad102233b847d4004e03035c29f243130" name="ad102233b847d4004e03035c29f243130"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad102233b847d4004e03035c29f243130">&#9670;&#160;</a></span>average_vectors() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad102233b847d4004e03035c29f243130">&#9670;&#160;</a></span>average_vectors() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -200,7 +246,7 @@ template&lt;typename Stat_ , typename Output_ &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Average parallel elements across multiple arrays.</p>
+<p>Average parallel elements across multiple arrays. This is equivalent to calling <code>average_weighted_vectors()</code> with equal weights for each array.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Stat_</td><td>Type of the input statistic, typically floating point. </td></tr>
@@ -212,56 +258,11 @@ template&lt;typename Stat_ , typename Output_ &gt; </div>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">n</td><td>Length of each array. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">in</td><td>Vector of pointers to input arrays of length <code>n</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Pointer to an output array of length <code>n</code>. On completion, <code>out</code> is filled with the average of all arrays in <code>in</code>. Specifically, each element of <code>out</code> is set to the average of the corresponding elements across all <code>in</code> arrays. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Pointer to an output array of length <code>n</code>. On completion, <code>out</code> is filled with the average of all arrays in <code>in</code>. Specifically, the <code>i</code>-th entry of <code>out</code> is set to the average of the <code>i</code>-th entry across all <code>in</code> arrays. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">skip_nan</td><td>Whether to check for NaNs. If <code>true</code>, NaNs are ignored in the average calculations for each element, at the cost of some efficiency. </td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="ace4fcc523c305a36b9d4b7f031367d13" name="ace4fcc523c305a36b9d4b7f031367d13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace4fcc523c305a36b9d4b7f031367d13">&#9670;&#160;</a></span>average_vectors() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Output_  = double, typename Stat_ &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; Output_ &gt; scran_blocks::average_vectors </td>
-          <td>(</td>
-          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; Stat_ * &gt;</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>skip_nan</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Overload of <code>compute()</code> that allocates an output vector of averaged values.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Output</td><td>Floating-point output type. </td></tr>
-    <tr><td class="paramname">Stat</td><td>Type of the input statistic, typically floating point.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">n</td><td>Length of each array. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">in</td><td>Vector of pointers to input arrays of length <code>n</code>. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">skip_nan</td><td>Whether to check for NaNs.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A vector of length <code>n</code> is returned, containing the average of all arrays in <code>in</code>. </dd></dl>
 
 </div>
 </div>
@@ -295,7 +296,7 @@ template&lt;typename Output_  = double, typename Stat_ , typename Weight_ &gt; <
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Overload of <code>compute_weighted()</code> that allocates an output vector of averaged values.</p>
+<p>Overload of <code><a class="el" href="#afa41c174fefddebe4fc45c593f4edd2e">average_vectors_weighted()</a></code> that allocates an output vector of averaged values.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Output_</td><td>Floating-point output type. </td></tr>
@@ -352,7 +353,7 @@ template&lt;typename Stat_ , typename Weight_ , typename Output_ &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Compute a weighted average of parallel elements across multiple arrays.</p>
+<p>Compute a weighted average of parallel elements across multiple arrays. For example, we can average statistics across blocks using weights computed with <code><a class="el" href="#a2eb0ccb73289d97436afd94824ec0fae">compute_weights()</a></code>.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Stat_</td><td>Type of the input statistic, typically floating point. </td></tr>
@@ -366,7 +367,7 @@ template&lt;typename Stat_ , typename Weight_ , typename Output_ &gt; </div>
     <tr><td class="paramdir"></td><td class="paramname">n</td><td>Length of each array. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">in</td><td>Vector of pointers to input arrays of length <code>n</code>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">w</td><td>Pointer to an array of length equal to <code>in.size()</code>, containing the weight to use for each input array. Weights should be non-negative and finite. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Pointer to an output array of length <code>n</code>. On output, <code>out</code> is filled with the weighted average of all arrays in <code>in</code>. Specifically, each element of <code>out</code> is set to the weighted average of the corresponding elements across all <code>in</code> arrays. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Pointer to an output array of length <code>n</code>. On output, <code>out</code> is filled with the weighted average of all arrays in <code>in</code>. Specifically, the <code>i</code>-th entry of <code>out</code> is set to the average of the <code>i</code>-th entry across all <code>in</code> arrays. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">skip_nan</td><td>Whether to check for NaNs. If <code>true</code>, NaNs are ignored in the average calculations for each element, at the cost of some efficiency. </td></tr>
   </table>
   </dd>
@@ -406,7 +407,7 @@ template&lt;typename Stat_ , typename Weight_ , typename Output_ &gt; </div>
 <li>If the block size is greater than <code><a class="el" href="structscran__blocks_1_1VariableWeightParameters.html#a865b484b6fc8611048fcadab863de6bf">VariableWeightParameters::upper_bound</a></code>, it has weight of 1.</li>
 <li>Otherwise, the block has weight proportional to its size, increasing linearly from 0 to 1 between the two bounds.</li>
 </ul>
-<p>Blocks that are "large enough" are considered to be equally trustworthy and receive the same weight, ensuring that each block contributes equally to the weighted average. By comparison, very small blocks receive lower weight as their statistics are generally less stable.</p>
+<p>Blocks that are "large enough" (i.e., above the upper bound) are considered to be equally trustworthy and receive the same weight, ensuring that each block contributes equally to the weighted average. By comparison, very small blocks receive lower weight as their statistics are generally less stable.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>Size of the block, in terms of the number of cells in that block. </td></tr>
@@ -453,11 +454,12 @@ template&lt;typename Size_ , typename Weight_ &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Compute block weights for multiple blocks based on their size and the weighting policy. For variable weights, this function will call <code><a class="el" href="#a33ebed1decbfe3627ce4ddf0b99df825">compute_variable_weight()</a></code> for each block.</p>
+<p>Compute weights for multiple blocks based on their size and the weighting policy. For variable weights, this function will call <code><a class="el" href="#a33ebed1decbfe3627ce4ddf0b99df825">compute_variable_weight()</a></code> for each block.</p>
+<p>Weights should be interpreted as relative values within a single <code><a class="el" href="#a2eb0ccb73289d97436afd94824ec0fae">compute_weights()</a></code> call, i.e., weights from different calls may not be comparable. They are typically used in functions like <code>average_weighted_vectors()</code> to compute a weighted average of statistics across blocks.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">Size_</td><td>Numeric type for the block size. </td></tr>
-    <tr><td class="paramname">Weight_</td><td>Floating-point type for the output weights.</td></tr>
+    <tr><td class="paramname">Size_</td><td>Numeric type of the block size. </td></tr>
+    <tr><td class="paramname">Weight_</td><td>Floating-point type of the output weights.</td></tr>
   </table>
   </dd>
 </dl>
@@ -499,11 +501,11 @@ template&lt;typename Weight_  = double, typename Size_ &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A convenience overload that accepts and returns vectors.</p>
+<p>A convenience overload for <code><a class="el" href="#a2eb0ccb73289d97436afd94824ec0fae">compute_weights()</a></code> that accepts and returns vectors.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">Size_</td><td>Numeric type for the block size. </td></tr>
-    <tr><td class="paramname">Weight_</td><td>Floating-point type for the output weights.</td></tr>
+    <tr><td class="paramname">Size_</td><td>Numeric type of the block size. </td></tr>
+    <tr><td class="paramname">Weight_</td><td>Floating-point type of the output weights.</td></tr>
   </table>
   </dd>
 </dl>

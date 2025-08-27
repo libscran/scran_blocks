@@ -50,6 +50,7 @@
       <anchor>ac2412948da94055ff438267ba089ba97</anchor>
       <arglist></arglist>
       <enumvalue file="namespacescran__blocks.html" anchor="ac2412948da94055ff438267ba089ba97ab50339a10e1de285ac99d4c3990b8693">NONE</enumvalue>
+      <enumvalue file="namespacescran__blocks.html" anchor="ac2412948da94055ff438267ba089ba97a62e5cef85d46f1a5a2144d9fd463b79e">SIZE</enumvalue>
       <enumvalue file="namespacescran__blocks.html" anchor="ac2412948da94055ff438267ba089ba97ae61ad9b2553a293b4a3f4d3b4fa5ab31">VARIABLE</enumvalue>
       <enumvalue file="namespacescran__blocks.html" anchor="ac2412948da94055ff438267ba089ba97a969f331a87d8c958473c32b4d0e61a44">EQUAL</enumvalue>
     </member>
@@ -64,8 +65,8 @@
       <type>std::vector&lt; Output_ &gt;</type>
       <name>average_vectors</name>
       <anchorfile>namespacescran__blocks.html</anchorfile>
-      <anchor>ace4fcc523c305a36b9d4b7f031367d13</anchor>
-      <arglist>(size_t n, std::vector&lt; Stat_ * &gt; in, bool skip_nan)</arglist>
+      <anchor>afd9262136b3895afe8b0217cfc51337c</anchor>
+      <arglist>(const std::size_t n, std::vector&lt; Stat_ * &gt; in, const bool skip_nan)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
