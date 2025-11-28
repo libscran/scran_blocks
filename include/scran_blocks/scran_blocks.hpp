@@ -3,6 +3,7 @@
 
 #include "block_weights.hpp"
 #include "average_vectors.hpp"
+#include "parallel_quantiles.hpp"
 
 /**
  * @file scran_blocks.hpp
