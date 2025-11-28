@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['variableweightparameters_0',['VariableWeightParameters',['../structscran__blocks_1_1VariableWeightParameters.html',1,'scran_blocks']]]
+  ['singlequantile_0',['SingleQuantile',['../classscran__blocks_1_1SingleQuantile.html',1,'scran_blocks']]]
 ];

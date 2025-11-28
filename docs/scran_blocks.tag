@@ -14,12 +14,40 @@
     <namespace>scran_blocks</namespace>
   </compound>
   <compound kind="file">
+    <name>parallel_quantiles.hpp</name>
+    <path>scran_blocks/</path>
+    <filename>parallel__quantiles_8hpp.html</filename>
+    <class kind="class">scran_blocks::SingleQuantile</class>
+    <namespace>scran_blocks</namespace>
+  </compound>
+  <compound kind="file">
     <name>scran_blocks.hpp</name>
     <path>scran_blocks/</path>
     <filename>scran__blocks_8hpp.html</filename>
     <includes id="block__weights_8hpp" name="block_weights.hpp" local="yes" import="no" module="no" objc="no">block_weights.hpp</includes>
     <includes id="average__vectors_8hpp" name="average_vectors.hpp" local="yes" import="no" module="no" objc="no">average_vectors.hpp</includes>
+    <includes id="parallel__quantiles_8hpp" name="parallel_quantiles.hpp" local="yes" import="no" module="no" objc="no">parallel_quantiles.hpp</includes>
     <namespace>scran_blocks</namespace>
+  </compound>
+  <compound kind="class">
+    <name>scran_blocks::SingleQuantile</name>
+    <filename>classscran__blocks_1_1SingleQuantile.html</filename>
+    <templarg>typename Output_</templarg>
+    <templarg>typename Size_</templarg>
+    <member kind="function">
+      <type></type>
+      <name>SingleQuantile</name>
+      <anchorfile>classscran__blocks_1_1SingleQuantile.html</anchorfile>
+      <anchor>a86b96118f4d7449d12d7b2899930c44e</anchor>
+      <arglist>(Size_ n, double quantile)</arglist>
+    </member>
+    <member kind="function">
+      <type>Output_</type>
+      <name>operator()</name>
+      <anchorfile>classscran__blocks_1_1SingleQuantile.html</anchorfile>
+      <anchor>a396014f8cc146189c25cceba041791f5</anchor>
+      <arglist>(Iterator_ begin, Iterator_ end) const</arglist>
+    </member>
   </compound>
   <compound kind="struct">
     <name>scran_blocks::VariableWeightParameters</name>
@@ -42,6 +70,7 @@
   <compound kind="namespace">
     <name>scran_blocks</name>
     <filename>namespacescran__blocks.html</filename>
+    <class kind="class">scran_blocks::SingleQuantile</class>
     <class kind="struct">scran_blocks::VariableWeightParameters</class>
     <member kind="enumeration">
       <type></type>
@@ -102,6 +131,20 @@
       <anchorfile>namespacescran__blocks.html</anchorfile>
       <anchor>a182b74f7588264fae43fa06015f045c7</anchor>
       <arglist>(const std::vector&lt; Size_ &gt; &amp;sizes, const WeightPolicy policy, const VariableWeightParameters &amp;variable)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>parallel_quantiles</name>
+      <anchorfile>namespacescran__blocks.html</anchorfile>
+      <anchor>abef134052291ee3f5bce4011f41c5381</anchor>
+      <arglist>(const std::size_t n, const std::vector&lt; Stat_ * &gt; &amp;in, const double quantile, Output_ *const out, const bool skip_nan)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::vector&lt; Output_ &gt;</type>
+      <name>parallel_quantiles</name>
+      <anchorfile>namespacescran__blocks.html</anchorfile>
+      <anchor>a2e8bd1c6e5ea1cd9c875b2dbe7e986f8</anchor>
+      <arglist>(const std::size_t n, const std::vector&lt; Stat_ * &gt; &amp;in, const double quantile, const bool skip_nan)</arglist>
     </member>
   </compound>
   <compound kind="page">
