@@ -33,19 +33,19 @@
     <name>scran_blocks::SingleQuantile</name>
     <filename>classscran__blocks_1_1SingleQuantile.html</filename>
     <templarg>typename Output_</templarg>
-    <templarg>typename Size_</templarg>
+    <templarg>class Iterator_</templarg>
     <member kind="function">
       <type></type>
       <name>SingleQuantile</name>
       <anchorfile>classscran__blocks_1_1SingleQuantile.html</anchorfile>
-      <anchor>a730b17a23a39e59d64b81b23c7f7ffcc</anchor>
-      <arglist>(const Size_ n, const double quantile)</arglist>
+      <anchor>a37339757e92eb9cc2ba619ae77249542</anchor>
+      <arglist>(const std::size_t len, const double quantile)</arglist>
     </member>
     <member kind="function">
       <type>Output_</type>
       <name>operator()</name>
       <anchorfile>classscran__blocks_1_1SingleQuantile.html</anchorfile>
-      <anchor>a396014f8cc146189c25cceba041791f5</anchor>
+      <anchor>a4de7ce6279f10690d03e51adbaf08f23</anchor>
       <arglist>(Iterator_ begin, Iterator_ end) const</arglist>
     </member>
   </compound>

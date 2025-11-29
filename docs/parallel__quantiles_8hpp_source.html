@@ -110,43 +110,41 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacescran__blocks.html">scran_blocks</a> {</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Output_, <span class="keyword">typename</span> Size_&gt;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Output_, <span class="keyword">class</span> Iterator_&gt;</div>
 <div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classscran__blocks_1_1SingleQuantile.html">   34</a></span><span class="keyword">class </span><a class="code hl_class" href="classscran__blocks_1_1SingleQuantile.html">SingleQuantile</a> {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classscran__blocks_1_1SingleQuantile.html#a730b17a23a39e59d64b81b23c7f7ffcc">   40</a></span>    <a class="code hl_function" href="classscran__blocks_1_1SingleQuantile.html#a730b17a23a39e59d64b81b23c7f7ffcc">SingleQuantile</a>(<span class="keyword">const</span> Size_ n, <span class="keyword">const</span> <span class="keywordtype">double</span> quantile) {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keyword">const</span> <span class="keywordtype">double</span> frac = <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(n - 1) * quantile;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">const</span> <span class="keywordtype">double</span> base = std::floor(frac);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        my_lower = <span class="keyword">static_cast&lt;</span>Size_<span class="keyword">&gt;</span>(base);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        my_upper_fraction = frac - base;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        my_lower_fraction = 1.0 - my_upper_fraction;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        my_skip_upper = my_upper_fraction == 0;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">typedef</span> <span class="keyword">typename</span> std::iterator_traits&lt;Iterator_&gt;::difference_type DiffType;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classscran__blocks_1_1SingleQuantile.html#a37339757e92eb9cc2ba619ae77249542">   44</a></span>    <a class="code hl_function" href="classscran__blocks_1_1SingleQuantile.html#a37339757e92eb9cc2ba619ae77249542">SingleQuantile</a>(<span class="keyword">const</span> std::size_t len, <span class="keyword">const</span> <span class="keywordtype">double</span> quantile) {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keyword">const</span> Output_ frac = <span class="keyword">static_cast&lt;</span>Output_<span class="keyword">&gt;</span>(len - 1) * <span class="keyword">static_cast&lt;</span>Output_<span class="keyword">&gt;</span>(quantile);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keyword">const</span> Output_ base = std::floor(frac);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        my_lower = sanisizer::from_float&lt;DiffType&gt;(base);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        my_upper_fraction = frac - base;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        my_lower_fraction = <span class="keyword">static_cast&lt;</span>Output_<span class="keyword">&gt;</span>(1) - my_upper_fraction;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        my_skip_upper = my_upper_fraction == 0;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
 </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    Size_ my_lower;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">double</span> my_upper_fraction;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">double</span> my_lower_fraction;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">bool</span> my_skip_upper;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Iterator_&gt;</div>
-<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classscran__blocks_1_1SingleQuantile.html#a396014f8cc146189c25cceba041791f5">   65</a></span>    Output_ <a class="code hl_function" href="classscran__blocks_1_1SingleQuantile.html#a396014f8cc146189c25cceba041791f5">operator()</a>(Iterator_ begin, Iterator_ end)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keyword">auto</span> target = begin + <span class="keyword">static_cast&lt;</span>typename std::iterator_traits&lt;I&lt;decltype(begin)<span class="keyword">&gt;</span> &gt;::difference_type&gt;(my_lower);</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        std::nth_element(begin, target, end);</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="comment">// Avoid looking at target+1 if don&#39;t need it - in particular, we&#39;d get a out-of-bounds access if quantile = 1.</span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">if</span> (my_skip_upper) {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Output_<span class="keyword">&gt;</span>(</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                *target</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            );</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Output_<span class="keyword">&gt;</span>(</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(*target) * my_lower_fraction + <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(*(target + 1)) * my_upper_fraction</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            );</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    DiffType my_lower;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    Output_ my_upper_fraction;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    Output_ my_lower_fraction;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">bool</span> my_skip_upper;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classscran__blocks_1_1SingleQuantile.html#a4de7ce6279f10690d03e51adbaf08f23">   69</a></span>    Output_ <a class="code hl_function" href="classscran__blocks_1_1SingleQuantile.html#a4de7ce6279f10690d03e51adbaf08f23">operator()</a>(Iterator_ begin, Iterator_ end)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keyword">auto</span> target = begin + my_lower;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        std::nth_element(begin, target, end);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="comment">// Avoid looking at target+1 if don&#39;t need it - in particular, we&#39;d get a out-of-bounds access if quantile = 1.</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordflow">if</span> (my_skip_upper) {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Output_<span class="keyword">&gt;</span>(*target);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Output_<span class="keyword">&gt;</span>(*target) * my_lower_fraction + <span class="keyword">static_cast&lt;</span>Output_<span class="keyword">&gt;</span>(*(target + 1)) * my_upper_fraction;</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        }</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
 </div>
@@ -184,13 +182,13 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (actual_nblocks == 1) {</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                out[g] = tmp_buffer.front(); </div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                <a class="code hl_class" href="classscran__blocks_1_1SingleQuantile.html">SingleQuantile</a>&lt;Output_, I&lt;<span class="keyword">decltype</span>(actual_nblocks)&gt;&gt; calc(actual_nblocks, quantile);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                <a class="code hl_class" href="classscran__blocks_1_1SingleQuantile.html">SingleQuantile</a>&lt;Output_, I&lt;<span class="keyword">decltype</span>(tmp_buffer.begin())&gt; &gt; calc(actual_nblocks, quantile);</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                out[g] = calc(tmp_buffer.begin(), tmp_buffer.end());</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            }</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        }</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <a class="code hl_class" href="classscran__blocks_1_1SingleQuantile.html">SingleQuantile</a>&lt;Output_, I&lt;<span class="keyword">decltype</span>(nblocks)&gt;&gt; calc(nblocks, quantile);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <a class="code hl_class" href="classscran__blocks_1_1SingleQuantile.html">SingleQuantile</a>&lt;Output_, I&lt;<span class="keyword">decltype</span>(tmp_buffer.begin())&gt; &gt; calc(nblocks, quantile);</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keywordflow">for</span> (std::size_t g = 0; g &lt; n; ++g) {</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            tmp_buffer.clear();</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>            <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(nblocks)&gt; b = 0; b &lt; nblocks; ++b) {</div>
@@ -216,8 +214,8 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
 <div class="ttc" id="aclassscran__blocks_1_1SingleQuantile_html"><div class="ttname"><a href="classscran__blocks_1_1SingleQuantile.html">scran_blocks::SingleQuantile</a></div><div class="ttdoc">Calculate a single quantile from a container.</div><div class="ttdef"><b>Definition</b> parallel_quantiles.hpp:34</div></div>
-<div class="ttc" id="aclassscran__blocks_1_1SingleQuantile_html_a396014f8cc146189c25cceba041791f5"><div class="ttname"><a href="classscran__blocks_1_1SingleQuantile.html#a396014f8cc146189c25cceba041791f5">scran_blocks::SingleQuantile::operator()</a></div><div class="ttdeci">Output_ operator()(Iterator_ begin, Iterator_ end) const</div><div class="ttdef"><b>Definition</b> parallel_quantiles.hpp:65</div></div>
-<div class="ttc" id="aclassscran__blocks_1_1SingleQuantile_html_a730b17a23a39e59d64b81b23c7f7ffcc"><div class="ttname"><a href="classscran__blocks_1_1SingleQuantile.html#a730b17a23a39e59d64b81b23c7f7ffcc">scran_blocks::SingleQuantile::SingleQuantile</a></div><div class="ttdeci">SingleQuantile(const Size_ n, const double quantile)</div><div class="ttdef"><b>Definition</b> parallel_quantiles.hpp:40</div></div>
+<div class="ttc" id="aclassscran__blocks_1_1SingleQuantile_html_a37339757e92eb9cc2ba619ae77249542"><div class="ttname"><a href="classscran__blocks_1_1SingleQuantile.html#a37339757e92eb9cc2ba619ae77249542">scran_blocks::SingleQuantile::SingleQuantile</a></div><div class="ttdeci">SingleQuantile(const std::size_t len, const double quantile)</div><div class="ttdef"><b>Definition</b> parallel_quantiles.hpp:44</div></div>
+<div class="ttc" id="aclassscran__blocks_1_1SingleQuantile_html_a4de7ce6279f10690d03e51adbaf08f23"><div class="ttname"><a href="classscran__blocks_1_1SingleQuantile.html#a4de7ce6279f10690d03e51adbaf08f23">scran_blocks::SingleQuantile::operator()</a></div><div class="ttdeci">Output_ operator()(Iterator_ begin, Iterator_ end) const</div><div class="ttdef"><b>Definition</b> parallel_quantiles.hpp:69</div></div>
 <div class="ttc" id="anamespacescran__blocks_html"><div class="ttname"><a href="namespacescran__blocks.html">scran_blocks</a></div><div class="ttdoc">Blocking utilities for libscran.</div><div class="ttdef"><b>Definition</b> block_weights.hpp:17</div></div>
 <div class="ttc" id="anamespacescran__blocks_html_abef134052291ee3f5bce4011f41c5381"><div class="ttname"><a href="namespacescran__blocks.html#abef134052291ee3f5bce4011f41c5381">scran_blocks::parallel_quantiles</a></div><div class="ttdeci">void parallel_quantiles(const std::size_t n, const std::vector&lt; Stat_ * &gt; &amp;in, const double quantile, Output_ *const out, const bool skip_nan)</div><div class="ttdef"><b>Definition</b> parallel_quantiles.hpp:100</div></div>
 </div><!-- fragment --></div><!-- contents -->
