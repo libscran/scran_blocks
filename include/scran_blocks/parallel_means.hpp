@@ -40,11 +40,11 @@ void parallel_means_internal(const std::size_t n, std::vector<Stat_*> in, const 
     }
 
     if (skip_nan) {
-        for (decltype(I(n)) i = 0; i < n; ++i) {
+        for (I<decltype(n)> i = 0; i < n; ++i) {
             Output_ prod = 0;
             Output_ denom = 0;
 
-            for (decltype(I(nblocks)) b = 0; b < nblocks; ++b) {
+            for (I<decltype(nblocks)> b = 0; b < nblocks; ++b) {
                 const auto val = in[b][i];
                 if (!std::isnan(val)) {
                     if constexpr(weighted_) {
@@ -68,13 +68,13 @@ void parallel_means_internal(const std::size_t n, std::vector<Stat_*> in, const 
             if constexpr(weighted_) {
                 const Weight_ weight = *(wcopy++);
                 if (weight != 1) { 
-                    for (decltype(I(n)) i = 0; i < n; ++i) {
+                    for (I<decltype(n)> i = 0; i < n; ++i) {
                         out[i] += current[i] * weight;
                     }
                     continue;
                 }
             }
-            for (decltype(I(n)) i = 0; i < n; ++i) {
+            for (I<decltype(n)> i = 0; i < n; ++i) {
                 out[i] += current[i];
             }
         }
@@ -86,7 +86,7 @@ void parallel_means_internal(const std::size_t n, std::vector<Stat_*> in, const 
                 return in.size();
             }
         }();
-        for (decltype(I(n)) i = 0; i < n; ++i) {
+        for (I<decltype(n)> i = 0; i < n; ++i) {
             out[i] /= denom;
         }
     }
@@ -160,7 +160,7 @@ void parallel_weighted_means(const std::size_t n, std::vector<Stat_*> in, const 
     if (!in.empty()) {
         bool same = true;
         const auto numin = in.size();
-        for (decltype(I(numin)) i = 1; i < numin; ++i) {
+        for (I<decltype(numin)> i = 1; i < numin; ++i) {
             if (w[i] != w[0]) {
                 same = false;
                 break;

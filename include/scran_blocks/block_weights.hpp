@@ -98,11 +98,11 @@ void compute_weights(const std::size_t num_blocks, const Size_* const sizes, con
     if (policy == WeightPolicy::NONE || policy == WeightPolicy::SIZE) {
         std::copy_n(sizes, num_blocks, weights);
     } else if (policy == WeightPolicy::EQUAL) {
-        for (decltype(I(num_blocks)) s = 0; s < num_blocks; ++s) {
+        for (I<decltype(num_blocks)> s = 0; s < num_blocks; ++s) {
             weights[s] = sizes[s] > 0;
         }
     } else {
-        for (decltype(I(num_blocks)) s = 0; s < num_blocks; ++s) {
+        for (I<decltype(num_blocks)> s = 0; s < num_blocks; ++s) {
             weights[s] = compute_variable_weight(sizes[s], variable);
         }
     }

@@ -108,7 +108,7 @@ void parallel_quantiles(const std::size_t n, const std::vector<Stat_*>& in, cons
     if (skip_nan) {
         for (std::size_t g = 0; g < n; ++g) {
             tmp_buffer.clear();
-            for (decltype(I(nblocks)) b = 0; b < nblocks; ++b) {
+            for (I<decltype(nblocks)> b = 0; b < nblocks; ++b) {
                 const auto val = in[b][g];
                 if (!std::isnan(val)) {
                     tmp_buffer.push_back(val);
@@ -130,7 +130,7 @@ void parallel_quantiles(const std::size_t n, const std::vector<Stat_*>& in, cons
         SingleQuantile<Output_, decltype(I(nblocks))> calc(nblocks, quantile);
         for (std::size_t g = 0; g < n; ++g) {
             tmp_buffer.clear();
-            for (decltype(I(nblocks)) b = 0; b < nblocks; ++b) {
+            for (I<decltype(nblocks)> b = 0; b < nblocks; ++b) {
                 tmp_buffer.push_back(in[b][g]);
             }
             out[g] = calc(tmp_buffer.begin(), tmp_buffer.end());
