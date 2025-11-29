@@ -13,40 +13,44 @@ static int full_of_nans(const std::vector<double>& vec) {
 
 TEST(SingleQuantile, Even) {
     std::vector<double> values { 0.5, 0.7, 8.2, 2.3, 1.5, 8.8 };
+    scran_tests::CompareAlmostEqualParameters params;
     double val;
+
     val = scran_blocks::SingleQuantile<double, int>(values.size(), 0)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 0.5);
+    scran_tests::compare_almost_equal(val, 0.5, params);
     val = scran_blocks::SingleQuantile<double, int>(values.size(), 0.1)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 0.6);
+    scran_tests::compare_almost_equal(val, 0.6, params);
     val = scran_blocks::SingleQuantile<double, int>(values.size(), 0.25)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 0.9);
+    scran_tests::compare_almost_equal(val, 0.9, params);
     val = scran_blocks::SingleQuantile<double, int>(values.size(), 0.5)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 1.9);
+    scran_tests::compare_almost_equal(val, 1.9, params);
     val = scran_blocks::SingleQuantile<double, int>(values.size(), 0.75)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 6.725);
+    scran_tests::compare_almost_equal(val, 6.725, params);
     val = scran_blocks::SingleQuantile<double, int>(values.size(), 0.8)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 8.2);
+    scran_tests::compare_almost_equal(val, 8.2, params);
     val = scran_blocks::SingleQuantile<double, int>(values.size(), 1)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 8.8);
+    scran_tests::compare_almost_equal(val, 8.8, params);
 }
 
 TEST(SingleQuantile, Odd) {
     std::vector<double> values { 20, 50, 30, 80, 100 };
+    scran_tests::CompareAlmostEqualParameters params;
     double val;
+
     val = scran_blocks::SingleQuantile<double, int>(values.size(), 0)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 20.0);
+    scran_tests::compare_almost_equal(val, 20.0, params);
     val = scran_blocks::SingleQuantile<double, int>(values.size(), 0.1)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 24.0);
+    scran_tests::compare_almost_equal(val, 24.0, params);
     val = scran_blocks::SingleQuantile<double, int>(values.size(), 0.25)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 30.0);
+    scran_tests::compare_almost_equal(val, 30.0, params);
     val = scran_blocks::SingleQuantile<double, int>(values.size(), 0.5)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 50.0);
+    scran_tests::compare_almost_equal(val, 50.0, params);
     val = scran_blocks::SingleQuantile<double, int>(values.size(), 0.75)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 80.0);
+    scran_tests::compare_almost_equal(val, 80.0, params);
     val = scran_blocks::SingleQuantile<double, int>(values.size(), 0.8)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 84.0);
+    scran_tests::compare_almost_equal(val, 84.0, params);
     val = scran_blocks::SingleQuantile<double, int>(values.size(), 1)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 100.0);
+    scran_tests::compare_almost_equal(val, 100.0, params);
 }
 
 TEST(ParallelQuantiles, Simple) {
@@ -58,7 +62,7 @@ TEST(ParallelQuantiles, Simple) {
 
     auto out = scran_blocks::parallel_quantiles(5, std::vector<double*>{stuff[0].data(), stuff[1].data(), stuff[2].data()}, 0.5, false);
     std::vector<double> ref {2, 2, 3, 4, 5};
-    scran_tests::compare_almost_equal(ref, out);
+    scran_tests::compare_almost_equal_containers(ref, out, {});
 
     auto nona = scran_blocks::parallel_quantiles(5, std::vector<double*>{stuff[0].data(), stuff[1].data(), stuff[2].data()}, 0.5, true);
     EXPECT_EQ(out, nona);
@@ -81,5 +85,5 @@ TEST(ParallelQuantiles, CheckNaNs) {
 
     auto out = scran_blocks::parallel_quantiles(5, std::vector<double*>{stuff[0].data(), stuff[1].data(), stuff[2].data()}, 0.5, true);
     std::vector<double> ref {2, 7, 2.5, 3.5, nan};
-    scran_tests::compare_almost_equal(ref, out);
+    scran_tests::compare_almost_equal_containers(ref, out, {});
 }

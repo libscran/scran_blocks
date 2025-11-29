@@ -20,7 +20,7 @@ TEST(ParallelMeans, Simple) {
 
     auto out = scran_blocks::parallel_means(5, std::vector<double*>{stuff[0].data(), stuff[1].data(), stuff[2].data()}, false);
     std::vector<double> ref {2, 10.0/3, 8.0/3, 13/3.0, 5.0};
-    scran_tests::compare_almost_equal(ref, out);
+    scran_tests::compare_almost_equal_containers(ref, out, {});
 
     // Optimization when there's just one, or none.
     auto out_opt = scran_blocks::parallel_means(5, std::vector<double*>{stuff[0].data()}, false);
@@ -57,7 +57,7 @@ TEST(ParallelMeans, Weighted) {
     std::vector<double> weights3 { 0.5, 2, 1.5 };
     auto out3 = scran_blocks::parallel_weighted_means(5, ptrs, weights3.data(), false);
     std::vector<double> ref3{ 2.250, 3.375, 2.500, 4.625, 5.375 };
-    scran_tests::compare_almost_equal(ref3, out3);
+    scran_tests::compare_almost_equal_containers(ref3, out3, {});
 
     // Optimizations.
     auto out_opt = scran_blocks::parallel_weighted_means(5, std::vector<double*>{stuff[0].data()}, weights1.data(), false);
@@ -85,10 +85,10 @@ TEST(ParallelMeans, Missings) {
 
     auto out = scran_blocks::parallel_means(5, std::vector<double*>{stuff[0].data(), stuff[1].data(), stuff[2].data()}, true);
     std::vector<double> ref {2.0, 9.0/2, 5.0/2, 4.0, nan};
-    scran_tests::compare_almost_equal(ref, out);
+    scran_tests::compare_almost_equal_containers(ref, out, {});
 
     std::vector<double> weights { 2, 3, 5 };
     auto wout = scran_blocks::parallel_weighted_means(5, std::vector<double*>{stuff[0].data(), stuff[1].data(), stuff[2].data()}, weights.data(), true);
     std::vector<double> wref {(2 + 6 + 15)/10.0, (4 + 35)/(2.0 + 5.0), (6 + 15)/(3.0 + 5.0), 4.0, nan};
-    scran_tests::compare_almost_equal(wref, wout);
+    scran_tests::compare_almost_equal_containers(wref, wout, {});
 }
