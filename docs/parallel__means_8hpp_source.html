@@ -170,7 +170,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(weighted_) {</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                <span class="keywordflow">return</span> std::accumulate(w, w + in.size(), <span class="keyword">static_cast&lt;</span>Output_<span class="keyword">&gt;</span>(0));</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                <span class="keywordflow">return</span> in.size();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Output_<span class="keyword">&gt;</span>(in.size());</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            }</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        }();</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordflow">for</span> (<span class="keyword">decltype</span>(I(n)) i = 0; i &lt; n; ++i) {</div>

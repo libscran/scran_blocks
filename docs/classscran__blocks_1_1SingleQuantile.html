@@ -104,8 +104,8 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a86b96118f4d7449d12d7b2899930c44e" id="r_a86b96118f4d7449d12d7b2899930c44e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86b96118f4d7449d12d7b2899930c44e">SingleQuantile</a> (Size_ n, double quantile)</td></tr>
-<tr class="separator:a86b96118f4d7449d12d7b2899930c44e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a730b17a23a39e59d64b81b23c7f7ffcc" id="r_a730b17a23a39e59d64b81b23c7f7ffcc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a730b17a23a39e59d64b81b23c7f7ffcc">SingleQuantile</a> (const Size_ n, const double quantile)</td></tr>
+<tr class="separator:a730b17a23a39e59d64b81b23c7f7ffcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a396014f8cc146189c25cceba041791f5" id="r_a396014f8cc146189c25cceba041791f5"><td class="memTemplParams" colspan="2">template&lt;typename Iterator_ &gt; </td></tr>
 <tr class="memitem:a396014f8cc146189c25cceba041791f5"><td class="memTemplItemLeft" align="right" valign="top">Output_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a396014f8cc146189c25cceba041791f5">operator()</a> (Iterator_ begin, Iterator_ end) const</td></tr>
 <tr class="separator:a396014f8cc146189c25cceba041791f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,8 +122,8 @@ class scran_blocks::SingleQuantile&lt; Output_, Size_ &gt;</div><p>Calculate a s
 </dl>
 <p>This class should be constructed once, given the number of elements and the desired probability. It can then applied across any number of containers of size equal to the pre-specified number of elements. The quantile is type 7, consistent with the default in R's <code>quantile</code> function. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a86b96118f4d7449d12d7b2899930c44e" name="a86b96118f4d7449d12d7b2899930c44e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86b96118f4d7449d12d7b2899930c44e">&#9670;&#160;</a></span>SingleQuantile()</h2>
+<a id="a730b17a23a39e59d64b81b23c7f7ffcc" name="a730b17a23a39e59d64b81b23c7f7ffcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a730b17a23a39e59d64b81b23c7f7ffcc">&#9670;&#160;</a></span>SingleQuantile()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -136,12 +136,12 @@ template&lt;typename Output_ , typename Size_ &gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classscran__blocks_1_1SingleQuantile.html">scran_blocks::SingleQuantile</a>&lt; Output_, Size_ &gt;::SingleQuantile </td>
           <td>(</td>
-          <td class="paramtype">Size_</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+          <td class="paramtype">const Size_</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>quantile</em></span>&#160;)</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>quantile</em></span>&#160;)</td>
         </tr>
       </table>
   </td>

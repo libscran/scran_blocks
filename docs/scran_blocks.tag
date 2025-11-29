@@ -38,8 +38,8 @@
       <type></type>
       <name>SingleQuantile</name>
       <anchorfile>classscran__blocks_1_1SingleQuantile.html</anchorfile>
-      <anchor>a86b96118f4d7449d12d7b2899930c44e</anchor>
-      <arglist>(Size_ n, double quantile)</arglist>
+      <anchor>a730b17a23a39e59d64b81b23c7f7ffcc</anchor>
+      <arglist>(const Size_ n, const double quantile)</arglist>
     </member>
     <member kind="function">
       <type>Output_</type>
