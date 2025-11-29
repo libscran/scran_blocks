@@ -143,10 +143,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a2e8bd1c6e5ea1cd9c875b2dbe7e986f8" id="r_a2e8bd1c6e5ea1cd9c875b2dbe7e986f8"><td class="memTemplParams" colspan="2">template&lt;typename Output_  = double, typename Stat_ &gt; </td></tr>
 <tr class="memitem:a2e8bd1c6e5ea1cd9c875b2dbe7e986f8"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Output_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a2e8bd1c6e5ea1cd9c875b2dbe7e986f8">parallel_quantiles</a> (const std::size_t n, const std::vector&lt; Stat_ * &gt; &amp;in, const double quantile, const bool skip_nan)</td></tr>
 <tr class="separator:a2e8bd1c6e5ea1cd9c875b2dbe7e986f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a482389174be65d7c964b8c57a53589" id="r_a6a482389174be65d7c964b8c57a53589"><td class="memTemplParams" colspan="2"><a id="a6a482389174be65d7c964b8c57a53589" name="a6a482389174be65d7c964b8c57a53589"></a>
-template&lt;typename Input_ &gt; </td></tr>
-<tr class="memitem:a6a482389174be65d7c964b8c57a53589"><td class="memTemplItemLeft" align="right" valign="top">std::remove_cv_t&lt; std::remove_reference_t&lt; Input_ &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>I</b> (Input_ x)</td></tr>
-<tr class="separator:a6a482389174be65d7c964b8c57a53589"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Blocking utilities for <b>libscran</b>. </p>
@@ -261,7 +257,7 @@ template&lt;typename Size_ , typename Weight_ &gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Compute weights for multiple blocks based on their size and the weighting policy. For variable weights, this function will call <code><a class="el" href="#a33ebed1decbfe3627ce4ddf0b99df825">compute_variable_weight()</a></code> for each block.</p>
-<p>Weights should be interpreted as relative values within a single <code><a class="el" href="#a2eb0ccb73289d97436afd94824ec0fae">compute_weights()</a></code> call, i.e., weights from different calls may not be comparable. They are typically used in functions like <code>average_weighted_vectors()</code> to compute a weighted average of statistics across blocks.</p>
+<p>Weights should be interpreted as relative values within a single <code><a class="el" href="#a2eb0ccb73289d97436afd94824ec0fae">compute_weights()</a></code> call, i.e., weights from different calls may not be comparable. They are typically used in functions like <code><a class="el" href="#abac57f9512b34b4e22871c62fca4020e">parallel_weighted_means()</a></code> to compute a weighted average of statistics across blocks.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Size_</td><td>Numeric type of the block size. </td></tr>
@@ -352,7 +348,7 @@ template&lt;typename Output_  = double, typename Stat_ &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Overload of <code>compute()</code> that allocates an output vector of averaged values.</p>
+<p>Overload of <code><a class="el" href="#ad47cb191dd54e5b23cde2ef295b06046">parallel_means()</a></code> that allocates an output vector of averaged values.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Output</td><td>Floating-point output type. </td></tr>
@@ -559,7 +555,7 @@ template&lt;typename Output_  = double, typename Stat_ , typename Weight_ &gt; <
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Overload of <code>average_vectors_weighted()</code> that allocates an output vector of averaged values.</p>
+<p>Overload of <code><a class="el" href="#abac57f9512b34b4e22871c62fca4020e">parallel_weighted_means()</a></code> that allocates an output vector of averaged values.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Output_</td><td>Floating-point output type. </td></tr>

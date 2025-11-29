@@ -25,6 +25,7 @@
     <path>scran_blocks/</path>
     <filename>scran__blocks_8hpp.html</filename>
     <includes id="block__weights_8hpp" name="block_weights.hpp" local="yes" import="no" module="no" objc="no">block_weights.hpp</includes>
+    <includes id="parallel__means_8hpp" name="parallel_means.hpp" local="yes" import="no" module="no" objc="no">parallel_means.hpp</includes>
     <includes id="parallel__quantiles_8hpp" name="parallel_quantiles.hpp" local="yes" import="no" module="no" objc="no">parallel_quantiles.hpp</includes>
     <namespace>scran_blocks</namespace>
   </compound>
