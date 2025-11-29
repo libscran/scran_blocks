@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['average_5fvectors_2ehpp_0',['average_vectors.hpp',['../average__vectors_8hpp.html',1,'']]]
+  ['block_5fweights_2ehpp_0',['block_weights.hpp',['../block__weights_8hpp.html',1,'']]]
 ];

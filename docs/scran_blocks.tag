@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <tagfile doxygen_version="1.12.0">
   <compound kind="file">
-    <name>average_vectors.hpp</name>
-    <path>scran_blocks/</path>
-    <filename>average__vectors_8hpp.html</filename>
-    <namespace>scran_blocks</namespace>
-  </compound>
-  <compound kind="file">
     <name>block_weights.hpp</name>
     <path>scran_blocks/</path>
     <filename>block__weights_8hpp.html</filename>
     <class kind="struct">scran_blocks::VariableWeightParameters</class>
+    <namespace>scran_blocks</namespace>
+  </compound>
+  <compound kind="file">
+    <name>parallel_means.hpp</name>
+    <path>scran_blocks/</path>
+    <filename>parallel__means_8hpp.html</filename>
     <namespace>scran_blocks</namespace>
   </compound>
   <compound kind="file">
@@ -25,7 +25,6 @@
     <path>scran_blocks/</path>
     <filename>scran__blocks_8hpp.html</filename>
     <includes id="block__weights_8hpp" name="block_weights.hpp" local="yes" import="no" module="no" objc="no">block_weights.hpp</includes>
-    <includes id="average__vectors_8hpp" name="average_vectors.hpp" local="yes" import="no" module="no" objc="no">average_vectors.hpp</includes>
     <includes id="parallel__quantiles_8hpp" name="parallel_quantiles.hpp" local="yes" import="no" module="no" objc="no">parallel_quantiles.hpp</includes>
     <namespace>scran_blocks</namespace>
   </compound>
@@ -84,34 +83,6 @@
       <enumvalue file="namespacescran__blocks.html" anchor="ac2412948da94055ff438267ba089ba97a969f331a87d8c958473c32b4d0e61a44">EQUAL</enumvalue>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>average_vectors</name>
-      <anchorfile>namespacescran__blocks.html</anchorfile>
-      <anchor>ad102233b847d4004e03035c29f243130</anchor>
-      <arglist>(const std::size_t n, std::vector&lt; Stat_ * &gt; in, Output_ *const out, const bool skip_nan)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::vector&lt; Output_ &gt;</type>
-      <name>average_vectors</name>
-      <anchorfile>namespacescran__blocks.html</anchorfile>
-      <anchor>afd9262136b3895afe8b0217cfc51337c</anchor>
-      <arglist>(const std::size_t n, std::vector&lt; Stat_ * &gt; in, const bool skip_nan)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>average_vectors_weighted</name>
-      <anchorfile>namespacescran__blocks.html</anchorfile>
-      <anchor>afa41c174fefddebe4fc45c593f4edd2e</anchor>
-      <arglist>(const std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *const w, Output_ *const out, const bool skip_nan)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::vector&lt; Output_ &gt;</type>
-      <name>average_vectors_weighted</name>
-      <anchorfile>namespacescran__blocks.html</anchorfile>
-      <anchor>ac681cdd5f36d39f2e26f7a155551d259</anchor>
-      <arglist>(const std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *const w, const bool skip_nan)</arglist>
-    </member>
-    <member kind="function">
       <type>double</type>
       <name>compute_variable_weight</name>
       <anchorfile>namespacescran__blocks.html</anchorfile>
@@ -131,6 +102,34 @@
       <anchorfile>namespacescran__blocks.html</anchorfile>
       <anchor>a182b74f7588264fae43fa06015f045c7</anchor>
       <arglist>(const std::vector&lt; Size_ &gt; &amp;sizes, const WeightPolicy policy, const VariableWeightParameters &amp;variable)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>parallel_means</name>
+      <anchorfile>namespacescran__blocks.html</anchorfile>
+      <anchor>ad47cb191dd54e5b23cde2ef295b06046</anchor>
+      <arglist>(const std::size_t n, std::vector&lt; Stat_ * &gt; in, Output_ *const out, const bool skip_nan)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::vector&lt; Output_ &gt;</type>
+      <name>parallel_means</name>
+      <anchorfile>namespacescran__blocks.html</anchorfile>
+      <anchor>ab4231fa5b1c8fa34ab298fa0c13ba0bf</anchor>
+      <arglist>(const std::size_t n, std::vector&lt; Stat_ * &gt; in, const bool skip_nan)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>parallel_weighted_means</name>
+      <anchorfile>namespacescran__blocks.html</anchorfile>
+      <anchor>abac57f9512b34b4e22871c62fca4020e</anchor>
+      <arglist>(const std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *const w, Output_ *const out, const bool skip_nan)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::vector&lt; Output_ &gt;</type>
+      <name>parallel_weighted_means</name>
+      <anchorfile>namespacescran__blocks.html</anchorfile>
+      <anchor>a55275bde36deccc819c42713e3ec81bd</anchor>
+      <arglist>(const std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *const w, const bool skip_nan)</arglist>
     </member>
     <member kind="function">
       <type>void</type>

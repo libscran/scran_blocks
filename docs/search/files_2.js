@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['parallel_5fquantiles_2ehpp_0',['parallel_quantiles.hpp',['../parallel__quantiles_8hpp.html',1,'']]]
+  ['scran_5fblocks_2ehpp_0',['scran_blocks.hpp',['../scran__blocks_8hpp.html',1,'']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>scran_blocks: scran_blocks/average_vectors.hpp File Reference</title>
+<title>scran_blocks: scran_blocks/parallel_means.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -93,11 +93,11 @@ $(function(){ initResizable(false); });
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">average_vectors.hpp File Reference</div></div>
+  <div class="headertitle"><div class="title">parallel_means.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Average parallel elements across vectors.  
+<p>Mean of arallel elements across arrays.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;limits&gt;</code><br />
@@ -108,7 +108,7 @@ $(function(){ initResizable(false); });
 <code>#include &quot;sanisizer/sanisizer.hpp&quot;</code><br />
 <code>#include &quot;utils.hpp&quot;</code><br />
 </div>
-<p><a href="average__vectors_8hpp_source.html">Go to the source code of this file.</a></p>
+<p><a href="parallel__means_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -118,21 +118,21 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad102233b847d4004e03035c29f243130" id="r_ad102233b847d4004e03035c29f243130"><td class="memTemplParams" colspan="2">template&lt;typename Stat_ , typename Output_ &gt; </td></tr>
-<tr class="memitem:ad102233b847d4004e03035c29f243130"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacescran__blocks.html#ad102233b847d4004e03035c29f243130">scran_blocks::average_vectors</a> (const std::size_t n, std::vector&lt; Stat_ * &gt; in, Output_ *const out, const bool skip_nan)</td></tr>
-<tr class="separator:ad102233b847d4004e03035c29f243130"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd9262136b3895afe8b0217cfc51337c" id="r_afd9262136b3895afe8b0217cfc51337c"><td class="memTemplParams" colspan="2">template&lt;typename Output_  = double, typename Stat_ &gt; </td></tr>
-<tr class="memitem:afd9262136b3895afe8b0217cfc51337c"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Output_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacescran__blocks.html#afd9262136b3895afe8b0217cfc51337c">scran_blocks::average_vectors</a> (const std::size_t n, std::vector&lt; Stat_ * &gt; in, const bool skip_nan)</td></tr>
-<tr class="separator:afd9262136b3895afe8b0217cfc51337c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa41c174fefddebe4fc45c593f4edd2e" id="r_afa41c174fefddebe4fc45c593f4edd2e"><td class="memTemplParams" colspan="2">template&lt;typename Stat_ , typename Weight_ , typename Output_ &gt; </td></tr>
-<tr class="memitem:afa41c174fefddebe4fc45c593f4edd2e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacescran__blocks.html#afa41c174fefddebe4fc45c593f4edd2e">scran_blocks::average_vectors_weighted</a> (const std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *const w, Output_ *const out, const bool skip_nan)</td></tr>
-<tr class="separator:afa41c174fefddebe4fc45c593f4edd2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac681cdd5f36d39f2e26f7a155551d259" id="r_ac681cdd5f36d39f2e26f7a155551d259"><td class="memTemplParams" colspan="2">template&lt;typename Output_  = double, typename Stat_ , typename Weight_ &gt; </td></tr>
-<tr class="memitem:ac681cdd5f36d39f2e26f7a155551d259"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Output_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacescran__blocks.html#ac681cdd5f36d39f2e26f7a155551d259">scran_blocks::average_vectors_weighted</a> (const std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *const w, const bool skip_nan)</td></tr>
-<tr class="separator:ac681cdd5f36d39f2e26f7a155551d259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad47cb191dd54e5b23cde2ef295b06046" id="r_ad47cb191dd54e5b23cde2ef295b06046"><td class="memTemplParams" colspan="2">template&lt;typename Stat_ , typename Output_ &gt; </td></tr>
+<tr class="memitem:ad47cb191dd54e5b23cde2ef295b06046"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacescran__blocks.html#ad47cb191dd54e5b23cde2ef295b06046">scran_blocks::parallel_means</a> (const std::size_t n, std::vector&lt; Stat_ * &gt; in, Output_ *const out, const bool skip_nan)</td></tr>
+<tr class="separator:ad47cb191dd54e5b23cde2ef295b06046"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4231fa5b1c8fa34ab298fa0c13ba0bf" id="r_ab4231fa5b1c8fa34ab298fa0c13ba0bf"><td class="memTemplParams" colspan="2">template&lt;typename Output_  = double, typename Stat_ &gt; </td></tr>
+<tr class="memitem:ab4231fa5b1c8fa34ab298fa0c13ba0bf"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Output_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacescran__blocks.html#ab4231fa5b1c8fa34ab298fa0c13ba0bf">scran_blocks::parallel_means</a> (const std::size_t n, std::vector&lt; Stat_ * &gt; in, const bool skip_nan)</td></tr>
+<tr class="separator:ab4231fa5b1c8fa34ab298fa0c13ba0bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abac57f9512b34b4e22871c62fca4020e" id="r_abac57f9512b34b4e22871c62fca4020e"><td class="memTemplParams" colspan="2">template&lt;typename Stat_ , typename Weight_ , typename Output_ &gt; </td></tr>
+<tr class="memitem:abac57f9512b34b4e22871c62fca4020e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacescran__blocks.html#abac57f9512b34b4e22871c62fca4020e">scran_blocks::parallel_weighted_means</a> (const std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *const w, Output_ *const out, const bool skip_nan)</td></tr>
+<tr class="separator:abac57f9512b34b4e22871c62fca4020e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55275bde36deccc819c42713e3ec81bd" id="r_a55275bde36deccc819c42713e3ec81bd"><td class="memTemplParams" colspan="2">template&lt;typename Output_  = double, typename Stat_ , typename Weight_ &gt; </td></tr>
+<tr class="memitem:a55275bde36deccc819c42713e3ec81bd"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Output_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacescran__blocks.html#a55275bde36deccc819c42713e3ec81bd">scran_blocks::parallel_weighted_means</a> (const std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *const w, const bool skip_nan)</td></tr>
+<tr class="separator:a55275bde36deccc819c42713e3ec81bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Average parallel elements across vectors. </p>
+<div class="textblock"><p>Mean of arallel elements across arrays. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
