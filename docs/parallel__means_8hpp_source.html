@@ -127,11 +127,11 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    }</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">if</span> (skip_nan) {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(n)&gt; i = 0; i &lt; n; ++i) {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">for</span> (<span class="keyword">decltype</span>(I(n)) i = 0; i &lt; n; ++i) {</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            Output_ prod = 0;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            Output_ denom = 0;</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(nblocks)&gt; b = 0; b &lt; nblocks; ++b) {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <span class="keywordflow">for</span> (<span class="keyword">decltype</span>(I(nblocks)) b = 0; b &lt; nblocks; ++b) {</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                <span class="keyword">const</span> <span class="keyword">auto</span> val = in[b][i];</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                <span class="keywordflow">if</span> (!std::isnan(val)) {</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(weighted_) {</div>
@@ -155,13 +155,13 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(weighted_) {</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                <span class="keyword">const</span> Weight_ weight = *(wcopy++);</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                <span class="keywordflow">if</span> (weight != 1) { </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                    <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(n)&gt; i = 0; i &lt; n; ++i) {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                    <span class="keywordflow">for</span> (<span class="keyword">decltype</span>(I(n)) i = 0; i &lt; n; ++i) {</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                        out[i] += current[i] * weight;</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                    }</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                    <span class="keywordflow">continue</span>;</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                }</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            }</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(n)&gt; i = 0; i &lt; n; ++i) {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordflow">for</span> (<span class="keyword">decltype</span>(I(n)) i = 0; i &lt; n; ++i) {</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                out[i] += current[i];</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            }</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        }</div>
@@ -170,10 +170,10 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(weighted_) {</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                <span class="keywordflow">return</span> std::accumulate(w, w + in.size(), <span class="keyword">static_cast&lt;</span>Output_<span class="keyword">&gt;</span>(0));</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Output_<span class="keyword">&gt;</span>(in.size());</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                <span class="keywordflow">return</span> in.size();</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            }</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        }();</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(n)&gt; i = 0; i &lt; n; ++i) {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordflow">for</span> (<span class="keyword">decltype</span>(I(n)) i = 0; i &lt; n; ++i) {</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            out[i] /= denom;</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        }</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
@@ -201,7 +201,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordflow">if</span> (!in.empty()) {</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keywordtype">bool</span> same = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keyword">const</span> <span class="keyword">auto</span> numin = in.size();</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(numin)&gt; i = 1; i &lt; numin; ++i) {</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        <span class="keywordflow">for</span> (<span class="keyword">decltype</span>(I(numin)) i = 1; i &lt; numin; ++i) {</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>            <span class="keywordflow">if</span> (w[i] != w[0]) {</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>                same = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>                <span class="keywordflow">break</span>;</div>

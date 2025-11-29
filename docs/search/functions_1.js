@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['operator_28_29_0',['operator()',['../classscran__blocks_1_1SingleQuantile.html#a4de7ce6279f10690d03e51adbaf08f23',1,'scran_blocks::SingleQuantile']]]
+  ['operator_28_29_0',['operator()',['../classscran__blocks_1_1SingleQuantile.html#a396014f8cc146189c25cceba041791f5',1,'scran_blocks::SingleQuantile']]]
 ];
