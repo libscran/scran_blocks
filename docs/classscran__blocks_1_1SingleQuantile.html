@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>scran_blocks: scran_blocks::SingleQuantile&lt; Output_, Size_ &gt; Class Template Reference</title>
+<title>scran_blocks: scran_blocks::SingleQuantile&lt; Output_, Iterator_ &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -93,7 +93,7 @@ $(function(){ initResizable(false); });
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classscran__blocks_1_1SingleQuantile-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">scran_blocks::SingleQuantile&lt; Output_, Size_ &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">scran_blocks::SingleQuantile&lt; Output_, Iterator_ &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -104,44 +104,43 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a86b96118f4d7449d12d7b2899930c44e" id="r_a86b96118f4d7449d12d7b2899930c44e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86b96118f4d7449d12d7b2899930c44e">SingleQuantile</a> (Size_ n, double quantile)</td></tr>
-<tr class="separator:a86b96118f4d7449d12d7b2899930c44e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a396014f8cc146189c25cceba041791f5" id="r_a396014f8cc146189c25cceba041791f5"><td class="memTemplParams" colspan="2">template&lt;typename Iterator_ &gt; </td></tr>
-<tr class="memitem:a396014f8cc146189c25cceba041791f5"><td class="memTemplItemLeft" align="right" valign="top">Output_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a396014f8cc146189c25cceba041791f5">operator()</a> (Iterator_ begin, Iterator_ end) const</td></tr>
-<tr class="separator:a396014f8cc146189c25cceba041791f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37339757e92eb9cc2ba619ae77249542" id="r_a37339757e92eb9cc2ba619ae77249542"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37339757e92eb9cc2ba619ae77249542">SingleQuantile</a> (const std::size_t len, const double quantile)</td></tr>
+<tr class="separator:a37339757e92eb9cc2ba619ae77249542"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4de7ce6279f10690d03e51adbaf08f23" id="r_a4de7ce6279f10690d03e51adbaf08f23"><td class="memItemLeft" align="right" valign="top">Output_&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4de7ce6279f10690d03e51adbaf08f23">operator()</a> (Iterator_ begin, Iterator_ end) const</td></tr>
+<tr class="separator:a4de7ce6279f10690d03e51adbaf08f23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename Output_, typename Size_&gt;<br />
-class scran_blocks::SingleQuantile&lt; Output_, Size_ &gt;</div><p>Calculate a single quantile from a container. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Output_, class Iterator_&gt;<br />
+class scran_blocks::SingleQuantile&lt; Output_, Iterator_ &gt;</div><p>Calculate a single quantile from a container. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Output_</td><td>Floating-point type of the output quantile. </td></tr>
-    <tr><td class="paramname">Size_</td><td>Integer type of the number of elements.</td></tr>
+    <tr><td class="paramname">Iterator_</td><td>Random-access writeable iterator to a container.</td></tr>
   </table>
   </dd>
 </dl>
 <p>This class should be constructed once, given the number of elements and the desired probability. It can then applied across any number of containers of size equal to the pre-specified number of elements. The quantile is type 7, consistent with the default in R's <code>quantile</code> function. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a86b96118f4d7449d12d7b2899930c44e" name="a86b96118f4d7449d12d7b2899930c44e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86b96118f4d7449d12d7b2899930c44e">&#9670;&#160;</a></span>SingleQuantile()</h2>
+<a id="a37339757e92eb9cc2ba619ae77249542" name="a37339757e92eb9cc2ba619ae77249542"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37339757e92eb9cc2ba619ae77249542">&#9670;&#160;</a></span>SingleQuantile()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Output_ , typename Size_ &gt; </div>
+template&lt;typename Output_ , class Iterator_ &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classscran__blocks_1_1SingleQuantile.html">scran_blocks::SingleQuantile</a>&lt; Output_, Size_ &gt;::SingleQuantile </td>
+          <td class="memname"><a class="el" href="classscran__blocks_1_1SingleQuantile.html">scran_blocks::SingleQuantile</a>&lt; Output_, Iterator_ &gt;::SingleQuantile </td>
           <td>(</td>
-          <td class="paramtype">Size_</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+          <td class="paramtype">const std::size_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>quantile</em></span>&#160;)</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>quantile</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -152,7 +151,7 @@ template&lt;typename Output_ , typename Size_ &gt; </div>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">n</td><td>Number of elements in the container. </td></tr>
+    <tr><td class="paramname">len</td><td>Number of elements in the container. Should be positive. </td></tr>
     <tr><td class="paramname">quantile</td><td>Quantile to compute, in <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$[0, 1]$" src="form_0.png"/></picture>. </td></tr>
   </table>
   </dd>
@@ -161,21 +160,19 @@ template&lt;typename Output_ , typename Size_ &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a396014f8cc146189c25cceba041791f5" name="a396014f8cc146189c25cceba041791f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a396014f8cc146189c25cceba041791f5">&#9670;&#160;</a></span>operator()()</h2>
+<a id="a4de7ce6279f10690d03e51adbaf08f23" name="a4de7ce6279f10690d03e51adbaf08f23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4de7ce6279f10690d03e51adbaf08f23">&#9670;&#160;</a></span>operator()()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Output_ , typename Size_ &gt; </div>
-<div class="memtemplate">
-template&lt;typename Iterator_ &gt; </div>
+template&lt;typename Output_ , class Iterator_ &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Output_ <a class="el" href="classscran__blocks_1_1SingleQuantile.html">scran_blocks::SingleQuantile</a>&lt; Output_, Size_ &gt;::operator() </td>
+          <td class="memname">Output_ <a class="el" href="classscran__blocks_1_1SingleQuantile.html">scran_blocks::SingleQuantile</a>&lt; Output_, Iterator_ &gt;::operator() </td>
           <td>(</td>
           <td class="paramtype">Iterator_</td>          <td class="paramname"><span class="paramname"><em>begin</em></span>, </td>
         </tr>
@@ -191,21 +188,15 @@ template&lt;typename Iterator_ &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Iterator_</td><td>Random-access writeable iterator to a container. </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">begin</td><td>Start of the container. </td></tr>
-    <tr><td class="paramname">end</td><td>End of the container. </td></tr>
+    <tr><td class="paramname">end</td><td>End of the container.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Quantile for the sequence of elements in <code>[begin, end)</code>.</dd></dl>
-<p>The range <code>[begin, end)</code> should have length equal to <code>n</code>, and should not contain any NaN values. </p>
+<p>The range <code>[begin, end)</code> should have length equal to <code>n</code>, and should not contain any NaN values. On output, the order of elements in <code>[begin, end)</code> may be rearranged. </p>
 
 </div>
 </div>
