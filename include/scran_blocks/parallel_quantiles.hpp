@@ -76,7 +76,7 @@ public:
 
 /**
  * Compute the quantile for parallel elements across multiple arrays.
- * This can be used as an alternative to `average_vectors()` to summarize statistics across blocks, e.g., by computing the median with `quantile = 0.5`.
+ * This can be used as an alternative to `parallel_means()` to summarize statistics across blocks, e.g., by computing the median with `quantile = 0.5`.
  * The quantile is type 7, consistent with the default in R's `quantile` function. 
  *
  * @tparam Stat_ Type of the input statistic, typically floating point.

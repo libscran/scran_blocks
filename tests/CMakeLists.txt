@@ -10,7 +10,7 @@ FetchContent_MakeAvailable(scran_tests)
 
 add_executable(
     libtest 
-    src/average_vectors.cpp
+    src/parallel_means.cpp
     src/block_weights.cpp
     src/parallel_quantiles.cpp
 )
