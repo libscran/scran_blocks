@@ -10,10 +10,11 @@ This repository contains utilities for blocked analyses for the other [**libscra
 Any uninteresting factor of variation (usually across the cells) can be used as a blocking factor, e.g., experimental batches, sample/patient of origin.
 In the presence of blocks, our general strategy is to perform the analysis within each block before combining our conclusions across blocks.
 This ensures that our results are not affected by the uninteresting differences between blocks.
+See the [reference documentation](https://libscran.github.io/scran_blocks) for more details.
 
-## Averaging vectors
+## Parallel means
 
-The `scran_blocks::average_vectors()` function will compute the element-wise averages of any number of equi-length arrays.
+The `parallel_means()` function will compute the element-wise mean of any number of equi-length arrays.
 This is typically used to average statistics across blocks, where each array contains the statistics for a single block over all genes.
 
 ```cpp
@@ -23,7 +24,7 @@ std::vector<double> stat1 { 1.0, 2.0, 3.0, 4.0 };
 std::vector<double> stat2 { 5.0, 6.0, 7.0, 8.0 };
 
 // Contains { 3, 4, 5, 6 }.
-auto averaged = scran_blocks::average_vectors(
+auto averaged = scran_blocks::parallel_means(
     stat1.size(), 
     { stat1.data(), stat2.data() }
     /* skip_nan = */ false
@@ -40,7 +41,7 @@ std::vector<double> stat1n { 1.0, nan, 3.0, nan };
 std::vector<double> stat2n { 5.0, 6.0, nan, nan };
 
 // Contains { 3, 6, 3, nan }.
-auto averagedn = scran_blocks::average_vectors(
+auto averagedn = scran_blocks::parallel_means(
     stat1n.size(), 
     { stat1n.data(), stat2n.data() }
     /* skip_nan = */ true
@@ -55,7 +56,7 @@ std::vector<double> stat2w { 5.0, 6.0, 7.0, 8.0 };
 std::vector<double> weights { 1.0, 9.0 };
 
 // Contains { 4.6, 5.6, 6.6, 7.6 }.
-auto averagedw = scran_blocks::average_vectors_weighted(
+auto averagedw = scran_blocks::parallel_weighted_means(
     stat1w.size(), 
     { stat1w.data(), stat2w.data() }
     weights.data(),
@@ -63,12 +64,10 @@ auto averagedw = scran_blocks::average_vectors_weighted(
 );
 ```
 
-See the [reference documentation](https://libscran.github.io/scran_blocks) for more details.
-
 ## Weighting blocks
 
 When combining statistics across blocks, it may be desirable to weight each block by its size, favoring larger blocks that can emit more stable statistics.
-This is done using the `scran_blocks::compute_weights()` function that calculates a weight for each block based on its size.
+This is done using the `compute_weights()` function that calculates a weight for each block based on its size.
 
 ```cpp
 #include "scran_blocks/scran_blocks.hpp"
@@ -94,7 +93,31 @@ or `EQUAL`, where all blocks are equally weighted regardless of size (assuming t
 In such cases, the `variable` argument is ignored.
 Check out the [reference documentation](https://libscran.github.io/scran_blocks) for more details.
 
-## Building projects
+## Parallel quantiles
+
+Much like `parallel_means()`, we can compute the element-wise quantile for any number of equi-length arrays with `parallel_quantiles()`.
+This is again used to average statistics across blocks, where a quantile probability of 0.5 yields the element-wise median.
+
+```cpp
+#include "scran_blocks/scran_blocks.hpp"
+
+std::vector<double> stat1 { 1.0, 2.0, 3.0, 4.0 };
+std::vector<double> stat2 { 5.0, 8.0, 7.0, 9.0 };
+std::vector<double> stat3 { 2.0, 6.0, 4.0, 8.0 };
+
+// Contains { 2, 6, 4, 8 }.
+auto averaged = scran_blocks::parallel_quantiles(
+    stat1.size(), 
+    { stat1.data(), stat2.data(), stat3.data() }
+    /* quantile = */ 0.5,
+    /* skip_nan = */ false
+);
+```
+
+This function computes the type 7 quantile for each gene.
+Weighted quantiles are currently not supported, mostly because it's too hard to do correctly (at least, for a continuous quantile function).
+
+# Building projects
 
 ### CMake with `FetchContent`
 

@@ -58,7 +58,7 @@ public:
      * @param end End of the container.
      * @return Quantile for the sequence of elements in `[begin, end)`.
      *
-     * The range `[begin, end)` should have length equal to `n`, and should contain any NaN values.
+     * The range `[begin, end)` should have length equal to `n`, and should not contain any NaN values.
      */
     template<typename Iterator_>
     Output_ operator()(Iterator_ begin, Iterator_ end) const {

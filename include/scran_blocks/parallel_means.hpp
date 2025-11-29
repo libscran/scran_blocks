@@ -117,7 +117,7 @@ void parallel_means(const std::size_t n, std::vector<Stat_*> in, Output_* const 
 }
 
 /**
- * Overload of `compute()` that allocates an output vector of averaged values.
+ * Overload of `parallel_means()` that allocates an output vector of averaged values.
  *
  * @tparam Output Floating-point output type.
  * @tparam Stat Type of the input statistic, typically floating point.
@@ -182,7 +182,7 @@ void parallel_weighted_means(const std::size_t n, std::vector<Stat_*> in, const 
 }
 
 /**
- * Overload of `average_vectors_weighted()` that allocates an output vector of averaged values.
+ * Overload of `parallel_weighted_means()` that allocates an output vector of averaged values.
  *
  * @tparam Output_ Floating-point output type.
  * @tparam Weight_ Type of the weight, typically floating point.
