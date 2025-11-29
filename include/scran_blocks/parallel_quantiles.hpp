@@ -7,6 +7,7 @@
 #include <vector>
 #include <cstddef>
 #include <cmath>
+#include <optional>
 
 #include "utils.hpp"
 
@@ -23,44 +24,46 @@ namespace scran_blocks {
  * @brief Calculate a single quantile from a container.
  *
  * @tparam Output_ Floating-point type of the output quantile.
- * @tparam Size_ Integer type of the number of elements.
+ * @tparam Iterator_ Random-access writeable iterator to a container.
  *
  * This class should be constructed once, given the number of elements and the desired probability.
  * It can then applied across any number of containers of size equal to the pre-specified number of elements. 
  * The quantile is type 7, consistent with the default in R's `quantile` function. 
  */
-template<typename Output_, typename Size_>
+template<typename Output_, class Iterator_>
 class SingleQuantile {
 public:
     /**
-     * @param n Number of elements in the container.
+     * @param len Number of elements in the container.
+     * Should be positive.
      * @param quantile Quantile to compute, in \f$[0, 1]\f$.
      */
-    SingleQuantile(Size_ n, double quantile) {
-        const double frac = (n - 1) * quantile;
-        const double base = std::floor(frac);
-        my_lower = base;
+    SingleQuantile(const std::size_t len, const double quantile) {
+        sanisizer::can_ptrdiff<Iterator_>(len);
+        const Output_ frac = static_cast<Output_>(len - 1) * static_cast<Output_>(quantile);
+        const Output_ base = std::floor(frac);
+        my_lower = base; // cast is known-safe if can_ptrdiff passes and 0 <= quantile <= 1.
         my_upper_fraction = frac - base;
-        my_lower_fraction = 1 - my_upper_fraction;
+        my_lower_fraction = static_cast<Output_>(1) - my_upper_fraction;
         my_skip_upper = my_upper_fraction == 0;
     }
 
 private:
-    Size_ my_lower;
-    double my_upper_fraction;
-    double my_lower_fraction;
+    std::size_t my_lower;
+    Output_ my_upper_fraction;
+    Output_ my_lower_fraction;
     bool my_skip_upper;
 
 public:
     /**
-     * @tparam Iterator_ Random-access writeable iterator to a container.
      * @param begin Start of the container.
      * @param end End of the container.
+     *
      * @return Quantile for the sequence of elements in `[begin, end)`.
      *
      * The range `[begin, end)` should have length equal to `n`, and should not contain any NaN values.
+     * On output, the order of elements in `[begin, end)` may be rearranged.
      */
-    template<typename Iterator_>
     Output_ operator()(Iterator_ begin, Iterator_ end) const {
         auto target = begin + my_lower;
         std::nth_element(begin, target, end);
@@ -69,7 +72,7 @@ public:
         if (my_skip_upper) {
             return *target;
         } else {
-            return *target * my_lower_fraction + *(target + 1) * my_upper_fraction;
+            return static_cast<Output_>(*target) * my_lower_fraction + static_cast<Output_>(*(target + 1)) * my_upper_fraction;
         }
     }
 };
@@ -104,8 +107,11 @@ void parallel_quantiles(const std::size_t n, const std::vector<Stat_*>& in, cons
 
     std::vector<Stat_> tmp_buffer;
     tmp_buffer.reserve(nblocks);
+    typedef SingleQuantile<Output_, I<decltype(tmp_buffer.begin())> > QuantileCalculator;
 
     if (skip_nan) {
+        auto calcs = sanisizer::create<std::vector<std::optional<QuantileCalculator> > >(nblocks - 1);
+
         for (std::size_t g = 0; g < n; ++g) {
             tmp_buffer.clear();
             for (I<decltype(nblocks)> b = 0; b < nblocks; ++b) {
@@ -121,13 +127,16 @@ void parallel_quantiles(const std::size_t n, const std::vector<Stat_*>& in, cons
             } else if (actual_nblocks == 1) {
                 out[g] = tmp_buffer.front(); 
             } else {
-                SingleQuantile<Output_, decltype(I(actual_nblocks))> calc(actual_nblocks, quantile);
-                out[g] = calc(tmp_buffer.begin(), tmp_buffer.end());
+                auto& ocalc = calcs[actual_nblocks - 2];
+                if (!ocalc.has_value()) { // Instantiating them on demand.
+                    ocalc = QuantileCalculator(actual_nblocks, quantile);
+                }
+                out[g] = (*ocalc)(tmp_buffer.begin(), tmp_buffer.end());
             }
         }
 
     } else {
-        SingleQuantile<Output_, decltype(I(nblocks))> calc(nblocks, quantile);
+        QuantileCalculator calc(nblocks, quantile);
         for (std::size_t g = 0; g < n; ++g) {
             tmp_buffer.clear();
             for (I<decltype(nblocks)> b = 0; b < nblocks; ++b) {
