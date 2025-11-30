@@ -105,6 +105,42 @@ TEST(SingleQuantile, Complex) {
     }
 }
 
+TEST(SingleQuantileVariable, Simple) {
+    std::vector<double> original { 0, 1, 2, 3, 4, 5 };
+    scran_blocks::SingleQuantileVariable<double, decltype(original.begin())> calc(original.size(), 0.5);
+
+    {
+        auto values = original;
+        auto Q = calc(values.begin(), values.begin());
+        EXPECT_TRUE(std::isnan(Q));
+    }
+
+    {
+        auto values = original;
+        auto Q = calc(values.begin(), values.begin() + 1);
+        EXPECT_EQ(Q, 0);
+    }
+
+    {
+        auto values = original;
+        auto Q = calc(values.begin(), values.begin() + 2);
+        scran_tests::compare_almost_equal(Q, 0.5, scran_tests::CompareAlmostEqualParameters());
+    }
+
+    {
+        auto values = original;
+        auto Q = calc(values.begin(), values.end());
+        scran_tests::compare_almost_equal(Q, 2.5, scran_tests::CompareAlmostEqualParameters());
+    }
+
+    // Re-using the cached calculator.
+    {
+        auto values = original;
+        auto Q = calc(values.begin() + 2, values.begin() + 4);
+        scran_tests::compare_almost_equal(Q, 2.5, scran_tests::CompareAlmostEqualParameters());
+    }
+}
+
 TEST(ParallelQuantiles, Simple) {
     std::vector<std::vector<double> > stuff {
         std::vector<double>{1, 2, 3, 4, 5},

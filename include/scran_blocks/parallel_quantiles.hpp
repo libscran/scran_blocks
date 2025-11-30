@@ -27,15 +27,14 @@ namespace scran_blocks {
  * @tparam Iterator_ Random-access writeable iterator to a container.
  *
  * This class should be constructed once, given the number of elements and the desired probability.
- * It can then applied across any number of containers of size equal to the pre-specified number of elements. 
+ * It can then be used to compute a quantile for containers of size equal to the pre-specified number of elements. 
  * The quantile is type 7, consistent with the default in R's `quantile` function. 
  */
 template<typename Output_, class Iterator_>
 class SingleQuantile {
 public:
     /**
-     * @param len Number of elements in the container.
-     * Should be positive.
+     * @param len Number of elements in the container, should be positive.
      * @param quantile Quantile to compute, in \f$[0, 1]\f$.
      */
     SingleQuantile(const std::size_t len, const double quantile) {
@@ -79,6 +78,80 @@ public:
 };
 
 /**
+ * @brief Calculate a single quantile for containers of variable length.
+ *
+ * @tparam Output_ Floating-point type of the output quantile.
+ * @tparam Iterator_ Random-access writeable iterator to a container.
+ *
+ * This class should be constructed once, given the maximum number of elements and the desired probability.
+ * It can then be used to compute quantiles from containers of size less than or equal to the maximum.
+ * See `SingleQuantile` for more details.
+ */
+template<typename Output_, class Iterator_>
+class SingleQuantileVariable {
+public:
+    /**
+     * @param max_len Maximum number of elements in the container.
+     * Unlike `SingleQuantile`, this may be zero.
+     * @param quantile Quantile to compute, in \f$[0, 1]\f$.
+     */
+    SingleQuantileVariable(const std::size_t max_len, const double quantile) : my_quantile(quantile) {
+        if (max_len >= 2) {
+            sanisizer::resize(my_choices, max_len - 1);
+        }
+    }
+
+private:
+    std::vector<std::optional<SingleQuantile<Output_, Iterator_> > > my_choices;
+    double my_quantile;
+
+public:
+    /**
+     * @param len Length of the container.
+     * This should be equal to `end - begin` and no greater than `max_len`.
+     * @param begin Start of the container.
+     * @param end End of the container.
+     *
+     * @return Quantile for the sequence of elements in `[begin, end)`.
+     * If this sequence is empty, NaN is returned.
+     *
+     * The range `[begin, end)` should have length equal to `len`, and should not contain any NaN values.
+     * On output, the order of elements in `[begin, end)` may be rearranged.
+     *
+     * This method is not thread-safe.
+     */
+    Output_ operator()(const std::size_t len, Iterator_ begin, Iterator_ end) {
+        if (len == 0) {
+            return std::numeric_limits<Output_>::quiet_NaN();
+        } else if (len == 1) {
+            return *begin;
+        } else {
+            auto& ocalc = my_choices[len - 2];
+            if (!ocalc.has_value()) { // Instantiating them on demand.
+                ocalc.emplace(len, my_quantile);
+            }
+            return (*ocalc)(begin, end);
+        }
+    }
+
+    /**
+     * @param begin Start of the container.
+     * @param end End of the container.
+     *
+     * @return Quantile for the sequence of elements in `[begin, end)`.
+     * If this sequence is empty, NaN is returned.
+     *
+     * The range `[begin, end)` should have length less than `max_length`, and should not contain any NaN values.
+     * On output, the order of elements in `[begin, end)` may be rearranged.
+     *
+     * This method is not thread-safe.
+     */
+    Output_ operator()(Iterator_ begin, Iterator_ end) {
+        return this->operator()(end - begin, begin, end);
+    }
+};
+
+/**
  * Compute the quantile for parallel elements across multiple arrays.
  * This can be used as an alternative to `parallel_means()` to summarize statistics across blocks, e.g., by computing the median with `quantile = 0.5`.
  * The quantile is type 7, consistent with the default in R's `quantile` function. 
@@ -108,11 +181,9 @@ void parallel_quantiles(const std::size_t n, const std::vector<Stat_*>& in, cons
 
     std::vector<Stat_> tmp_buffer;
     tmp_buffer.reserve(nblocks);
-    typedef SingleQuantile<Output_, I<decltype(tmp_buffer.begin())> > QuantileCalculator;
 
     if (skip_nan) {
-        auto calcs = sanisizer::create<std::vector<std::optional<QuantileCalculator> > >(nblocks - 1);
-
+        SingleQuantileVariable<Output_, I<decltype(tmp_buffer.begin())> > calcs(nblocks, quantile);
         for (std::size_t g = 0; g < n; ++g) {
             tmp_buffer.clear();
             for (I<decltype(nblocks)> b = 0; b < nblocks; ++b) {
@@ -121,23 +192,12 @@ void parallel_quantiles(const std::size_t n, const std::vector<Stat_*>& in, cons
                     tmp_buffer.push_back(val);
                 }
             }
-
-            const auto actual_nblocks = tmp_buffer.size();
-            if (actual_nblocks == 0) {
-                out[g] = std::numeric_limits<Output_>::quiet_NaN();
-            } else if (actual_nblocks == 1) {
-                out[g] = tmp_buffer.front(); 
-            } else {
-                auto& ocalc = calcs[actual_nblocks - 2];
-                if (!ocalc.has_value()) { // Instantiating them on demand.
-                    ocalc = QuantileCalculator(actual_nblocks, quantile);
-                }
-                out[g] = (*ocalc)(tmp_buffer.begin(), tmp_buffer.end());
-            }
+            out[g] = calcs(tmp_buffer.size(), tmp_buffer.begin(), tmp_buffer.end());
         }
 
     } else {
-        QuantileCalculator calc(nblocks, quantile);
+
+        SingleQuantile<Output_, I<decltype(tmp_buffer.begin())> > calc(nblocks, quantile);
         for (std::size_t g = 0; g < n; ++g) {
             tmp_buffer.clear();
             for (I<decltype(nblocks)> b = 0; b < nblocks; ++b) {
