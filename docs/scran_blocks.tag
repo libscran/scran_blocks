@@ -18,6 +18,7 @@
     <path>scran_blocks/</path>
     <filename>parallel__quantiles_8hpp.html</filename>
     <class kind="class">scran_blocks::SingleQuantile</class>
+    <class kind="class">scran_blocks::SingleQuantileVariable</class>
     <namespace>scran_blocks</namespace>
   </compound>
   <compound kind="file">
@@ -49,6 +50,33 @@
       <arglist>(Iterator_ begin, Iterator_ end) const</arglist>
     </member>
   </compound>
+  <compound kind="class">
+    <name>scran_blocks::SingleQuantileVariable</name>
+    <filename>classscran__blocks_1_1SingleQuantileVariable.html</filename>
+    <templarg>typename Output_</templarg>
+    <templarg>class Iterator_</templarg>
+    <member kind="function">
+      <type></type>
+      <name>SingleQuantileVariable</name>
+      <anchorfile>classscran__blocks_1_1SingleQuantileVariable.html</anchorfile>
+      <anchor>a6631c29b6ec0eeed4fbdabf1c084d697</anchor>
+      <arglist>(const std::size_t max_len, const double quantile)</arglist>
+    </member>
+    <member kind="function">
+      <type>Output_</type>
+      <name>operator()</name>
+      <anchorfile>classscran__blocks_1_1SingleQuantileVariable.html</anchorfile>
+      <anchor>a24df879663e1d89480caaa8683b331b2</anchor>
+      <arglist>(const std::size_t len, Iterator_ begin, Iterator_ end)</arglist>
+    </member>
+    <member kind="function">
+      <type>Output_</type>
+      <name>operator()</name>
+      <anchorfile>classscran__blocks_1_1SingleQuantileVariable.html</anchorfile>
+      <anchor>adfc8f43415a69ca8ae7d11fbfad3eb3f</anchor>
+      <arglist>(Iterator_ begin, Iterator_ end)</arglist>
+    </member>
+  </compound>
   <compound kind="struct">
     <name>scran_blocks::VariableWeightParameters</name>
     <filename>structscran__blocks_1_1VariableWeightParameters.html</filename>
@@ -71,6 +99,7 @@
     <name>scran_blocks</name>
     <filename>namespacescran__blocks.html</filename>
     <class kind="class">scran_blocks::SingleQuantile</class>
+    <class kind="class">scran_blocks::SingleQuantileVariable</class>
     <class kind="struct">scran_blocks::VariableWeightParameters</class>
     <member kind="enumeration">
       <type></type>
