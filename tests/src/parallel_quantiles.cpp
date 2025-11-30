@@ -11,56 +11,98 @@ static int full_of_nans(const std::vector<double>& vec) {
     return nan_count;
 }
 
-TEST(SingleQuantile, Even) {
-    std::vector<double> values { 0.5, 0.7, 8.2, 2.3, 1.5, 8.8 };
-    const std::size_t n = static_cast<std::size_t>(values.size());
+TEST(SingleQuantile, Simple) {
+    std::vector<double> original { 0.7, 8.2, 2.3, 1.5, 8.8, 0.5 };
+    const std::size_t n = static_cast<std::size_t>(original.size());
     scran_tests::CompareAlmostEqualParameters params;
-    double val;
 
-    val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 0.5, params);
-    val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0.1)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 0.6, params);
-    val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0.25)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 0.9, params);
-    val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0.5)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 1.9, params);
-    val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0.75)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 6.725, params);
-    val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0.8)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 8.2, params);
-    val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 1)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 8.8, params);
+    // Make a copy to preserve the original unordered state, otherwise the vector ends up sorted and the test is too easy. 
+    {
+        auto values = original;
+        double val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0)(values.begin(), values.end());
+        scran_tests::compare_almost_equal(val, 0.5, params);
+    }
+
+    {
+        auto values = original;
+        double val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0.1)(values.begin(), values.end());
+        scran_tests::compare_almost_equal(val, 0.6, params);
+    }
+
+    {
+        auto values = original;
+        double val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0.25)(values.begin(), values.end());
+        scran_tests::compare_almost_equal(val, 0.9, params);
+    }
+
+    {
+        auto values = original;
+        double val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0.5)(values.begin(), values.end());
+        scran_tests::compare_almost_equal(val, 1.9, params);
+    }
+
+    {
+        auto values = original;
+        double val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0.75)(values.begin(), values.end());
+        scran_tests::compare_almost_equal(val, 6.725, params);
+    }
+
+    {
+        auto values = original;
+        double val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0.8)(values.begin(), values.end());
+        scran_tests::compare_almost_equal(val, 8.2, params);
+    }
+
+    {
+        auto values = original;
+        double val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 1)(values.begin(), values.end());
+        scran_tests::compare_almost_equal(val, 8.8, params);
+    }
 
     // Works with some lower precisions too.
     params.relative_tolerance = 1e-5;
-    auto fval = scran_blocks::SingleQuantile<float, decltype(values.begin())>(n, 1)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(static_cast<double>(fval), 8.8, params);
-    std::vector<float> fvalues(values.begin(), values.end());
-    val = scran_blocks::SingleQuantile<double, decltype(fvalues.begin())>(n, 1)(fvalues.begin(), fvalues.end());
-    scran_tests::compare_almost_equal(val, 8.8, params);
+    {
+        auto values = original;
+        auto fval = scran_blocks::SingleQuantile<float, decltype(values.begin())>(n, 1)(values.begin(), values.end());
+        scran_tests::compare_almost_equal(static_cast<double>(fval), 8.8, params);
+    }
+
+    {
+        std::vector<float> fvalues(original.begin(), original.end());
+        auto val = scran_blocks::SingleQuantile<double, decltype(fvalues.begin())>(n, 1)(fvalues.begin(), fvalues.end());
+        scran_tests::compare_almost_equal(val, 8.8, params);
+    }
 }
 
-TEST(SingleQuantile, Odd) {
-    std::vector<double> values { 20, 50, 30, 80, 100 };
-    const std::size_t n = static_cast<std::size_t>(values.size());
-    scran_tests::CompareAlmostEqualParameters params;
-    double val;
+TEST(SingleQuantile, Complex) {
+    const std::size_t n = 54; // n - 1 should be prime so that we can use EXPECT_LT, GT, without worrying about float equality.
+    auto original = scran_tests::simulate_vector(n, {});
 
-    val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 20.0, params);
-    val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0.1)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 24.0, params);
-    val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0.25)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 30.0, params);
-    val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0.5)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 50.0, params);
-    val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0.75)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 80.0, params);
-    val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0.8)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 84.0, params);
-    val = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 1)(values.begin(), values.end());
-    scran_tests::compare_almost_equal(val, 100.0, params);
+    for (int val = 1; val < 100; ++val) {
+        const double prop = static_cast<double>(val)/100.0;
+        auto values = original;
+        const double Q = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, prop)(values.begin(), values.end());
+
+        double sum = 0;
+        for (auto x : original) {
+            sum += (x <= Q);
+        }
+
+        EXPECT_GT(prop, (sum-1)/(n-1));
+        EXPECT_LT(prop, sum/(n-1));
+    }
+
+    {
+        auto values = original;
+        const double Q = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 0)(values.begin(), values.end());
+        EXPECT_EQ(Q, *std::min_element(original.begin(), original.end()));
+    }
+
+    {
+        auto values = original;
+        const double Q = scran_blocks::SingleQuantile<double, decltype(values.begin())>(n, 1)(values.begin(), values.end());
+        EXPECT_EQ(Q, *std::max_element(original.begin(), original.end()));
+    }
 }
 
 TEST(ParallelQuantiles, Simple) {

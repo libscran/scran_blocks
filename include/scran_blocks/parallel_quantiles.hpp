@@ -72,7 +72,8 @@ public:
         if (my_skip_upper) {
             return *target;
         } else {
-            return static_cast<Output_>(*target) * my_lower_fraction + static_cast<Output_>(*(target + 1)) * my_upper_fraction;
+            const auto next = std::min_element(target + 1, end); 
+            return static_cast<Output_>(*target) * my_lower_fraction + static_cast<Output_>(*next) * my_upper_fraction;
         }
     }
 };
