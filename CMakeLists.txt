@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 project(scran_blocks
-    VERSION 0.1.1
+    VERSION 0.1.2
     DESCRIPTION "Blocking utilities for libscran"
     LANGUAGES CXX)
 

@@ -8,6 +8,7 @@
 #include <cstddef>
 #include <cmath>
 #include <optional>
+#include <cassert>
 
 #include "utils.hpp"
 
@@ -38,6 +39,7 @@ public:
      * @param quantile Quantile to compute, in \f$[0, 1]\f$.
      */
     SingleQuantile(const std::size_t len, const double quantile) {
+        assert(len > 0);
         sanisizer::can_ptrdiff<Iterator_>(len);
         const Output_ frac = static_cast<Output_>(len - 1) * static_cast<Output_>(quantile);
         const Output_ base = std::floor(frac);
@@ -64,6 +66,7 @@ public:
      * On output, the order of elements in `[begin, end)` may be rearranged.
      */
     Output_ operator()(Iterator_ begin, Iterator_ end) const {
+        assert(sanisizer::is_less_than(my_lower, end - begin));
         auto target = begin + my_lower;
         std::nth_element(begin, target, end);
 
@@ -121,6 +124,7 @@ public:
      * This method is not thread-safe.
      */
     Output_ operator()(const std::size_t len, Iterator_ begin, Iterator_ end) {
+        assert(sanisizer::is_equal(len, end - begin));
         if (len == 0) {
             return std::numeric_limits<Output_>::quiet_NaN();
         } else if (len == 1) {
