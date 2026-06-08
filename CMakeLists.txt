@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.14)
 
 project(scran_blocks
-    VERSION 0.1.2
+    VERSION 0.1.3
     DESCRIPTION "Blocking utilities for libscran"
-    LANGUAGES CXX)
+    LANGUAGES CXX
+)
 
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
@@ -22,8 +23,8 @@ option(SCRAN_MARKERS_FETCH_EXTERN "Automatically fetch scran_blocks's external d
 if(SCRAN_MARKERS_FETCH_EXTERN)
     add_subdirectory(extern)
 else()
-    find_package(ltla_sanisizer 0.1.0 CONFIG REQUIRED)
-    find_package(ltla_quickstats 0.1.0 CONFIG REQUIRED)
+    find_package(ltla_sanisizer 0.2.0 CONFIG REQUIRED)
+    find_package(ltla_quickstats 0.1.2 CONFIG REQUIRED)
 endif()
 
 target_link_libraries(scran_blocks INTERFACE ltla::sanisizer ltla::quickstats)

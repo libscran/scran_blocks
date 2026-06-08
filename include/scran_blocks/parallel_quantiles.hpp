@@ -54,7 +54,7 @@ void parallel_quantiles(const std::size_t n, const std::vector<Stat_*>& in, cons
     tmp_buffer.reserve(nblocks);
 
     if (skip_nan) {
-        quickstats::SingleQuantileVariableNumber<Output_, I<decltype(nblocks)> > calcs(nblocks, quantile);
+        quickstats::SingleQuantileVariableNumber<Output_> calcs(sanisizer::cast<std::size_t>(nblocks), quantile);
         for (std::size_t g = 0; g < n; ++g) {
             tmp_buffer.clear();
             for (I<decltype(nblocks)> b = 0; b < nblocks; ++b) {
@@ -67,7 +67,7 @@ void parallel_quantiles(const std::size_t n, const std::vector<Stat_*>& in, cons
         }
 
     } else {
-        quickstats::SingleQuantileFixedNumber<Output_, I<decltype(nblocks)> > calc(nblocks, quantile);
+        quickstats::SingleQuantileFixedNumber<Output_> calc(sanisizer::cast<std::size_t>(nblocks), quantile);
         for (std::size_t g = 0; g < n; ++g) {
             tmp_buffer.clear();
             for (I<decltype(nblocks)> b = 0; b < nblocks; ++b) {
