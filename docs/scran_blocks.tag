@@ -72,6 +72,13 @@
       <type>void</type>
       <name>compute_weights</name>
       <anchorfile>namespacescran__blocks.html</anchorfile>
+      <anchor>abb744b2630d416da95bfdc62de9cd3fe</anchor>
+      <arglist>(const std::size_t num_blocks, GetBlockSize_ get_block_size, const WeightPolicy policy, const VariableWeightParameters &amp;variable, SetBlockWeight_ set_block_weight)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>compute_weights</name>
+      <anchorfile>namespacescran__blocks.html</anchorfile>
       <anchor>a2eb0ccb73289d97436afd94824ec0fae</anchor>
       <arglist>(const std::size_t num_blocks, const Size_ *const sizes, const WeightPolicy policy, const VariableWeightParameters &amp;variable, Weight_ *const weights)</arglist>
     </member>
