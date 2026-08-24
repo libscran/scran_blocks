@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 project(scran_blocks
-    VERSION 0.1.3
+    VERSION 0.1.4
     DESCRIPTION "Blocking utilities for libscran"
     LANGUAGES CXX
 )
@@ -24,7 +24,7 @@ if(SCRAN_MARKERS_FETCH_EXTERN)
     add_subdirectory(extern)
 else()
     find_package(ltla_sanisizer 0.2.0 CONFIG REQUIRED)
-    find_package(ltla_quickstats 0.1.2 CONFIG REQUIRED)
+    find_package(ltla_quickstats 0.2.0 CONFIG REQUIRED)
 endif()
 
 target_link_libraries(scran_blocks INTERFACE ltla::sanisizer ltla::quickstats)
