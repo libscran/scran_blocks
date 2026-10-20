@@ -12,58 +12,6 @@ In the presence of blocks, our general strategy is to perform the analysis withi
 This ensures that our results are not affected by the uninteresting differences between blocks.
 See the [reference documentation](https://libscran.github.io/scran_blocks) for more details.
 
-## Parallel means
-
-The `parallel_means()` function will compute the element-wise mean of any number of equi-length arrays.
-This is typically used to average statistics across blocks, where each array contains the statistics for a single block over all genes.
-
-```cpp
-#include "scran_blocks/scran_blocks.hpp"
-
-std::vector<double> stat1 { 1.0, 2.0, 3.0, 4.0 };
-std::vector<double> stat2 { 5.0, 6.0, 7.0, 8.0 };
-
-// Contains { 3, 4, 5, 6 }.
-auto averaged = scran_blocks::parallel_means(
-    stat1.size(), 
-    { stat1.data(), stat2.data() }
-    /* skip_nan = */ false
-);
-```
-
-If NaNs are present, they can be ignored:
-
-```cpp
-#include <limits>
-
-auto nan = std::numeric_limits<double>::quiet_NaN();
-std::vector<double> stat1n { 1.0, nan, 3.0, nan };
-std::vector<double> stat2n { 5.0, 6.0, nan, nan };
-
-// Contains { 3, 6, 3, nan }.
-auto averagedn = scran_blocks::parallel_means(
-    stat1n.size(), 
-    { stat1n.data(), stat2n.data() }
-    /* skip_nan = */ true
-);
-```
-
-We also support per-vector weights:
-
-```cpp
-std::vector<double> stat1w { 1.0, 2.0, 3.0, 4.0 };
-std::vector<double> stat2w { 5.0, 6.0, 7.0, 8.0 };
-std::vector<double> weights { 1.0, 9.0 };
-
-// Contains { 4.6, 5.6, 6.6, 7.6 }.
-auto averagedw = scran_blocks::parallel_weighted_means(
-    stat1w.size(), 
-    { stat1w.data(), stat2w.data() }
-    weights.data(),
-    /* skip_nan = */ false
-);
-```
-
 ## Weighting blocks
 
 When combining statistics across blocks, it may be desirable to weight each block by its size, favoring larger blocks that can emit more stable statistics.
@@ -93,29 +41,17 @@ or `EQUAL`, where all blocks are equally weighted regardless of size (assuming t
 In such cases, the `variable` argument is ignored.
 Check out the [reference documentation](https://libscran.github.io/scran_blocks) for more details.
 
-## Parallel quantiles
+## Combining blocked statistics
 
-Much like `parallel_means()`, we can compute the element-wise quantile for any number of equi-length arrays with `parallel_quantiles()`.
-This is again used to average statistics across blocks, where a quantile probability of 0.5 yields the element-wise median.
+Computing a weighted mean is the most obvious approach to combine (weighted) statistics from multiple blocks.
+When doing so, we recommend skipping blocks with a weight of zero.
+This is slightly more efficient, but more importantly, it avoids problems with sums of `0 * Inf` or `0 * NaN` introducing unnecessary `NaN`s.
+Implementations may also choose to skip `NaN` observations, in which case the denominator of the weighted mean should be adjusted accordingly.
 
-```cpp
-#include "scran_blocks/scran_blocks.hpp"
-
-std::vector<double> stat1 { 1.0, 2.0, 3.0, 4.0 };
-std::vector<double> stat2 { 5.0, 8.0, 7.0, 9.0 };
-std::vector<double> stat3 { 2.0, 6.0, 4.0, 8.0 };
-
-// Contains { 2, 6, 4, 8 }.
-auto averaged = scran_blocks::parallel_quantiles(
-    stat1.size(), 
-    { stat1.data(), stat2.data(), stat3.data() }
-    /* quantile = */ 0.5,
-    /* skip_nan = */ false
-);
-```
-
-This function computes the type 7 quantile for each gene.
-Weighted quantiles are currently not supported, mostly because it's too hard to do correctly (at least, for a continuous quantile function).
+Another simple approach is to compute a quantile, e.g., using the [**quickstats**](https://github.com/LTLA/quickstats) library.
+A quantile like the median is more robust to outliers than a weighted mean, while the minimum/maximum can capture the best/worst-case behavior across all blocks.
+For example, ranking genes by the minimum log-fold change will favor genes that exhibit consistent upregulation across all blocks.
+However, quantiles are much less amenable to weighting as there is no clear choice for how the quantile should behave at the boundaries between observations.
 
 # Building projects
 
