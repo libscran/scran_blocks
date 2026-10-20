@@ -4,6 +4,7 @@
 #include <vector>
 #include <cstddef>
 #include <algorithm>
+#include <cassert>
 
 #include "sanisizer/sanisizer.hpp"
 
@@ -51,8 +52,8 @@ struct VariableWeightParameters {
  * Assign a variable weight to each block of cells, for use in computing a weighted average across blocks.
  * The weight for each block is calculated from the size of that block.
  *
- * - If the block size is less than `VariableWeightParameters::lower_bound`, it has zero weight.
- * - If the block size is greater than `VariableWeightParameters::upper_bound`, it has weight of 1.
+ * - If the block size is less than or equal to `VariableWeightParameters::lower_bound`, it has zero weight.
+ * - If the block size is greater than or equal to `VariableWeightParameters::upper_bound`, it has weight of 1.
  * - Otherwise, the block has weight proportional to its size, increasing linearly from 0 to 1 between the two bounds.
  *
  * Blocks that are "large enough" (i.e., above the upper bound) are considered to be equally trustworthy and receive the same weight,
@@ -65,14 +66,14 @@ struct VariableWeightParameters {
  * @return Weight of the block, to use for computing a weighted average across blocks. 
  */
 inline double compute_variable_weight(const double s, const VariableWeightParameters& params) {
-    if (s < params.lower_bound || s == 0) {
+    assert(params.lower_bound >= 0);
+    assert(params.upper_bound >= params.lower_bound);
+    if (s <= params.lower_bound) {
         return 0;
     }
-
-    if (s > params.upper_bound) {
+    if (s >= params.upper_bound) {
         return 1;
     }
-
     return (s - params.lower_bound) / (params.upper_bound - params.lower_bound);
 }
 
