@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['tt_0',['tt',['../index.html#autotoc_md6',1,'CMake with &lt;tt&gt;FetchContent&lt;/tt&gt;'],['../index.html#autotoc_md7',1,'CMake with &lt;tt&gt;find_package()&lt;/tt&gt;']]],
-  ['tt_20fetchcontent_20tt_1',['CMake with &lt;tt&gt;FetchContent&lt;/tt&gt;',['../index.html#autotoc_md6',1,'']]],
-  ['tt_20find_5fpackage_20tt_2',['CMake with &lt;tt&gt;find_package()&lt;/tt&gt;',['../index.html#autotoc_md7',1,'']]]
+  ['upper_5fbound_0',['upper_bound',['../structscran__blocks_1_1VariableWeightParameters.html#a865b484b6fc8611048fcadab863de6bf',1,'scran_blocks::VariableWeightParameters']]],
+  ['utilities_20for_20libscran_1',['Blocking utilities for libscran',['../index.html',1,'']]]
 ];

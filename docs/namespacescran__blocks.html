@@ -187,8 +187,8 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Assign a variable weight to each block of cells, for use in computing a weighted average across blocks. The weight for each block is calculated from the size of that block.</p>
 <ul>
-<li>If the block size is less than <code><a class="el" href="structscran__blocks_1_1VariableWeightParameters.html#a0c21095e5569208fa946c7f1b5791ea5">VariableWeightParameters::lower_bound</a></code>, it has zero weight.</li>
-<li>If the block size is greater than <code><a class="el" href="structscran__blocks_1_1VariableWeightParameters.html#a865b484b6fc8611048fcadab863de6bf">VariableWeightParameters::upper_bound</a></code>, it has weight of 1.</li>
+<li>If the block size is less than or equal to <code><a class="el" href="structscran__blocks_1_1VariableWeightParameters.html#a0c21095e5569208fa946c7f1b5791ea5">VariableWeightParameters::lower_bound</a></code>, it has zero weight.</li>
+<li>If the block size is greater than or equal to <code><a class="el" href="structscran__blocks_1_1VariableWeightParameters.html#a865b484b6fc8611048fcadab863de6bf">VariableWeightParameters::upper_bound</a></code>, it has weight of 1.</li>
 <li>Otherwise, the block has weight proportional to its size, increasing linearly from 0 to 1 between the two bounds.</li>
 </ul>
 <p>Blocks that are "large enough" (i.e., above the upper bound) are considered to be equally trustworthy and receive the same weight, ensuring that each block contributes equally to the weighted average. By comparison, very small blocks receive lower weight as their statistics are generally less stable.</p>
