@@ -10,9 +10,7 @@ FetchContent_MakeAvailable(scran_tests)
 
 add_executable(
     libtest 
-    src/parallel_means.cpp
     src/block_weights.cpp
-    src/parallel_quantiles.cpp
 )
 
 target_link_libraries(
