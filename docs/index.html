@@ -103,12 +103,11 @@ Parallel means</h1>
 <div class="line">std::vector&lt;double&gt; stat2 { 5.0, 6.0, 7.0, 8.0 };</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Contains { 3, 4, 5, 6 }.</span></div>
-<div class="line"><span class="keyword">auto</span> averaged = <a class="code hl_function" href="namespacescran__blocks.html#ad47cb191dd54e5b23cde2ef295b06046">scran_blocks::parallel_means</a>(</div>
+<div class="line"><span class="keyword">auto</span> averaged = scran_blocks::parallel_means(</div>
 <div class="line">    stat1.size(), </div>
 <div class="line">    { stat1.data(), stat2.data() }</div>
 <div class="line">    <span class="comment">/* skip_nan = */</span> <span class="keyword">false</span></div>
 <div class="line">);</div>
-<div class="ttc" id="anamespacescran__blocks_html_ad47cb191dd54e5b23cde2ef295b06046"><div class="ttname"><a href="namespacescran__blocks.html#ad47cb191dd54e5b23cde2ef295b06046">scran_blocks::parallel_means</a></div><div class="ttdeci">void parallel_means(const std::size_t n, std::vector&lt; Stat_ * &gt; in, Output_ *const out, const bool skip_nan)</div><div class="ttdef"><b>Definition</b> parallel_means.hpp:116</div></div>
 <div class="ttc" id="ascran__blocks_8hpp_html"><div class="ttname"><a href="scran__blocks_8hpp.html">scran_blocks.hpp</a></div><div class="ttdoc">Blocking utilities for libscran.</div></div>
 </div><!-- fragment --><p>If NaNs are present, they can be ignored:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;limits&gt;</span></div>
@@ -118,7 +117,7 @@ Parallel means</h1>
 <div class="line">std::vector&lt;double&gt; stat2n { 5.0, 6.0, nan, nan };</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Contains { 3, 6, 3, nan }.</span></div>
-<div class="line"><span class="keyword">auto</span> averagedn = <a class="code hl_function" href="namespacescran__blocks.html#ad47cb191dd54e5b23cde2ef295b06046">scran_blocks::parallel_means</a>(</div>
+<div class="line"><span class="keyword">auto</span> averagedn = scran_blocks::parallel_means(</div>
 <div class="line">    stat1n.size(), </div>
 <div class="line">    { stat1n.data(), stat2n.data() }</div>
 <div class="line">    <span class="comment">/* skip_nan = */</span> <span class="keyword">true</span></div>
@@ -129,13 +128,12 @@ Parallel means</h1>
 <div class="line">std::vector&lt;double&gt; weights { 1.0, 9.0 };</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Contains { 4.6, 5.6, 6.6, 7.6 }.</span></div>
-<div class="line"><span class="keyword">auto</span> averagedw = <a class="code hl_function" href="namespacescran__blocks.html#abac57f9512b34b4e22871c62fca4020e">scran_blocks::parallel_weighted_means</a>(</div>
+<div class="line"><span class="keyword">auto</span> averagedw = scran_blocks::parallel_weighted_means(</div>
 <div class="line">    stat1w.size(), </div>
 <div class="line">    { stat1w.data(), stat2w.data() }</div>
 <div class="line">    weights.data(),</div>
 <div class="line">    <span class="comment">/* skip_nan = */</span> <span class="keyword">false</span></div>
 <div class="line">);</div>
-<div class="ttc" id="anamespacescran__blocks_html_abac57f9512b34b4e22871c62fca4020e"><div class="ttname"><a href="namespacescran__blocks.html#abac57f9512b34b4e22871c62fca4020e">scran_blocks::parallel_weighted_means</a></div><div class="ttdeci">void parallel_weighted_means(const std::size_t n, std::vector&lt; Stat_ * &gt; in, const Weight_ *const w, Output_ *const out, const bool skip_nan)</div><div class="ttdef"><b>Definition</b> parallel_means.hpp:161</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
 Weighting blocks</h1>
 <p>When combining statistics across blocks, it may be desirable to weight each block by its size, favoring larger blocks that can emit more stable statistics. This is done using the <code>compute_weights()</code> function that calculates a weight for each block based on its size.</p>
@@ -164,13 +162,12 @@ Parallel quantiles</h1>
 <div class="line">std::vector&lt;double&gt; stat3 { 2.0, 6.0, 4.0, 8.0 };</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Contains { 2, 6, 4, 8 }.</span></div>
-<div class="line"><span class="keyword">auto</span> averaged = <a class="code hl_function" href="namespacescran__blocks.html#abef134052291ee3f5bce4011f41c5381">scran_blocks::parallel_quantiles</a>(</div>
+<div class="line"><span class="keyword">auto</span> averaged = scran_blocks::parallel_quantiles(</div>
 <div class="line">    stat1.size(), </div>
 <div class="line">    { stat1.data(), stat2.data(), stat3.data() }</div>
 <div class="line">    <span class="comment">/* quantile = */</span> 0.5,</div>
 <div class="line">    <span class="comment">/* skip_nan = */</span> <span class="keyword">false</span></div>
 <div class="line">);</div>
-<div class="ttc" id="anamespacescran__blocks_html_abef134052291ee3f5bce4011f41c5381"><div class="ttname"><a href="namespacescran__blocks.html#abef134052291ee3f5bce4011f41c5381">scran_blocks::parallel_quantiles</a></div><div class="ttdeci">void parallel_quantiles(const std::size_t n, const std::vector&lt; Stat_ * &gt; &amp;in, const double quantile, Output_ *const out, const bool skip_nan)</div><div class="ttdef"><b>Definition</b> parallel_quantiles.hpp:43</div></div>
 </div><!-- fragment --><p>This function computes the type 7 quantile for each gene. Weighted quantiles are currently not supported, mostly because it's too hard to do correctly (at least, for a continuous quantile function).</p>
 <h1><a class="anchor" id="autotoc_md5"></a>
 Building projects</h1>
