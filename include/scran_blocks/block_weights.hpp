@@ -82,7 +82,10 @@ inline double compute_variable_weight(const double s, const VariableWeightParame
  * For variable weights, this function will call `compute_variable_weight()` for each block.
  *
  * Weights should be interpreted as relative values within a single `compute_weights()` call, i.e., weights from different calls may not be comparable.
- * They are typically used in functions like `parallel_weighted_means()` to compute a weighted average of statistics across blocks.
+ * They are typically used to compute a weighted average of statistics across blocks.
+ *
+ * Empty blocks (i.e., size zero) will always be assigned a weight of zero.
+ * This is guaranteed for all `policy` and valid parametrizations of `variable`.
  *
  * @tparam GetBlockSize_ Function that accepts a `size_t` and returns a number.
  * @tparam SetBlockWeight_ Function that accepts a `size_t` and the block weight.
