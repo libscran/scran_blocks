@@ -296,7 +296,8 @@ template&lt;typename GetBlockSize_ , typename SetBlockWeight_ &gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Compute weights for multiple blocks based on their size and the weighting policy. For variable weights, this function will call <code><a class="el" href="#a33ebed1decbfe3627ce4ddf0b99df825">compute_variable_weight()</a></code> for each block.</p>
-<p>Weights should be interpreted as relative values within a single <code><a class="el" href="#abb744b2630d416da95bfdc62de9cd3fe">compute_weights()</a></code> call, i.e., weights from different calls may not be comparable. They are typically used in functions like <code>parallel_weighted_means()</code> to compute a weighted average of statistics across blocks.</p>
+<p>Weights should be interpreted as relative values within a single <code><a class="el" href="#abb744b2630d416da95bfdc62de9cd3fe">compute_weights()</a></code> call, i.e., weights from different calls may not be comparable. They are typically used to compute a weighted average of statistics across blocks.</p>
+<p>Empty blocks (i.e., size zero) will always be assigned a weight of zero. This is guaranteed for all <code>policy</code> and valid parametrizations of <code>variable</code>.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">GetBlockSize_</td><td>Function that accepts a <code>size_t</code> and returns a number. </td></tr>
